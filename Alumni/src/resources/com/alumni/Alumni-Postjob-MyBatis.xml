@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Post">
+
+	<insert id="AddJob" parameterType="map">
+		INSERT INTO
+		alumni.jobs(title,company_name,location,contact_email,min_exp,max_exp,description,std_id,status,date_added)
+		VALUES
+		(#{p.title},#{p.company_name},#{p.location},#{p.contact_email},#{p.min_exp},#{p.max_exp},#{p.description},
+		#{p.std_id},0,CURRENT_TIMESTAMP);
+	</insert>
+
+	<insert id="AddInternship" parameterType="map">
+		INSERT INTO
+		alumni.interships(title,company_name,location,contact_email,description,std_id,
+		duration,status,date_added)
+		VALUES
+		(#{p.title},#{p.company_name},#{p.location},#{p.contact_email},#{p.description},
+		#{p.std_id},#{p.duration},0,CURRENT_TIMESTAMP);
+	</insert>
+
+</mapper>

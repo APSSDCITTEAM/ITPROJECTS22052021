@@ -1,0 +1,209 @@
+<script src="/alumni/assets/js/scripts/approvals.js"></script>
+
+<div class="main" id="ApprovalsDiv"
+	data-ng-controller="ApprovalsController">
+	<div class="document-title">
+		<div class="container">
+			<h1 class="center">Admin Access Page</h1>
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /.document-title -->
+	<div class="container">
+		<div class="card">
+			<div class="row">
+				<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xs-12 mt-1">
+					<button class="btn btn-info btn-block" type="button"
+						data-toggle="collapse" data-target="#allUsers"
+						aria-expanded="false" aria-controls="collapseExample">
+						All Users</button>
+				</div>
+				<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xs-12 mt-1">
+					<button class="btn btn-info btn-block" type="button"
+						data-toggle="collapse" data-target="#verified"
+						aria-expanded="false" aria-controls="collapseExample">
+						Verified</button>
+				</div>
+				<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xs-12 mt-1">
+					<button class="btn btn-info btn-block" type="button"
+						data-toggle="collapse" data-target="#approved"
+						aria-expanded="false" aria-controls="collapseExample">
+						Approved</button>
+				</div>
+				<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xs-12 mt-1">
+					<button class="btn btn-info btn-block" type="button"
+						data-toggle="collapse" data-target="#rejected"
+						aria-expanded="false" aria-controls="collapseExample">
+						Rejected</button>
+				</div>
+
+
+			</div>
+		</div>
+		<br>
+
+
+		<div class="row collapse show mt-2" id="allUsers">
+			<div class="col-sm-12 col-md-12">
+				<div class="card">
+					<!-- <div class="card-header bg-info">
+						<h6 class="card-title">All Users</h6>
+					</div> -->
+					<div class="card-body">
+						<div class="dt-responsive table-responsive">
+							<table class="table table-striped table-bordered nowrap">
+								<thead>
+									<tr>
+										<th>S.No</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+									<tr data-ng-repeat="user in allusers">
+										<td>{{$index+1}}</td>
+										<td>{{user.name}}</td>
+										<td>{{user.email}}</td>
+										<td>{{user.status_type}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row collapse mt-2" id="verified">
+			<div class="col-sm-12 col-md-12">
+				<div class="card">
+					<!-- <div class="card-header bg-info">
+						<h4 class="card-title">Mail Verified Users</h4>
+					</div> -->
+					<div class="card-body">
+						<div class="dt-responsive table-responsive">
+							<table class="table table-striped table-bordered nowrap">
+								<thead>
+									<tr>
+										<th>S.No</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Status</th>
+										<th>Approve</th>
+										<th>Reject</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+									<tr data-ng-repeat="verified in VerifiedUsers">
+										<td>{{$index+1}}</td>
+										<td>{{verified.name}}</td>
+										<td>{{verified.email}}</td>
+										<td>{{verified.status_type}}</td>
+										<td><button class="btn btn-primary btn-mini"
+												data-ng-click="ApproveUser(verified);">Approve</button></td>
+										<td><button class="btn btn-danger btn-mini"
+												data-ng-click="RejectUser(verified);">Reject</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>       
+		</div>
+
+		<div class="row collapse mt-2" id="approved">
+			<div class="col-sm-12 col-md-12">
+				<div class="card">
+					<!-- <div class="card-header bg-info">
+						<h6 class="card-title">Approved</h6>
+					</div> -->
+					<div class="card-body">
+						<div class="dt-responsive table-responsive">
+							<table class="table table-striped table-bordered nowrap">
+								<thead>
+									<tr>
+										<th>S.No</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+									<tr data-ng-repeat="approved in ApprovedUsers">
+										<td>{{$index+1}}</td>
+										<td>{{approved.name}}</td>
+										<td>{{approved.email}}</td>
+										<td>{{approved.status_type}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row collapse mt-2" id="rejected">
+			<div class="col-sm-12 col-md-12">
+				<div class="card">
+					<!-- <div class="card-header bg-info">
+						<h6 class="card-title">Rejected</h6>
+					</div> -->
+					<div class="card-body">
+						<div class="dt-responsive table-responsive">
+							<table class="table table-striped table-bordered nowrap">
+								<thead>
+									<tr>
+										<th>S.No</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+									<tr data-ng-repeat="rejected in RejectedUsers">
+										<td>{{$index+1}}</td>
+										<td>{{rejected.name}}</td>
+										<td>{{rejected.email}}</td>
+										<td>{{rejected.status_type}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<!-- <div class="container">
+		<ul class="nav nav-pills nav-fill">
+			<li class="nav-item"><a class="nav-link active" href="#">All Users</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Approved</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Rejected</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Verified Mails</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Un-Verified Mails</a></li>
+			<li class="nav-item"><a class="nav-link disabled" href="#"
+				tabindex="-1" aria-disabled="true">Disabled</a></li>
+		</ul>
+	</div> -->
+	<!-- /.container -->
+	<!-- /.container -->
+
+</div>
+<!-- /.main -->
+
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#ApprovalsDiv"), [ 'approvals' ]);
+	});
+</script>

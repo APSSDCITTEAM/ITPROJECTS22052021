@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="Login" type="com.alumni.Model.Login" />
+		<typeAlias alias="DiscussionModel" type="com.alumni.Model.DiscussionModel" />
+		<typeAlias alias="PostjobModel" type="com.alumni.Model.PostjobModel" />
+		<typeAlias alias="ViewJobModel" type="com.alumni.Model.ViewJobModel" />
+		<typeAlias alias="AlumniRegister" type="com.alumni.Model.AlumniRegisterModel" />
+		<typeAlias alias="AdminApprovalModel" type="com.alumni.Model.AdminApprovalModel" />
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="com/alumni/Alumni-Discussion-MyBatis.xml" />
+		<mapper resource="com/alumni/Alumni-Register-MyBatis.xml" />
+		<mapper resource="com/alumni/Alumni-Login-MyBatis.xml" />
+		<mapper resource="com/alumni/Alumni-Postjob-MyBatis.xml" />
+		<mapper resource="com/alumni/Alumni-ViewJob-MyBatis.xml" />
+		<mapper resource="com/alumni/Alumni-AdminApproval-MyBatis.xml" />
+	</mappers>
+
+</configuration>                                                    

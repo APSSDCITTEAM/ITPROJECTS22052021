@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ViewJob">
+
+	<select id="getalljobs" parameterType="map"
+		resultType="ViewJobModel">
+		select distinct id,
+		title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
+		as created_date,status
+		from alumni.jobs where std_id = #{std_id} order
+		by id;
+	</select>
+
+	<select id="getallinternships" parameterType="map"
+		resultType="ViewJobModel">
+		select distinct id,
+		title,company_name,location,contact_email,duration,description,std_id,date_added
+		as created_date,status
+		from alumni.interships where std_id = #{std_id}
+		order by id;
+	</select>
+
+	<select id="getalljobshome" resultType="map">
+		select distinct id,
+		title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
+		as created_date,status
+		from alumni.jobs order by id;
+	</select>
+
+	<select id="getallinternshipshome" resultType="map">
+		select distinct id,
+		title,company_name,location,contact_email,duration,description,std_id,date_added
+		as created_date,status
+		from alumni.interships order by id;
+	</select>
+
+</mapper>  

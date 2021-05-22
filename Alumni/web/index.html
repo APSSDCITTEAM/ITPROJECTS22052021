@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
+    <link href="/alumni/assets/fonts/profession/style.css" rel="stylesheet" type="text/css">
+    <link href="/alumni/assets/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/alumni/assets/libraries/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" type="text/css">
+    <link href="/alumni/assets/libraries/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css">
+    <link href="/alumni/assets/libraries/bootstrap-wysiwyg/bootstrap-wysiwyg.min.css" rel="stylesheet" type="text/css">
+    <link href="/alumni/assets/css/profession-black-green.css" rel="stylesheet" type="text/css" id="style-primary">
+    <link href="/alumni/assets/libraries/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="image/x-icon" href="/alumni/assets/apssdc_final.png">
+
+    <title>Alumni - Andhra Pradesh State Skill Development Corporation
+    </title>
+</head>  
+
+
+<body class="hero-content-dark footer-dark">
+
+    <div class="page-wrapper">
+
+        <!-- /.header-wrapper-->
+        <div id="body-div"></div>
+        <!-- /.main-wrapper -->
+        <!-- /.footer-wrapper -->
+
+    </div>
+    <!-- /.page-wrapper -->
+
+    <!-- AngularJS  -->
+    <script type="text/javascript" src="/alumni/assets/js/angular.min.js"></script>
+
+    <script type="text/javascript" src="/alumni/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="/alumni/assets/js/jquery.ezmark.js"></script>
+
+    <script type="text/javascript" src="/alumni/assets/libraries/bootstrap-sass/javascripts/bootstrap/collapse.js"></script>
+    <script type="text/javascript" src="/alumni/assets/libraries/bootstrap-sass/javascripts/bootstrap/dropdown.js"></script>
+    <script type="text/javascript" src="/alumni/assets/libraries/bootstrap-sass/javascripts/bootstrap/tab.js"></script>
+    <script type="text/javascript" src="/alumni/assets/libraries/bootstrap-sass/javascripts/bootstrap/transition.js"></script>
+    <script type="text/javascript" src="/alumni/assets/libraries/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script type="text/javascript" src="/alumni/assets/libraries/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="/alumni/assets/libraries/bootstrap-wysiwyg/bootstrap-wysiwyg.min.js"></script>
+
+    <script type="text/javascript" src="/alumni/assets/libraries/cycle2/jquery.cycle2.min.js"></script>
+    <script type="text/javascript" src="/alumni/assets/libraries/cycle2/jquery.cycle2.carousel.min.js"></script>
+
+    <script type="text/javascript" src="/alumni/assets/libraries/countup/countup.min.js"></script>
+
+    <script type="text/javascript" src="/alumni/assets/js/profession.js"></script>
+
+    <script type="text/javascript" src="/alumni/assets/libraries/sweetalert/sweetalert.js"></script>
+
+    <script type="text/javascript" src="/alumni/assets/js/scripts/alumni.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(
+            function() {
+                if ((Alumni.isUserLoggedIn()) &&
+                    (Alumni.getSessionValue("roleid") == 1)) {
+                    Alumni.showMDHomePage();
+                } else if ((Alumni.isUserLoggedIn()) &&
+                    (Alumni.getSessionValue("roleid") == 2)) {
+                    Alumni.showEDHomePage();
+                } else if ((Alumni.isUserLoggedIn()) &&
+                    (Alumni.getSessionValue("roleid") == 3)) {
+                    Alumni.showCGMHomePage();
+                } else if ((Alumni.isUserLoggedIn()) &&
+                    (Alumni.getSessionValue("roleid") == 4)) {
+                    Alumni.showAdminHomePage();
+                } else if ((Alumni.isUserLoggedIn()) &&
+                    (Alumni.getSessionValue("roleid") == 5)) {
+                    Alumni.showUserHomePage();
+                }else {
+                	Alumni.showHomePage();
+				}
+            });
+    </script>
+
+</body>
+
+</html>

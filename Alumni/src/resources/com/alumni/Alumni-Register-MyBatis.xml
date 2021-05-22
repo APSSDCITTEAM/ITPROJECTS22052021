@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AlumniRegister">
+
+	<insert id="InsertAlumni" parameterType="map">
+
+		INSERT INTO
+		alumni.students(
+		id,username, first_name, last_name, password,
+		email,mobile_no,
+		photo,status)
+		VALUES
+		(#{p.std_id},#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},#{p.file_name},true);
+
+	</insert>
+
+	<insert id="InsertAlumniUsers" parameterType="map">
+
+		INSERT INTO
+		alumni.users(
+		username, password, role_id, status, user_id)
+		VALUES
+		(#{p.username}, md5(#{p.password}),5, true,#{p.std_id});
+
+	</insert>
+
+	<select id="getAllAlumnisData" resultType="AlumniRegister">
+		SELECT id,username, first_name, last_name, password,
+		email,mobile_no, photo,status from alumni.students order by id;
+	</select>
+
+<!-- ,(case when status='FALSE' THEN 'In-Ative' when status =
+		'TRUE' then 'Active' end) as statustype -->
+
+</mapper>

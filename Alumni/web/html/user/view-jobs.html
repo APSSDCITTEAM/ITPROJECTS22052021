@@ -1,0 +1,173 @@
+<script src="assets/js/scripts/viewjob.js"></script>
+
+<div id="ViewjobDiv" data-ng-controller="JobViewController">
+	<div class="main">
+		<div class="document-title">
+			<div class="container">
+				<h1 class="text-center">Jobs</h1>
+			</div>
+			<!-- /.container -->
+		</div>
+		<!-- /.document-title -->
+
+		<div class="container-fluid">
+			<h2 class="page-header">
+				<strong>212</strong> jobs from 9, 232 matches your search criteria
+			</h2>
+
+			<div class="row">
+				<div class="col-sm-3" style="margin: auto !important;">
+					<div class="filter-stacked">
+						<form method="post" action="javascript:void(1)">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Keyword">
+							</div>
+
+							<h3>
+								Salary <a href="#"><i class="fa fa-close"></i></a>
+							</h3>
+
+							<div class="split-forms">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="Min.">
+								</div>
+
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="Max.">
+								</div>
+							</div>
+							<!-- /.split-forms -->
+
+							<h3>
+								Contract <a href="#"><i class="fa fa-close"></i></a>
+							</h3>
+
+							<div class="checkbox">
+								<label><input type="checkbox"> Full-time</label>
+							</div>
+							<!-- /.checkbox -->
+
+							<div class="checkbox">
+								<label><input type="checkbox"> Part-time</label>
+							</div>
+							<!-- /.checkbox -->
+
+							<div class="checkbox">
+								<label><input type="checkbox"> One-time project</label>
+							</div>
+							<!-- /.checkbox -->
+
+							<a href="#" class="filter-stacked-show-more">Show More ...</a>
+
+							<h3>
+								Location <a href="#"><i class="fa fa-close"></i></a>
+							</h3>
+
+							<div class="checkbox">
+								<label><input type="radio" name="radio-test" value="1">
+									San Francisco</label>
+							</div>
+							<!-- /.checkbox -->
+
+							<div class="checkbox">
+								<label><input type="radio" name="radio-test" value="2">
+									Sacramento</label>
+							</div>
+							<!-- /.checkbox -->
+
+							<div class="checkbox">
+								<label><input type="radio" name="radio-test" value="3">
+									Los Angeles</label>
+							</div>
+							<!-- /.checkbox -->
+
+							<a href="#" class="filter-stacked-show-more">Show More ...</a>
+
+							<h3>
+								Status <a href="#"><i class="fa fa-close"></i></a>
+							</h3>
+
+							<div class="checkbox">
+								<label><input type="checkbox"> Most Recent</label>
+							</div>
+							<!-- /.checkbox -->
+
+							<div class="checkbox">
+								<label><input type="checkbox"> Featured</label>
+							</div>
+							<!-- /.checkbox -->
+
+							<div class="checkbox">
+								<label><input type="checkbox"> Urgent</label>
+							</div>
+							<!-- /.checkbox -->
+
+							<a href="#" class="filter-stacked-show-more">Show More ...</a>
+
+							<button type="submit" class="btn btn-secondary btn-block">
+								<i class="fa fa-refresh"></i> Reset Filter
+							</button>
+						</form>
+					</div>
+					<!-- /.filter-stacked -->
+
+				</div>
+				<!-- /.col-* -->
+
+				<div class="col-sm-9" style="margin: auto !important;">
+					<div data-ng-repeat="data in alldata">
+						<div class="positions-list">
+
+
+							<div class="positions-list-item">
+								<h2>
+									<a href="javascript:void(1)">{{data.title}}</a>
+
+								</h2>
+								<h3>
+									{{data.location}}<br>
+								</h3>
+
+								<div class="position-list-item-date">{{data.created_date | date: 'dd MMM, yyyy'}}</div>
+								<!-- /.position-list-item-date -->
+								<!-- <div class="position-list-item-action"><a href="javascript:void(0)">Save Position</a></div> -->
+								<!-- /.position-list-item-action -->
+							</div>
+							<!-- /.position-list-item -->
+						</div>
+
+					</div>
+
+
+
+					<div class="center">
+						<ul class="pagination">
+							<li><a href="#"> <i class="fa fa-chevron-left"></i>
+							</a></li>
+
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li class="active"><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#"> <i class="fa fa-chevron-right"></i>
+							</a></li>
+						</ul>
+					</div>
+					<!-- /.center -->
+				</div>
+				<!-- /.col-* -->
+
+
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+</div>
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#ViewjobDiv"), [ 'jobview' ]);
+	});
+</script>

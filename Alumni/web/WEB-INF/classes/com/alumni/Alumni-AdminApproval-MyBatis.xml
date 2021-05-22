@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminApproval">
+
+	<select id="getallusers" resultType="map">
+	select id, concat(first_name,' ',last_name) as name,email as email, case when status = 0 then 'Mail Not verified' 
+		when status = 1 then 'Mail Verified' when status = 2 then 'Approved' when status = 3 then 'Rejected' end as Status_type 
+		from alumni.students order by id
+	</select>
+	
+	<select id="getallVerifiedUsers" resultType="map">
+	select id, concat(first_name,' ',last_name) as name,email as email, case when status = 1 then 'Mail Verified' end as status_type
+		from alumni.students where status = 1 order by id
+	</select>
+	
+	<select id="getallRejectedUsers" resultType="map">
+	select id, concat(first_name,' ',last_name) as name,email as email, case when status = 3 then 'Rejected' end as status_type
+		from alumni.students where status = 3 order by id
+	</select>
+	
+	<select id="getallApprovedUsers" resultType="map">
+	select id, concat(first_name,' ',last_name) as name,email as email, case when status = 2 then 'Approved' end as status_type
+		from alumni.students where status = 2 order by id
+	</select>
+
+	<update id="ApproveUser" parameterType="map">
+		update alumni.students set status = 2 where id = #{p.id};
+	</update>
+	
+	<update id="RejectUser" parameterType="map">
+		update alumni.students set status = 3 where id = #{p.id};
+	</update>
+	
+	<select id="getallJobs" resultType="map">
+	select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added :: date as created_date,
+		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' end as status_type 
+		from alumni.jobs order by id   
+	</select>	
+	
+	<select id="getSubmittedJobs" resultType="map">
+	select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added :: date as created_date,
+		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' end as status_type 
+		from alumni.jobs where status = 0 order by id
+	</select>	   
+	
+	<select id="getApprovedJobs" resultType="map">
+	select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added :: date as created_date,
+		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' end as status_type 
+		from alumni.jobs where status = 1 order by id
+	</select>
+	
+	<select id="getRejectedJobs" resultType="map">
+	select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added :: date as created_date,
+		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' end as status_type 
+		from alumni.jobs where status = 2 order by id
+	</select>	
+	
+	<update id="ApproveJob" parameterType="map">
+		update alumni.jobs set status = 1 where id = #{p.id};
+	</update>
+	
+	<update id="RejectJob" parameterType="map">
+		update alumni.jobs set status = 2 where id = #{p.id};
+	</update>
+
+</mapper>  

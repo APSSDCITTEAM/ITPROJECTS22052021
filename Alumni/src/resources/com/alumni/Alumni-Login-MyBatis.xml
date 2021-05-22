@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Login">
+
+	<select resultType="java.lang.Integer" parameterType="map"
+		id="checkUser">
+		select count(*) from alumni.users where (username = #{p.username})
+		AND
+		password = md5(#{p.password})
+	</select>	<!-- OR phone = #{p.username} -->
+
+	<select parameterType="map" id="getRole"
+		resultType="java.lang.Integer">
+		select role_id as roleid from alumni.users where username =
+		#{username}
+		AND password = md5(#{password}) LIMIT 1
+	</select>
+
+	<select resultType="Login" parameterType="map"
+		id="getUserDetails">
+		select username,password,user_id,CURRENT_TIMESTAMP as logtime from
+		alumni.users where username = #{username} AND password =
+		md5(#{password});
+	</select>
+
+	<update id="assignRole" parameterType="map">
+		update alumni.users SET
+		role_id=2 WHERE username = #{p.email};
+	</update>
+	<update parameterType="java.lang.String" id="deleteLoginLog">
+		update
+		hrms.users_log set logout_time = current_timestamp WHERE user_id =
+		(select replace(#{user_id},'"',''));
+	</update>
+
+	<insert id="saveData" parameterType="map">
+		insert into
+		alumni.users(username,role_id,user_id,status)
+		values(#{p.first_name},#{p.email},2,#{p.user_id},TRUE);
+	</insert>
+
+
+	<select id="getCollegeDetails" parameterType="map"
+		resultType="Login">
+		select username,
+		concat('@',substr(user_id,8)) as
+		password,id from
+		alumni.users where username=#{p.email};
+	</select>
+
+	<update id="saveLogins" parameterType="map">
+		update alumni.users set
+		password = md5(#{p.password}) where username =
+		#{p.email};
+	</update>
+	<select id="getStatus" parameterType="map"
+		resultType="java.lang.Integer">
+		select count(*) from alumni.users where username =
+		#{p.email};
+	</select>
+
+	<!-- ............................................... employee login ........................................... -->
+	<select id="getLogin" parameterType="Login" resultType="Login">
+		SELECT
+		user_id as user_id, * from alumni.login_details where
+		user_id=#{user_id} and
+		login_date=(CURRENT_TIMESTAMP) :: date;
+	</select>
+
+	<insert id="saveLoginDetails" parameterType="Login">
+		INSERT INTO
+		alumni.login_details(user_id,login_date,login_time)
+		VALUES
+		(#{user_id},(CURRENT_TIMESTAMP) ::
+		date,to_char(CURRENT_TIMESTAMP,'HH24:MI:SS')::time);
+	</insert>
+
+	<select id="getLoginDetails" resultType="Login">
+		SELECT user_id as
+		user_id, login_date, login_time, logout_time from
+		alumni.login_details
+		where user_id=#{user_id} and
+		login_date=(CURRENT_TIMESTAMP) :: date;
+	</select>
+
+	<update id="saveLogoutDetails" parameterType="Login">
+		UPDATE
+		alumni.login_details SET
+		logout_time=to_char(CURRENT_TIMESTAMP,'HH24:MI:SS')::time WHERE
+		user_id=#{user_id} AND login_date= (CURRENT_TIMESTAMP)::date;
+	</update>
+
+	<select id="GetLoginData" resultType="Login">
+		select
+		a.id,b.user_id,a.login_date :: date as
+		login_date,a.login_time,a.logout_time,
+		(CASE WHEN a.user_id IS
+		NULL THEN
+		'Absent' ELSE 'Present' END) as status from
+		(select
+		id,user_id,login_date,login_time,logout_time from alumni.login_details
+		where login_date::date >= #{p.from_date} AND #{p.to_date} >=
+		login_date::date) a inner join
+		(select id,user_id,status from
+		alumni.users) b on (b.user_id = a.user_id)
+	</select>
+
+	<select id="gettodayLogins" resultType="map">
+		select
+		a.id,b.user_id,a.login_date :: date as
+		login_date,a.login_time,a.logout_time,
+		(CASE WHEN a.user_id IS
+		NULL THEN
+		'Absent' ELSE 'Present' END) as status from
+		(select
+		id,user_id,login_date,login_time,logout_time from alumni.login_details
+		where login_date = (CURRENT_TIMESTAMP) :: date) a right join
+		(select
+		id,user_id,status from alumni.users where id != 1) b on
+		(b.user_id =
+		a.user_id)
+	</select>
+
+
+
+</mapper>                                        
