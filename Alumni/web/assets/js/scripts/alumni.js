@@ -76,7 +76,7 @@ var Alumni = {
 		Alumni.showPage(path, "admin-div");
 	},
 	
-	showInternshipsApprovalsPage: function() {
+	showInternshipsApprovalPage: function() {
 		var path = "/alumni/html/admin/InternshipApprovals.html";
 		Alumni.showPage(path, "admin-div");
 	},

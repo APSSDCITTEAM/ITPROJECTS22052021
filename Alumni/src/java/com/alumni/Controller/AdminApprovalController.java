@@ -116,6 +116,50 @@ public class AdminApprovalController {
 	}
 	
 	
+	/* .........................................Internship Approvals................................... */
+	@ResponseBody
+	@RequestMapping(value = "getallInternships", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getallInternships()
+	{
+		return adminApprovalService.getallInternships();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getSubmittedInternships", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getSubmittedInternships()
+	{
+		return adminApprovalService.getSubmittedInternships();
+	}
+	
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "getApprovedInternships", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getApprovedInternships()
+	{
+		return adminApprovalService.getApprovedInternships();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getRejectedInternships", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getRejectedInternships()
+	{
+		return adminApprovalService.getRejectedInternships();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "ApproveInternships", method = { RequestMethod.POST })
+	public Response ApproveInternships(@RequestBody AdminApprovalModel faculty) {
+		return adminApprovalService.ApproveInternships(faculty);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "RejectInternships", method = { RequestMethod.POST })
+	public Response RejectInternships(@RequestBody AdminApprovalModel faculty) {
+		return adminApprovalService.RejectInternships(faculty);
+	}
+	
 	
 		
 

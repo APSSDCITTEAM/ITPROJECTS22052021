@@ -123,6 +123,64 @@ public class AdminApprovalService {
 		return response;
 	}
 	
+	
+	/* ........................................... Internship Approvals .............................................. */
+	/* all Jobs */
+	public Response getallInternships() {
+		response.setSuccessful(false);
+		List<AdminApprovalModel> userdetails = adminApprovalDAO.getallInternships();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	/* submitted Jobs */
+	public Response getSubmittedInternships() {
+		response.setSuccessful(false);
+		List<AdminApprovalModel> userdetails = adminApprovalDAO.getSubmittedInternships();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	/* approved Jobs */
+	public Response getApprovedInternships() {
+		response.setSuccessful(false);
+		List<AdminApprovalModel> userdetails = adminApprovalDAO.getApprovedInternships();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	/* Rejected Jobs */
+	public Response getRejectedInternships() {
+		response.setSuccessful(false);
+		List<AdminApprovalModel> userdetails = adminApprovalDAO.getRejectedInternships();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	/* Approve Jobs */
+	public Response ApproveInternships(AdminApprovalModel faculty) {
+		response.setSuccessful(false);
+		adminApprovalDAO.ApproveInternships(faculty);
+		response.setSuccessful(true);
+		response.setResponseObject(faculty);
+		return response;
+	}
+	
+	/* Reject Jobs */
+	public Response RejectInternships(AdminApprovalModel faculty) {
+		response.setSuccessful(false);
+		adminApprovalDAO.RejectInternships(faculty);
+		response.setSuccessful(true);
+		response.setResponseObject(faculty);
+		return response;
+	}
+	
+	
+	
 
 
 }

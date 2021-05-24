@@ -116,5 +116,59 @@ public class AdminApprovalDAO {
 		sqlSession.update("AdminApproval.RejectJob", params);
 		sqlSession.close();
 	}
+	
+	
+	/* .................................................. Internship Approvals .................................. */
+	/* Getting all jobs */
+	public List<AdminApprovalModel> getallInternships() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<AdminApprovalModel> userdetails = sqlSession.selectList("AdminApproval.getallInternships");
+		sqlSession.close();
+		return userdetails;
+	}
+	
+	/* Getting Submitted jobs */
+	public List<AdminApprovalModel> getSubmittedInternships() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<AdminApprovalModel> userdetails = sqlSession.selectList("AdminApproval.getSubmittedInternships");
+		sqlSession.close();
+		return userdetails;
+	}
+	
+	/* Getting Approved jobs */
+	public List<AdminApprovalModel> getApprovedInternships() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<AdminApprovalModel> userdetails = sqlSession.selectList("AdminApproval.getApprovedInternships");
+		sqlSession.close();
+		return userdetails;
+	}
+	
+	/* Getting Rejected jobs */
+	public List<AdminApprovalModel> getRejectedInternships() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<AdminApprovalModel> userdetails = sqlSession.selectList("AdminApproval.getRejectedInternships");
+		sqlSession.close();
+		return userdetails;
+	}
+	
+	/* Approve Jobs */
+	public void ApproveInternships(AdminApprovalModel faculty) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("p", faculty);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("AdminApproval.ApproveInternships", params);
+		sqlSession.close();
+	}
+	
+	/* Reject Jobs */
+	public void RejectInternships(AdminApprovalModel faculty) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("p", faculty);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("AdminApproval.RejectInternships", params);
+		sqlSession.close();
+	}
+	
+	
 
 }

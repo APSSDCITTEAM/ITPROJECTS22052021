@@ -62,5 +62,42 @@
 	<update id="RejectJob" parameterType="map">
 		update alumni.jobs set status = 2 where id = #{p.id};
 	</update>
+	
+	
+	<!-- ............................................... Internship Approvals ................................. -->
+	<select id="getallInternships" resultType="map">
+	select id,title,company_name,location,contact_email,duration,description,std_id,date_added :: date as created_date,
+		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' end as status_type 
+		from alumni.interships order by id   
+	</select>	
+	
+	<select id="getSubmittedInternships" resultType="map">
+	select id,title,company_name,location,contact_email,duration,description,std_id,date_added :: date as created_date,
+		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' end as status_type 
+		from alumni.interships where status = 0 order by id   
+	</select>	   
+	
+	<select id="getApprovedInternships" resultType="map">
+	select id,title,company_name,location,contact_email,duration,description,std_id,date_added :: date as created_date,
+		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' end as status_type 
+		from alumni.interships where status = 1 order by id
+	</select>
+	
+	<select id="getRejectedInternships" resultType="map">
+	select id,title,company_name,location,contact_email,duration,description,std_id,date_added :: date as created_date,
+		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' end as status_type 
+		from alumni.interships where status = 2 order by id
+	</select>	
+	
+	<update id="ApproveInternships" parameterType="map">
+		update alumni.interships set status = 1 where id = #{p.id};    
+	</update>
+	
+	<update id="RejectInternships" parameterType="map">
+		update alumni.interships set status = 2 where id = #{p.id};
+	</update>
+	
+	
+	
 
 </mapper>  
