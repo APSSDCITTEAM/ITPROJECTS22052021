@@ -19,9 +19,17 @@ public class AlumniRegisterDAO extends BaseDAO {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("p", alumniregisterModel);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.insert("AlumniRegister.InsertAlumni", params);
-		sqlSession.commit();
-		sqlSession.insert("AlumniRegister.InsertAlumniUsers", params);
+		Integer id  =sqlSession.selectOne("AlumniRegister.getAlumniCount");
+		params.put("id",id);
+		
+		if (alumniregisterModel.getType() == 0) {
+			sqlSession.insert("AlumniRegister.InsertAlumniStudent", params);
+			sqlSession.insert("AlumniRegister.InsertAlumniUserStudent", params);
+		}
+		if (alumniregisterModel.getType() == 1) {
+			sqlSession.insert("AlumniRegister.InsertAlumniEmployee", params);
+			sqlSession.insert("AlumniRegister.InsertAlumniUserEmployee", params);
+		}
 		sqlSession.close();
 	}
 	

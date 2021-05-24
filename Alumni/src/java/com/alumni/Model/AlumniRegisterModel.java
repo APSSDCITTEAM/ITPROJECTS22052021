@@ -24,7 +24,11 @@ public class AlumniRegisterModel extends BaseModel {
 	public boolean status;
 	public String fileName;
 	public String base64String;
-	
+	public Integer type;
+	public String college_code;
+	public String roll_number;
+	public String organization_name;
+	public String employee_id;
 	public String filepath;             
 	
 	public List<AlumniRegisterModel>uploadfiles;
@@ -45,6 +49,36 @@ public class AlumniRegisterModel extends BaseModel {
 	}
 	public String getUsername() {
 		return username;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
+	public String getCollege_code() {
+		return college_code;
+	}
+	public void setCollege_code(String college_code) {
+		this.college_code = college_code;
+	}
+	public String getRoll_number() {
+		return roll_number;
+	}
+	public void setRoll_number(String roll_number) {
+		this.roll_number = roll_number;
+	}
+	public String getOrganization_name() {
+		return organization_name;
+	}
+	public void setOrganization_name(String organization_name) {
+		this.organization_name = organization_name;
+	}
+	public String getEmployee_id() {
+		return employee_id;
+	}
+	public void setEmployee_id(String employee_id) {
+		this.employee_id = employee_id;
 	}
 	public void setUsername(String username) {
 		this.username = username;

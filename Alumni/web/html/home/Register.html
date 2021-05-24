@@ -82,67 +82,87 @@
 				enctype="multipart/form-data">
 
 				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="form-register-username">Username</label> <input
-								type="text" class="form-control"
-								data-ng-model="data.object.username" id="form-register-username">
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label for="form-register-email">E-mail</label> <input
-								type="email" class="form-control"
-								data-ng-model="data.object.email" id="form-register-email">
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label for="form-register-password">Password</label> <input
-								type="password" class="form-control" id="form-register-password"
-								data-ng-model="data.object.password">
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label for="form-register-retype">Mobile Number</label> <input
-								type="text" class="form-control" pattern="^[9|7|8|6][0-9]{9}"
-								maxlength="10" id="form-register-retype"
-								data-ng-model="data.object.mobile_no" required>
-						</div>
-						<!-- /.form-group -->
+					<div class="form-group col-sm-6">
+						<label for="form-register-username">Are You a...?</label> <select
+							class="form-control" data-ng-model="data.object.type">
+							<option value="0">Student</option>
+							<option value="1">Employee</option>
+						</select>
 					</div>
-					<!-- /.col-* -->
+					<div class="form-group col-sm-6">
+						<label for="form-register-username">Username</label> <input
+							type="text" class="form-control"
+							data-ng-model="data.object.username" id="form-register-username">
+					</div>
+					<div class="form-group col-sm-6">
+						<label for="form-register-email">E-mail</label> <input
+							type="email" class="form-control"
+							data-ng-model="data.object.email" id="form-register-email">
+					</div>
+					<div class="form-group col-sm-6">
+						<label for="form-register-password">Password</label> <input
+							type="password" class="form-control" id="form-register-password"
+							data-ng-model="data.object.password">
+					</div>
+					<div class="form-group col-sm-6">
+						<label for="form-register-retype">Mobile Number</label> <input
+							type="text" class="form-control" pattern="^[9|7|8|6][0-9]{9}"
+							maxlength="10" id="form-register-retype"
+							data-ng-model="data.object.mobile_no" required>
+					</div>
 
-					<div class="col-sm-6">
-						<div class="row">
-							<div class="form-group col-sm-6">
-								<label for="form-register-first-name">First Name</label> <input
-									type="text" class="form-control" id="form-register-first-name"
-									data-ng-model="data.object.first_name">
-							</div>
-							<!-- /.form-group -->
+					<div class="form-group col-sm-6">
+						<label for="form-register-first-name">First Name</label> <input
+							type="text" class="form-control" id="form-register-first-name"
+							data-ng-model="data.object.first_name">
+					</div>
+					<!-- /.form-group -->
 
-							<div class="form-group col-sm-6">
-								<label for="form-login-surname">Surname</label> <input
-									type="text" class="form-control" id="form-register-surname"
-									data-ng-model="data.object.last_name">
-							</div>
-							<!-- /.form-group -->
-							<div class="form-group col-sm-12">
+					<div class="form-group col-sm-6">
+						<label for="form-login-surname">Surname</label> <input type="text"
+							class="form-control" id="form-register-surname"
+							data-ng-model="data.object.last_name">
+					</div>
+					<!-- /.form-group -->
+					<!-- <div class="form-group col-sm-12">
 								<label for="form-register-photo">Photo</label> <input
 									type="file" name="image" required class="dropify"
 									data-allowed-file-extensions="png jpg jpeg"
 									data-ng-model="data.object.image_path"
 									onchange="angular.element(this).scope().uploadFiles(this)"
 									required>
-							</div>
-							<!-- /.form-group-->
+							</div> -->
+					<!-- /.form-group-->
+					<!-- /.row -->
+
+					<div data-ng-show="data.object.type == '0'">
+						<div class="form-group col-sm-6">
+							<label for="form-login-college-code">College Code</label> <input
+								type="text" class="form-control"
+								data-ng-model="data.object.college_code"
+								id="form-register-college-code">
 						</div>
-						<!-- /.row -->
-
-
+						<div class="form-group col-sm-6">
+							<label for="form-login-roll-number">Roll Number</label> <input
+								type="text" class="form-control"
+								data-ng-model="data.object.roll_number">
+						</div>
 					</div>
+					<div data-ng-show="data.object.type == '1'">
+						<div class="form-group col-sm-6">
+							<label for="form-login-college-code">Organization Name</label> <input
+								type="text" class="form-control"
+								data-ng-model="data.object.organization_name"
+								id="form-register-organization-name">
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="form-login-roll-number">Employee ID</label> <input
+								type="text" class="form-control"
+								data-ng-model="data.object.employee_id">
+						</div>
+					</div>
+
+
 					<!-- /.col-* -->
 				</div>
 				<!-- /.row -->

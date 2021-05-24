@@ -80,18 +80,18 @@ Student.controller('StudentRegisterController', ['$scope', '$http', function($sc
 				swal("Enter EmailID!");
 		  }
 		 else{    */
-		var documents = {};
+		/*var documents = {};
 		UserData.base64String = documentsArr[0].base64String;
 		UserData.fileName = documentsArr[0].fileName;
-		UserData.name = documentsArr[0].name;
+		UserData.name = documentsArr[0].name;*/
 		console.log(UserData);
-		UserData['std_id'] = Math.floor(Math.random() * 100000) + 1;
+		/*UserData['std_id'] = Math.floor(Math.random() * 100000) + 1;*/
 		console.log(UserData);
 		$http.post('/alumni/register/studentRegister', UserData).then(
 			function(response) {
 				$scope.data = response.data;
 				if ($scope.data.successful) {
-					swal("ALumni Register Successfully");
+					swal("ALumni Registered Successfully");
 
 				} else {
 					swal("Data not inserted");
@@ -105,7 +105,7 @@ Student.controller('StudentRegisterController', ['$scope', '$http', function($sc
 
 
 	/* for document upload */
-	$scope.uploadFiles = function(e) {
+	/*$scope.uploadFiles = function(e) {
 		var k = 0;
 		for (var i = 0; i < e.files.length; i++) {
 			var singleFileInfo = e.files[i];
@@ -132,6 +132,6 @@ Student.controller('StudentRegisterController', ['$scope', '$http', function($sc
 			})(singleFileInfo);
 		}
 
-	}
+	}*/
 
 }]);

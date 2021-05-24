@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.andromeda.commons.model.Response;
 
 import com.alumni.Model.AlumniRegisterModel;
+import com.alumni.Model.PostjobModel;
 import com.alumni.Service.AlumniRegisterService;
 
 import org.json.JSONException;
@@ -31,6 +32,8 @@ public class AlumniRegisterController {
 	private AlumniRegisterService alumniregisterService;
 	String file = null;
 
+	/*
+	
 	@ResponseBody
 	@RequestMapping(value = "studentRegister", method = { RequestMethod.POST })
 
@@ -38,9 +41,11 @@ public class AlumniRegisterController {
 
 		return alumniregisterService.Registeralumni(alumniregisterModel);
 	}
+	
+	*/
 
 	/* for file upload */
-
+	/*
 	public Response Registeralumni(@RequestBody List<AlumniRegisterModel> alumniregisterModel) {
 		for (AlumniRegisterModel alumnifile : alumniregisterModel) {
 			handleFileUpload(alumnifile);
@@ -84,12 +89,25 @@ public class AlumniRegisterController {
 		return Base64.decode(imageValue);
 	}
 	
+	
+	
+	*/
+	
 	@ResponseBody
 	@RequestMapping(value = "getAllAlumnisData", method = { RequestMethod.POST, RequestMethod.GET })
 	public Response getAllAlumnisData()
 	{
 		return alumniregisterService.getAllAlumnisData();
-	}   
+	}        
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "studentRegister", method = { RequestMethod.POST })
+	public Response Registeralumni(@RequestBody AlumniRegisterModel job)
+	{
+		return alumniregisterService.Registeralumni(job);       
+	}
 	
 
 }
