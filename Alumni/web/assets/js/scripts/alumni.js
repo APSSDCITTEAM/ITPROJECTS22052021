@@ -76,6 +76,21 @@ var Alumni = {
 		Alumni.showPage(path, "admin-div");
 	},
 	
+	showEventCreationPage: function() {
+		var path = "/alumni/html/admin/CreateEvent.html";
+		Alumni.showPage(path, "admin-div");
+	},
+	
+	showViewEventsPage: function() {
+		var path = "/alumni/html/admin/ViewEvents.html";
+		Alumni.showPage(path, "admin-div");
+	},
+	
+	showEventActionPage: function() {
+		var path = "/alumni/html/admin/EventAction.html";
+		Alumni.showPage(path, "admin-div");
+	},
+	
 	showInternshipsApprovalPage: function() {
 		var path = "/alumni/html/admin/InternshipApprovals.html";
 		Alumni.showPage(path, "admin-div");

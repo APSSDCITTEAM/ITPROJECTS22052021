@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Event">
+
+	<insert id="CreateEvent" parameterType="map">
+		INSERT INTO alumni.events(event_title,start_date,end_date,location,organizer,organizer_designation,description,status)
+		VALUES (#{p.event_title},#{p.start_date},#{p.end_date},#{p.location},#{p.organizer},#{p.organizer_designation},#{p.description},
+		true);
+	</insert>
+	
+	<select id="getallEvents" resultType="map">
+		select distinct id,event_title,start_date,end_date,location,organizer,organizer_designation,description,status,
+		created_date :: date as created_date from alumni.events where status = true order by id;
+	</select>
+	
+	<!-- Events View page data -->
+	<select id="vieweventData" resultType="EventsModel">
+		select id,event_title,start_date,end_date,location,organizer,organizer_designation,description,created_date::date as created_date,
+		case when status = true then 'Open' when status = false then 'Closed' end as status_type from alumni.events
+		where id = #{id};
+	</select>	
+	    
+	<!-- view pop up event data -->
+	<select id="getEventPopdata" resultType="EventsModel">
+	SELECT id,event_title as event_title,start_date as start_date,end_date as end_date,location as location,organizer as organizer,
+		organizer_designation as organizer_designation,description as description from alumni.events WHERE id = #{id};
+	</select>
+	
+	<!-- update event data -->
+	<update id="UpdateEventData" parameterType="map">
+		update alumni.events SET event_title = #{p.event_title},start_date = #{p.start_date},end_date = #{p.end_date},
+			location = #{p.location},organizer = #{p.organizer},organizer_designation = #{p.organizer_designation},description = #{p.description}
+			where id = #{p.id}
+	</update>
+	
+	<!-- .....................................delete event .............................. -->
+	<delete id="DeleteEvent" parameterType="java.lang.Integer">
+		delete from alumni.events where id = #{id};
+	</delete>
+	
+	<!-- ....................................... change event status ................................... -->
+	
+	<select id="getallOpenEvents" resultType="map">
+		select distinct id,event_title,start_date,end_date,location,organizer,organizer_designation,description,
+		case when status = true then 'Open' end status_type,created_date :: date as created_date from alumni.events 
+		where status = true order by id;
+	</select>
+	
+	<select id="getallClosedEvents" resultType="map">
+		select distinct id,event_title,start_date,end_date,location,organizer,organizer_designation,description,
+		case when status = false then 'closed' end status_type,created_date :: date as created_date from alumni.events 
+		where status = false order by id;
+	</select>
+	
+	<update id="changeEventStatus" parameterType="map">
+		update alumni.events SET status = false,closed_date = CURRENT_TIMESTAMP where id = #{p.id}
+	</update>
+
+</mapper>

@@ -1,0 +1,308 @@
+<script src="assets/js/scripts/viewEvents.js"></script>
+
+
+<div id="ViewEventsdiv" data-ng-controller="EventsViewController">
+	<div class="main">
+		<div class="document-title">
+			<div class="container">
+				<h1>Events</h1>
+			</div>
+			<!-- /.container -->
+		</div>
+		<!-- /.document-title -->
+		<div id="mainEventpage">
+			<div class="container">
+				<div class="row">
+					<div data-ng-repeat="data in alldata">
+						<div class="col-sm-6">
+
+							<div class="positions-list"
+								style="border: 2px solid #222665; padding: 10px">
+
+								<div class="positions-list-item">
+									<h2>
+										<a href="javascript:void(1)">{{data.event_title}}</a>
+
+									</h2>
+									<h3>
+										{{data.location}} <br>
+									</h3>
+
+									<div class="position-list-item-date">{{data.created_date
+										| date: 'dd-MM-yyyy'}}</div>
+									<!-- /.position-list-item-date -->
+									<!-- <div class="position-list-item-action"><a href="javascript:void(0)">Save Position</a></div> -->
+									<!-- /.position-list-item-action -->
+								</div>
+								<!-- /.position-list-item -->
+								<div class="text-center">
+									<button class="btn btn-success"
+										data-ng-click="vieweventData(data.id);" id="eventViewbtn">View</button>
+								</div>
+
+
+							</div>
+							<!-- /.positions-list -->
+							<!-- /.positions-list -->
+						</div>
+
+					</div>
+
+
+				</div>
+
+				<div class="center">
+					<ul class="pagination">
+						<li><a href="#"> <i class="fa fa-chevron-left"></i>
+						</a></li>
+
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li class="active"><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#"> <i class="fa fa-chevron-right"></i>
+						</a></li>
+					</ul>
+				</div>
+				<!-- /.center -->
+			</div>
+		</div>
+
+		<!-- Event View page -->
+		<div id="ViewEventbtnPage">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-3">
+						<label><b>Event Name:</b></label>
+					</div>
+					<div class="col-sm-3">{{viewEvent.object.event_title}}</div>
+					<div class="col-sm-3">
+						<label><b>Location:</b></label>
+					</div>
+					<div class="col-sm-3">{{viewEvent.object.location}}</div>
+				</div>
+				<div class="row">
+					<br>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label><b>Start Date:</b></label>
+					</div>
+					<div class="col-sm-3">{{viewEvent.object.start_date | date:
+						'dd-MM-yyyy'}}</div>
+					<div class="col-sm-3">
+						<label><b>End Date:</b></label>
+					</div>
+					<div class="col-sm-3">{{viewEvent.object.end_date | date:
+						'dd-MM-yyyy'}}</div>
+				</div>
+				<div class="row">
+					<br>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label><b>Organizer Name:</b></label>
+					</div>
+					<div class="col-sm-3">{{viewEvent.object.organizer}}</div>
+					<div class="col-sm-3">
+						<label><b>Organizer Designation:</b></label>
+					</div>
+					<div class="col-sm-3">
+						{{viewEvent.object.organizer_designation}}</div>
+				</div>
+				<div class="row">
+					<br>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label><b>Status: </b></label>
+					</div>
+					<div class="col-sm-3">{{viewEvent.object.status_type}}</div>
+					<div class="col-sm-3">
+						<label><b>Created Date: </b></label>
+					</div>
+					<div class="col-sm-3">{{viewEvent.object.created_date | date:
+						'dd-MM-yyyy'}}</div>
+				</div>
+				<div class="row">
+					<br>
+				</div>
+				<div class="center">
+					<button class="btn btn-success btn-sm"
+						data-ng-click="getEventPopdata(viewEvent.object.id);"
+						id="updateEventbtn">Update</button>
+					<button class="btn btn-danger btn-sm" data-ng-click="DeleteEvent(viewEvent.object);"
+						id="deleteEvent">Delete</button>
+				</div>
+
+			</div>
+
+			<!-- Update Event Model -->
+			<!-- <div class="modal fade"  tabindex="-1"         data-toggle="modal" data-target="#large-Modalupdate"
+				role="dialog">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Update Event</h4>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="pane panel-primary">
+										<div class="panel-body">
+											<div class="row">
+												<div class="col-sm-4 col-xl-4 m-b-30">
+													<label>Event Title</label> <input type="text"
+														class="form-control"
+														data-ng-model="updateEvent.object.event_title">
+												</div>
+												<div class="col-sm-4 col-xl-4 m-b-30">
+													<label>Start Date</label> <input type="text"
+														class="form-control"
+														data-ng-model="updateEvent.object.start_date">
+												</div>
+												<div class="col-sm-4 col-xl-4 m-b-30">
+													<label>End Date</label> <input type="text"
+														class="form-control"
+														data-ng-model="updateEvent.object.end_date">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-4 col-xl-4 m-b-30">
+													<label>Organizer Name</label> <input type="text"
+														class="form-control"
+														data-ng-model="updateEvent.object.organizer">
+												</div>
+												<div class="col-sm-4 col-xl-4 m-b-30">
+													<label>Organizer Designation</label> <input type="text"
+														class="form-control"
+														data-ng-model="updateEvent.object.organizer_designation">
+												</div>
+												<div class="col-sm-4 col-xl-4 m-b-30">
+													<label>Location</label> <input type="text"
+														class="form-control"
+														data-ng-model="updateEvent.object.location">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6 col-xl-6 m-b-30">
+													<label>Description</label>
+													<textarea class="form-control"
+														data-ng-model="updateEvent.object.description"></textarea>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-warning waves-effect "
+											data-dismiss="modal">Close</button>
+										<button type="button" data-dismiss="modal"
+											class="btn btn-primary waves-effect waves-light"
+											data-ng-click="UpdateEventData(updateEvent.object);">Update
+											Event</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
+
+		</div>
+
+
+		<!-- update page -->
+		<div id="updateEventpage">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="form-register-username">Event Title</label> <input
+								type="text" class="form-control"
+								data-ng-model="updateEvent.object.event_title">
+						</div>
+						<div class="form-group">
+							<label for="form-register-first-name">Start Date</label> <input
+								type="text" class="form-control"
+								data-ng-model="updateEvent.object.start_date">
+						</div>
+						<div class="form-group">
+							<label for="form-login-surname">End Date</label> <input
+								type="text" class="form-control"
+								data-ng-model="updateEvent.object.end_date">
+						</div>
+						<div class="form-group">
+							<label>Location</label> <input type="text" class="form-control"
+								data-ng-model="updateEvent.object.location">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="row">
+							<div class="form-group col-sm-6">
+								<label>Event Organizer</label> <input type="text"
+									class="form-control"
+									data-ng-model="updateEvent.object.organizer">
+							</div>
+							<div class="form-group col-sm-6">
+								<label>Organizer Designation</label> <input type="text"
+									class="form-control"
+									data-ng-model="updateEvent.object.organizer_designation">
+							</div>
+							<!-- /.form-group -->
+							<div class="form-group col-sm-12">
+								<label>Description</label>   
+								<textarea class="form-control"
+									placeholder="Enter Description Here"
+									data-ng-model="updateEvent.object.description"
+									style="height: 200px;"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="center">
+					<button type="submit" class="btn btn-secondary"
+						data-ng-click="UpdateEventData(updateEvent.object);">Update Event</button>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+	</div>
+</div>
+
+<script>
+	$("#mainEventpage").show();
+	$("#ViewEventbtnPage").hide();
+	$("#updateEventpage").hide();
+
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#ViewEventsdiv"), [ 'viewEvents' ]);
+	});
+</script>
+
+<script>
+	jQuery(document).on('click', "#eventViewbtn", function() {
+		$("#mainEventpage").hide();
+		$("#ViewEventbtnPage").show();
+		$("#updateEventpage").hide();
+	});
+</script>
+
+<script>
+	jQuery(document).on('click', "#updateEventbtn", function() {
+		$("#mainEventpage").hide();
+		$("#ViewEventbtnPage").hide();
+		$("#updateEventpage").show();
+	});
+</script>
+
