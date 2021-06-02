@@ -33,5 +33,60 @@
 		as created_date,status
 		from alumni.interships order by id;
 	</select>
+	
+	<select id="getallOpenJobs" resultType="map">
+	select distinct a.id,a.title,a.company_name,a.location,a.contact_email,a.min_exp,a.max_exp,a.description,a.created_date :: date as created_date,
+		case when a.status = 3 then 'Closed' else 'Open' end as status_type,c.created_by,d.created_by from
+		(select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
+		as created_date,status from alumni.jobs) as a left join
+		(select id,user_id from alumni.users) as b on (b.user_id = a.std_id) left join
+		(select id,concat(first_name,' ',last_name) as created_by,roll_number,employee_id from alumni.students) c on (c.roll_number = b.user_id) left join
+		(select id,concat(first_name,' ',last_name) as created_by,roll_number,employee_id from alumni.students) d on (d.employee_id = b.user_id) 
+		where a.status != 3 order by a.id
+	</select>
+	
+	<select id="getallClosedJobs" resultType="map">
+	select distinct a.id,a.title,a.company_name,a.location,a.contact_email,a.min_exp,a.max_exp,a.description,a.created_date :: date as created_date,
+		case when a.status = 3 then 'Closed' else 'Open' end as status_type,d.created_by,c.created_by from
+		(select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
+		as created_date,status from alumni.jobs) as a left join
+		(select id,user_id from alumni.users) as b on (b.user_id = a.std_id) left join
+		(select id,concat(first_name,' ',last_name) as created_by,roll_number,employee_id from alumni.students) c on (c.roll_number = b.user_id) left join
+		(select id,concat(first_name,' ',last_name) as created_by,roll_number,employee_id from alumni.students) d on (d.employee_id = b.user_id) 
+		where a.status = 3 order by a.id
+	</select>
+	
+	<update id="changeJobStatus" parameterType="map">
+		update alumni.jobs SET status = 3,closed_date = CURRENT_TIMESTAMP where id = #{p.id}
+	</update>
+	
+	<!-- ............................................. Intern Actions ................................. -->
+	
+	<select id="getallOpenInterns" resultType="map">
+	select distinct a.id,a.title,a.company_name,a.location,a.contact_email,a.duration,a.description,a.created_date :: date as created_date,
+		case when a.status = 3 then 'Closed' else 'Open' end as status_type from
+		(select id,title,company_name,location,contact_email,duration,description,std_id,date_added
+		as created_date,status from alumni.interships) as a left join
+		(select id,user_id from alumni.users) as b on (b.user_id = a.std_id) left join
+		(select id,concat(first_name,' ',last_name) as created_by,roll_number,employee_id from alumni.students) c on (c.roll_number = b.user_id) left join
+		(select id,concat(first_name,' ',last_name) as created_by,roll_number,employee_id from alumni.students) d on (d.employee_id = b.user_id) 
+		where a.status != 3 order by a.id
+	</select>
+	
+	<select id="getallClosedInterns" resultType="map">
+	select distinct a.id,a.title,a.company_name,a.location,a.contact_email,a.duration,a.description,a.created_date :: date as created_date,
+		case when a.status = 3 then 'Closed' else 'Open' end as status_type from
+		(select id,title,company_name,location,contact_email,duration,description,std_id,date_added
+		as created_date,status from alumni.interships) as a left join
+		(select id,user_id from alumni.users) as b on (b.user_id = a.std_id) left join
+		(select id,concat(first_name,' ',last_name) as created_by,roll_number,employee_id from alumni.students) c on (c.roll_number = b.user_id) left join
+		(select id,concat(first_name,' ',last_name) as created_by,roll_number,employee_id from alumni.students) d on (d.employee_id = b.user_id) 
+		where a.status = 3 order by a.id
+	</select>
+	
+	<update id="changeInternStatus" parameterType="map">
+		update alumni.jobs SET status = 3,closed_date = CURRENT_TIMESTAMP where id = #{p.id}
+	</update>
+	
 
 </mapper>  

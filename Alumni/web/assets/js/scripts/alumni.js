@@ -76,6 +76,11 @@ var Alumni = {
 		Alumni.showPage(path, "admin-div");
 	},
 	
+	showJobActionPage: function() {
+		var path = "/alumni/html/admin/JobAction.html";
+		Alumni.showPage(path, "admin-div");
+	},
+	
 	showEventCreationPage: function() {
 		var path = "/alumni/html/admin/CreateEvent.html";
 		Alumni.showPage(path, "admin-div");
@@ -88,6 +93,11 @@ var Alumni = {
 	
 	showEventActionPage: function() {
 		var path = "/alumni/html/admin/EventAction.html";
+		Alumni.showPage(path, "admin-div");
+	},
+	
+	showInternshipActionPage: function() {
+		var path = "/alumni/html/admin/InternshipAction.html";
 		Alumni.showPage(path, "admin-div");
 	},
 	

@@ -19,8 +19,7 @@
 	<select resultType="Login" parameterType="map"
 		id="getUserDetails">
 		select username,password,user_id,CURRENT_TIMESTAMP as logtime from
-		alumni.users where username = #{username} AND password =
-		md5(#{password});
+		alumni.users where username = #{username} AND password = md5(#{password});
 	</select>
 
 	<update id="assignRole" parameterType="map">

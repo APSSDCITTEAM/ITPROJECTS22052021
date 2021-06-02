@@ -19,9 +19,26 @@ public class ViewJobModel extends BaseModel{
 	public boolean status;    
 	public String duration;
 	public Timestamp created_date;    
+	public Integer id;
+	public String created_by;
 	
 	
 	
+	
+	
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getCreated_by() {
+		return created_by;
+	}
+	public void setCreated_by(String created_by) {
+		this.created_by = created_by;
+	}
 	public String getDescription() {
 		return description;
 	}

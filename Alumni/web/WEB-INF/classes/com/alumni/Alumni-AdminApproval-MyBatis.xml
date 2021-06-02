@@ -33,25 +33,25 @@
 	
 	<select id="getallJobs" resultType="map">
 	select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' end as status_type 
+		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
 		from alumni.jobs order by id   
 	</select>	
 	
 	<select id="getSubmittedJobs" resultType="map">
 	select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' end as status_type 
+		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
 		from alumni.jobs where status = 0 order by id
 	</select>	   
 	
 	<select id="getApprovedJobs" resultType="map">
 	select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' end as status_type 
+		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
 		from alumni.jobs where status = 1 order by id
 	</select>
 	
 	<select id="getRejectedJobs" resultType="map">
 	select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' end as status_type 
+		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
 		from alumni.jobs where status = 2 order by id
 	</select>	
 	
@@ -67,25 +67,25 @@
 	<!-- ............................................... Internship Approvals ................................. -->
 	<select id="getallInternships" resultType="map">
 	select id,title,company_name,location,contact_email,duration,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' end as status_type 
+		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
 		from alumni.interships order by id   
 	</select>	
 	
 	<select id="getSubmittedInternships" resultType="map">
 	select id,title,company_name,location,contact_email,duration,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' end as status_type 
+		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
 		from alumni.interships where status = 0 order by id   
 	</select>	   
 	
 	<select id="getApprovedInternships" resultType="map">
 	select id,title,company_name,location,contact_email,duration,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' end as status_type 
+		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
 		from alumni.interships where status = 1 order by id
 	</select>
 	
 	<select id="getRejectedInternships" resultType="map">
 	select id,title,company_name,location,contact_email,duration,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' end as status_type 
+		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
 		from alumni.interships where status = 2 order by id
 	</select>	
 	

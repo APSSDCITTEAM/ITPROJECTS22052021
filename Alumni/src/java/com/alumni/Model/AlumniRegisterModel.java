@@ -40,7 +40,50 @@ public class AlumniRegisterModel extends BaseModel {
 	public String file;
 	public String file_name;
 	public String statustype;
+	public String qualification;
+	public String branch;
+	public Integer passed_out_year;
+	public String district;
+	public String other_qualifiction;
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	public String getQualification() {
+		return qualification;
+	}
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
+	}
+	public String getBranch() {
+		return branch;
+	}
+	public void setBranch(String branch) {
+		this.branch = branch;
+	}
+	public Integer getPassed_out_year() {
+		return passed_out_year;
+	}
+	public void setPassed_out_year(Integer passed_out_year) {
+		this.passed_out_year = passed_out_year;
+	}
+	public String getDistrict() {
+		return district;
+	}
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+	public String getOther_qualifiction() {
+		return other_qualifiction;
+	}
+	public void setOther_qualifiction(String other_qualifiction) {
+		this.other_qualifiction = other_qualifiction;
+	}
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}

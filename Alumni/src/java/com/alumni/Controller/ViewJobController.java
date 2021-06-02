@@ -13,7 +13,9 @@ import com.alumni.Service.DiscussionService;
 import com.alumni.Service.PostjobService;
 import com.alumni.Service.ViewJobService;
 import com.alumni.Model.DiscussionModel;
+import com.alumni.Model.EventsModel;
 import com.alumni.Model.PostjobModel;
+import com.alumni.Model.ViewJobModel;
 
 @RestController
 @RequestMapping("/viewjob")
@@ -53,6 +55,50 @@ public class ViewJobController {
 	public Response getallinternshipshome()
 	{
 		return viewjobService.getallinternshipshome();
+	}
+	
+	/* .................................. Job Actions ............................................ */
+	@ResponseBody
+	@RequestMapping(value = "getallOpenJobs", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getallOpenJobs()
+	{
+		return viewjobService.getallOpenJobs();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getallClosedJobs", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getallClosedJobs()
+	{
+		return viewjobService.getallClosedJobs();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "changeJobStatus", method = { RequestMethod.POST })
+	public Response changeJobStatus(@RequestBody ViewJobModel event)
+	{
+		return viewjobService.changeJobStatus(event);
+	}
+	
+	/* .................................. Interns Actions ............................................ */
+	@ResponseBody
+	@RequestMapping(value = "getallOpenInterns", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getallOpenInterns()
+	{
+		return viewjobService.getallOpenInterns();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getallClosedInterns", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getallClosedInterns()
+	{
+		return viewjobService.getallClosedInterns();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "changeInternStatus", method = { RequestMethod.POST })
+	public Response changeInternStatus(@RequestBody ViewJobModel event)
+	{
+		return viewjobService.changeInternStatus(event);
 	}
 		
 

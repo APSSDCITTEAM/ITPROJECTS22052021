@@ -8,9 +8,11 @@
 	</select>
 
 	<insert id="InsertAlumniStudent" parameterType="map">
-		INSERT INTO alumni.students(username, first_name, last_name, password,email,mobile_no,status,college_code,roll_number)
+		INSERT INTO alumni.students(username, first_name, last_name, password,email,mobile_no,status,college_code,roll_number,
+		qualification,branch,passed_out_year,district,other_qualifiction)
 		VALUES (#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},0,#{p.college_code},
-		('AS' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
+		('AS' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')),#{p.qualification},#{p.branch},#{p.passed_out_year},
+		#{p.district},#{p.other_qualifiction});
 	</insert>
 	   
 	<insert id="InsertAlumniEmployee" parameterType="map">

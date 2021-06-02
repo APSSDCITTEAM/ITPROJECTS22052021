@@ -11,6 +11,7 @@ import com.alumni.DAO.DiscussionDAO;
 import com.alumni.DAO.PostjobDAO;
 import com.alumni.DAO.ViewJobDAO;
 import com.alumni.Model.DiscussionModel;
+import com.alumni.Model.EventsModel;
 import com.alumni.Model.PostjobModel;
 import com.alumni.Model.ViewJobModel;
 
@@ -54,5 +55,61 @@ public class ViewJobService {
 		response.setResponseObject(userdetails);
 		return response;
 	}
+	
+	/* .......................................... Job Action ......................................... */
+	
+	public Response getallOpenJobs() {
+		response.setSuccessful(false);
+		List<ViewJobModel> userdetails = viewjobDAO.getallOpenJobs();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	public Response getallClosedJobs() {
+		response.setSuccessful(false);
+		List<ViewJobModel> userdetails = viewjobDAO.getallClosedJobs();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	public Response changeJobStatus(ViewJobModel finance)
+	{
+		response.setSuccessful(false);
+		viewjobDAO.changeJobStatus(finance);
+		response.setSuccessful(true);
+		response.setResponseObject(finance);
+		return response;
+	}
+	
+/* .......................................... Interns Action ......................................... */
+	
+	public Response getallOpenInterns() {
+		response.setSuccessful(false);
+		List<ViewJobModel> userdetails = viewjobDAO.getallOpenInterns();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	public Response getallClosedInterns() {
+		response.setSuccessful(false);
+		List<ViewJobModel> userdetails = viewjobDAO.getallClosedInterns();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	public Response changeInternStatus(ViewJobModel finance)
+	{
+		response.setSuccessful(false);
+		viewjobDAO.changeInternStatus(finance);
+		response.setSuccessful(true);
+		response.setResponseObject(finance);
+		return response;
+	}
+	
+	
 
 }
