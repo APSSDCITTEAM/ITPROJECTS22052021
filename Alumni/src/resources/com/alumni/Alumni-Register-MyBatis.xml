@@ -8,34 +8,81 @@
 	</select>
 
 	<insert id="InsertAlumniStudent" parameterType="map">
-		INSERT INTO alumni.students(username, first_name, last_name, password,email,mobile_no,status,college_code,roll_number,
-		qualification,branch,passed_out_year,district,other_qualifiction)
+		INSERT INTO alumni.students(username, first_name, last_name, password,email,mobile_no,status,college_code,user_id,
+		qualification,branch,passed_out_year,district,other_qualifiction,roll_number)
 		VALUES (#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},0,#{p.college_code},
 		('AS' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')),#{p.qualification},#{p.branch},#{p.passed_out_year},
-		#{p.district},#{p.other_qualifiction});
+		#{p.district},#{p.other_qualifiction},#{p.roll_number});
 	</insert>
-	   
+	       
 	<insert id="InsertAlumniEmployee" parameterType="map">
-		INSERT INTO alumni.students(username, first_name, last_name, password,email,mobile_no,status,organization_name,employee_id)
+		INSERT INTO alumni.students(username, first_name, last_name, password,email,mobile_no,status,organization_name,user_id,employee_id)
 		VALUES (#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},0,
-		#{p.organization_name},('AE' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
+		#{p.organization_name},('AE' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')),#{p.employee_id});
 	</insert>
 
 	<insert id="InsertAlumniUserEmployee" parameterType="map">
 		INSERT INTO alumni.users(username, password, role_id, status, user_id)
-		VALUES (#{p.username}, md5(#{p.password}),4, true,('AE' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
+		VALUES (#{p.username}, md5(#{p.password}),5, true,('AE' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
 	</insert>
 	
 	<insert id="InsertAlumniUserStudent" parameterType="map">
 		INSERT INTO alumni.users(username, password, role_id, status, user_id)
-		VALUES (#{p.username}, md5(#{p.password}),5, true,('AS' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
+		VALUES (#{p.username}, md5(#{p.password}),6, true,('AS' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
 	</insert>
 
 	<select id="getAllAlumnisData" resultType="AlumniRegister">
 		SELECT id,username, first_name, last_name, password,email,mobile_no, photo,status from alumni.students order by id;
 	</select>
+	
+	
+	<!-- ....................................... role assaign ............................... -->
+	<insert id="InsertAlumniAdmin" parameterType="map">
+		INSERT INTO alumni.students(username, first_name, last_name, password,email,mobile_no,status,user_id)
+		VALUES (#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},2,
+		('AD' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
+	</insert>
 
-<!-- ,(case when status='FALSE' THEN 'In-Ative' when status =
+	<insert id="InsertAlumniUserAdmin" parameterType="map">
+		INSERT INTO alumni.users(username, password, role_id, status, user_id)
+		VALUES (#{p.username}, md5(#{p.password}),1, true,('AD' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
+	</insert>
+	
+	<insert id="InsertAlumniMdCEO" parameterType="map">
+		INSERT INTO alumni.students(username, first_name, last_name, password,email,mobile_no,status,user_id)
+		VALUES (#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},2,
+		('MDCEO' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
+	</insert>
+
+	<insert id="InsertAlumniUserMdCEO" parameterType="map">
+		INSERT INTO alumni.users(username, password, role_id, status, user_id)
+		VALUES (#{p.username}, md5(#{p.password}),2, true,('MDCEO' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
+	</insert>
+	
+	<insert id="InsertAlumniED" parameterType="map">
+		INSERT INTO alumni.students(username, first_name, last_name, password,email,mobile_no,status,user_id)
+		VALUES (#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},2,
+		('ED' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
+	</insert>
+
+	<insert id="InsertAlumniUserED" parameterType="map">
+		INSERT INTO alumni.users(username, password, role_id, status, user_id)
+		VALUES (#{p.username}, md5(#{p.password}),3, true,('ED' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
+	</insert>
+	
+	<insert id="InsertAlumniCGM" parameterType="map">
+		INSERT INTO alumni.students(username, first_name, last_name, password,email,mobile_no,status,user_id)
+		VALUES (#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},2,
+		('CGM' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));    
+	</insert>
+
+	<insert id="InsertAlumniUserCGM" parameterType="map">
+		INSERT INTO alumni.users(username, password, role_id, status, user_id)
+		VALUES (#{p.username}, md5(#{p.password}),4, true,('CGM' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
+	</insert>
+	
+
+<!-- ,(case when status='FALSE' THEN 'In-Ative' when status =   
 		'TRUE' then 'Active' end) as statustype -->
 
 </mapper>

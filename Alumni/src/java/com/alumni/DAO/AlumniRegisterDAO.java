@@ -32,6 +32,36 @@ public class AlumniRegisterDAO extends BaseDAO {
 		}
 		sqlSession.close();
 	}
+
+	
+	/* ................................................. assaign role ................................... */
+	public void CreateRole(AlumniRegisterModel alumniregisterModel) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("p", alumniregisterModel);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Integer id  =sqlSession.selectOne("AlumniRegister.getAlumniCount");
+		params.put("id",id);
+		    
+		if (alumniregisterModel.getRole_id() == 1) {
+			sqlSession.insert("AlumniRegister.InsertAlumniAdmin", params);
+			sqlSession.insert("AlumniRegister.InsertAlumniUserAdmin", params);
+		}
+		if (alumniregisterModel.getRole_id() == 2) {
+			sqlSession.insert("AlumniRegister.InsertAlumniMdCEO", params);
+			sqlSession.insert("AlumniRegister.InsertAlumniUserMdCEO", params);
+		}
+		if (alumniregisterModel.getRole_id() == 3) {    
+			sqlSession.insert("AlumniRegister.InsertAlumniED", params);
+			sqlSession.insert("AlumniRegister.InsertAlumniUserED", params);
+		}
+		if (alumniregisterModel.getRole_id() == 4) {
+			sqlSession.insert("AlumniRegister.InsertAlumniCGM", params);
+			sqlSession.insert("AlumniRegister.InsertAlumniUserCGM", params);
+		}
+		sqlSession.close();
+	}
+	
+	
 	
 	public List<AlumniRegisterModel> getAllAlumnisData() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();

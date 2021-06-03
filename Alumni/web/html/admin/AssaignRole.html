@@ -1,0 +1,74 @@
+<script src="assets/js/scripts/AssaignRole.js"></script>
+
+
+<div class="main">
+	<div class="document-title">
+		<div class="container">
+			<h1 class="center">Event Creation</h1>
+		</div>     
+		<!-- /.container -->
+	</div>
+	<!-- /.document-title -->
+
+	<div class="container" id="RoleCreationDiv"
+		data-ng-controller="RoleCreationController">
+		<form method="get" action="javascript:void(0)"
+			enctype="multipart/form-data">
+
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">     
+						<label for="form-register-username">First Name</label> <input
+							type="text" class="form-control"
+							data-ng-model="data.object.first_name">
+					</div>
+					<div class="form-group">
+						<label for="form-register-first-name">Last Name</label> <input
+							type="text" class="form-control"
+							data-ng-model="data.object.last_name">
+					</div>
+					<div class="form-group">
+						<label for="form-login-surname">Email ID</label> <input
+							type="text" class="form-control"   
+							data-ng-model="data.object.email">
+					</div>
+					<div class="form-group">
+						<label>Mobile Number</label> <input type="text" class="form-control"
+							data-ng-model="data.object.mobile_no">
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="row">
+						<div class="form-group">
+							<label>Role</label> 
+							<select class = "form-control" data-ng-model = "data.object.role_id">
+								<option value = "1">Admin</option>
+								<option value = "2">MD/CEO</option>
+								<option value = "3">ED</option>
+								<option value = "4">CGM</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>User Name</label> 
+							<input type = "text" class = "form-control" data-ng-model = "data.object.username" >
+						</div>
+						<div class="form-group">
+							<label>Password</label> 
+							<input type = "text" class = "form-control" data-ng-model = "data.object.password">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="center">
+				<button type="submit" class="btn btn-secondary"
+					data-ng-click="CreateRole(data.object);">Create</button>
+			</div>
+		</form>
+	</div>
+
+</div>
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#RoleCreationDiv"), [ 'AssaignRole' ]);
+	});
+</script>

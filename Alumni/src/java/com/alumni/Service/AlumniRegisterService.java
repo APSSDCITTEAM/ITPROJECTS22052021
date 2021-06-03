@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.andromeda.commons.model.Response;
 import com.alumni.DAO.AlumniRegisterDAO;
 import com.alumni.Model.AlumniRegisterModel;
+import com.alumni.Model.EventsModel;
 
 @Service
 public class AlumniRegisterService {
@@ -16,24 +17,31 @@ public class AlumniRegisterService {
 
 	Response response = new Response();
 
-	/* for file upload */
-
-	public Response Registeralumni(List<AlumniRegisterModel> alumniregisterModel) {
+	public Response Registeralumni(AlumniRegisterModel finance) {		
 		response.setSuccessful(false);
-
-		for (AlumniRegisterModel alumnifile : alumniregisterModel)
-			alumniregisterDAO.Registeralumni(alumnifile);
+		alumniregisterDAO.Registeralumni(finance);
 		response.setSuccessful(true);
-		response.setResponseObject(alumniregisterModel);
+		System.out.println("hi1");
+		response.setResponseObject(finance);
 		return response;
 	}
-
-	public Response Registeralumni(AlumniRegisterModel alumniregisterModel) {
+	
+	
+	/* ...................................... assaign role ....................................... */
+	/*
+	 * public Response CreateRole(AlumniRegisterModel finance) {
+	 * response.setSuccessful(false); alumniregisterDAO.CreateRole(finance);
+	 * response.setSuccessful(true); System.out.println("hi1");     
+	 * response.setResponseObject(finance); return response; }
+	 */
+	
+	
+	public Response CreateRole(AlumniRegisterModel finance) {		
 		response.setSuccessful(false);
-
-		alumniregisterDAO.Registeralumni(alumniregisterModel);
+		alumniregisterDAO.CreateRole(finance);
 		response.setSuccessful(true);
-		response.setResponseObject(alumniregisterModel);
+		System.out.println("hi1");
+		response.setResponseObject(finance);
 		return response;
 	}
 

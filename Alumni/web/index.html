@@ -62,16 +62,16 @@
         jQuery(document).ready(
             function() {
                 if ((Alumni.isUserLoggedIn()) &&
-                    (Alumni.getSessionValue("roleid") == 1)) {
+                    (Alumni.getSessionValue("roleid") == 2)) {
                     Alumni.showMDHomePage();
                 } else if ((Alumni.isUserLoggedIn()) &&
-                    (Alumni.getSessionValue("roleid") == 2)) {
-                    Alumni.showEDHomePage();
-                } else if ((Alumni.isUserLoggedIn()) &&
                     (Alumni.getSessionValue("roleid") == 3)) {
-                    Alumni.showCGMHomePage();
+                    Alumni.showEDHomePage();     
                 } else if ((Alumni.isUserLoggedIn()) &&
                     (Alumni.getSessionValue("roleid") == 4)) {
+                    Alumni.showCGMHomePage();
+                } else if ((Alumni.isUserLoggedIn()) &&
+                    (Alumni.getSessionValue("roleid") == 1)) {
                     Alumni.showAdminHomePage();
                 } else if ((Alumni.isUserLoggedIn()) &&
                     (Alumni.getSessionValue("roleid") == 5)) {

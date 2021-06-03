@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.andromeda.commons.model.Response;
 
 import com.alumni.Model.AlumniRegisterModel;
+import com.alumni.Model.EventsModel;
 import com.alumni.Model.PostjobModel;
 import com.alumni.Service.AlumniRegisterService;
 
@@ -108,6 +109,28 @@ public class AlumniRegisterController {
 	{
 		return alumniregisterService.Registeralumni(job);       
 	}
+	
+	
+	
+	/* .......................................... Role creation .......................................... */
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "CreateRole", method = { RequestMethod.POST }) public
+	 * Response CreateRole(@RequestBody AlumniRegisterModel job) {
+	 * System.out.println("hi2"); return alumniregisterService.CreateRole(job); }
+	 */
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "CreateRole", method = { RequestMethod.POST })
+	public Response CreateRole(@RequestBody AlumniRegisterModel event)
+	{
+		return alumniregisterService.CreateRole(event);       
+	}
+	
+	
+	
 	
 
 }

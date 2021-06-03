@@ -45,7 +45,7 @@ public class AlumniRegisterModel extends BaseModel {
 	public Integer passed_out_year;
 	public String district;
 	public String other_qualifiction;
-	
+	public Integer role_id;
 	
 	
 	
@@ -104,6 +104,12 @@ public class AlumniRegisterModel extends BaseModel {
 	}
 	public void setCollege_code(String college_code) {
 		this.college_code = college_code;
+	}
+	public Integer getRole_id() {
+		return role_id;
+	}
+	public void setRole_id(Integer role_id) {
+		this.role_id = role_id;
 	}
 	public String getRoll_number() {
 		return roll_number;

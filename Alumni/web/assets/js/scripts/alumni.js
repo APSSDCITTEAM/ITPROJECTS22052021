@@ -63,6 +63,11 @@ var Alumni = {
 
 	showAdminHomePage: function() {
 		var path = "/alumni/html/admin/Home.html";
+		Alumni.showPage(path, "admin-div");    
+	},
+	
+	showRolesAssaignPage: function() {
+		var path = "/alumni/html/admin/AssaignRole.html";
 		Alumni.showPage(path, "admin-div");
 	},
 	
