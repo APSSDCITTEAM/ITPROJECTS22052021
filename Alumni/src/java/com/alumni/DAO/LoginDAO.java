@@ -37,7 +37,7 @@ public class LoginDAO extends BaseDAO {
 		int roleid = sqlSessionTemplate.selectOne("Login.getRole", map);
 		Login details = sqlSessionTemplate.selectOne("Login.getUserDetails", map);
 		details.setRoleid(roleid);
-		return details;  
+		return details;
 
 	}
 
@@ -47,7 +47,10 @@ public class LoginDAO extends BaseDAO {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("p", login);
 
-		loginStatus = sqlSessionTemplate.selectOne("Login.checkUser", map);
+		loginStatus = sqlSessionTemplate.selectOne("Login.isUserLoggedIn", map);
+		System.out.println("||============DAO=============||");
+		System.out.println(loginStatus);
+		System.out.println("||============DAO=============||");
 		return loginStatus;
 	}
 
@@ -126,6 +129,14 @@ public class LoginDAO extends BaseDAO {
 		List<Login> userdetails = sqlSession.selectList("Login.gettodayLogins");
 		sqlSession.close();
 		return userdetails;
+	}
+
+	public void ChangePassword(Login login) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("p", login);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("Login.ChangePassword", params);
+		sqlSession.close();
 	}
 
 }

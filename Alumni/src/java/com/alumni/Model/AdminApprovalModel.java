@@ -23,11 +23,15 @@ public class AdminApprovalModel extends BaseModel{
 	public String description;
 	public Integer std_id;
 	public Integer status;
+	public Integer mobile_no;
 	
 	
-	
-	
-	
+	public Integer getMobile_no() {
+		return mobile_no;
+	}
+	public void setMobile_no(Integer mobile_no) {
+		this.mobile_no = mobile_no;
+	}
 	public Integer getStatus() {
 		return status;
 	}

@@ -1,5 +1,6 @@
 package com.alumni.Model;
 
+import java.math.BigInteger;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -15,18 +16,66 @@ public class ViewJobModel extends BaseModel{
 	public String contact_email;
 	public String min_exp;
 	public String max_exp;
-	public Integer std_id;
+	public String std_id;
 	public boolean status;    
 	public String duration;
 	public Timestamp created_date;    
 	public Integer id;
 	public String created_by;
+	public String status_type;
+	public String first_name;
+	public String email;
+	public BigInteger mobile_no;
+	public Timestamp date_added;
+	public Date date_created;
+	public String last_name;
 	
 	
 	
 	
 	
-	
+	public Date getDate_created() {
+		return date_created;
+	}
+	public void setDate_created(Date date_created) {
+		this.date_created = date_created;
+	}
+	public String getLast_name() {
+		return last_name;
+	}
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+	public String getFirst_name() {
+		return first_name;
+	}
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public BigInteger getMobile_no() {
+		return mobile_no;
+	}
+	public void setMobile_no(BigInteger mobile_no) {
+		this.mobile_no = mobile_no;
+	}
+	public Timestamp getDate_added() {
+		return date_added;
+	}
+	public void setDate_added(Timestamp date_added) {
+		this.date_added = date_added;
+	}
+	public String getStatus_type() {
+		return status_type;
+	}
+	public void setStatus_type(String status_type) {
+		this.status_type = status_type;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -81,10 +130,12 @@ public class ViewJobModel extends BaseModel{
 	public void setMax_exp(String max_exp) {
 		this.max_exp = max_exp;
 	}
-	public Integer getStd_id() {
+
+
+	public String getStd_id() {
 		return std_id;
 	}
-	public void setStd_id(Integer std_id) {
+	public void setStd_id(String std_id) {
 		this.std_id = std_id;
 	}
 	public boolean isStatus() {

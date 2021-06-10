@@ -97,12 +97,12 @@ public class EventsService {
 		return response;
 	}
 	
-	public Response changeEventStatus(EventsModel finance)
+	public Response changeEventStatus(Integer id)
 	{
 		response.setSuccessful(false);
-		eventsDAO.changeEventStatus(finance);
+		eventsDAO.changeEventStatus(id);
 		response.setSuccessful(true);
-		response.setResponseObject(finance);
+		response.setResponseObject(id);
 		return response;
 	}
 	

@@ -20,6 +20,7 @@ public class EventsModel extends BaseModel{
 	public String status_type;
 	public Date created_date;
 	public Timestamp date_created;
+	public String std_id;
 	
 	
 	
@@ -98,6 +99,12 @@ public class EventsModel extends BaseModel{
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getStd_id() {
+		return std_id;
+	}
+	public void setStd_id(String std_id) {
+		this.std_id = std_id;
 	}
 	
 			

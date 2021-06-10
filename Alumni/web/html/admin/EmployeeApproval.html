@@ -1,0 +1,48 @@
+<script src="/alumni/assets/js/scripts/employeeApproval.js"></script>
+<!--== Directory Page Content Start ==-->
+<section id="page-content-wrap">
+	<div class="directory-page-content-warp section-padding"
+		id="ApprovalsDiv" data-ng-controller="ApprovalsController">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="directory-text-wrap">
+						<div class="directory-table table-responsive">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th scope="col">Name</th>
+										<th scope="col">Email</th>
+										<th scope="col">Mobile</th>
+										<th scope="col">Approve</th>
+										<th scope="col">Reject</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="verified in VerifiedUsers">
+										<td><img src="assets/img/user-male-icon.png" alt="table">{{verified.name}}</td>
+										<td>{{verified.email}}</td>
+										<td>{{verified.mobile_no}}</td>
+										<td><button type="button" class="btn-auth-approve"
+												data-ng-click="ApproveUser(verified.id);">Approve</button></td>
+										<td><button type="button" class="btn-auth-reject"
+												data-ng-click="RejectUser(verified.id);">Reject</button></td>
+									</tr>
+
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--== Directory Page Content End ==-->
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#ApprovalsDiv"), [ 'approvals' ]);
+	});
+</script>

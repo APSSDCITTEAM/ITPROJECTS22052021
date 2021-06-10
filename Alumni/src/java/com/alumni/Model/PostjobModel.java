@@ -15,7 +15,14 @@ public class PostjobModel extends BaseModel{
 	public String contact_email;
 	public String min_exp;
 	public String max_exp;
-	public Integer std_id;
+	public String std_id;
+	
+	public String getStd_id() {
+		return std_id;
+	}
+	public void setStd_id(String std_id) {
+		this.std_id = std_id;
+	}
 	public Integer status;
 	public String duration;
 	
@@ -61,12 +68,7 @@ public class PostjobModel extends BaseModel{
 	public void setMax_exp(String max_exp) {
 		this.max_exp = max_exp;
 	}
-	public Integer getStd_id() {
-		return std_id;
-	}
-	public void setStd_id(Integer std_id) {
-		this.std_id = std_id;
-	}
+
 	public Integer getStatus() {
 		return status;
 	}

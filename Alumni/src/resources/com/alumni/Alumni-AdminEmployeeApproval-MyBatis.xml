@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminEmployeeApproval">
+
+	<select id="getallusers" resultType="map">
+		select id,
+		concat(first_name,' ',last_name) as name,email as email,
+		mobile_no,
+		case when status = 0 then 'Mail Not verified'
+		when status = 1 then
+		'Mail Verified' when status = 2 then 'Approved' when
+		status = 3 then
+		'Rejected' end as Status_type
+		from alumni.students WHERE role_id = 5
+		order by id
+	</select>
+
+	<select id="getallVerifiedUsers" resultType="map">
+		select id,
+		concat(first_name,' ',last_name) as name,email as email,
+		mobile_no,
+		case when status = 1 then 'Mail Verified' end as
+		status_type
+		from
+		alumni.students where status = 1 and role_id = 5 order
+		by id
+	</select>
+
+	<select id="getallRejectedUsers" resultType="map">
+		select id,
+		concat(first_name,' ',last_name) as name,email as email,
+		mobile_no,
+		case when status = 3 then 'Rejected' else 'Mail Not Verified' end as status_type
+		from
+		alumni.students where status = 3 and role_id = 5 order by id
+	</select>
+
+	<select id="getallApprovedUsers" resultType="map">
+		select id,
+		concat(first_name,' ',last_name) as name,email as email,
+		mobile_no,
+		case when status = 2 then 'Approved' end as status_type
+		from
+		alumni.students where status = 2 and role_id = 5 order by id
+	</select>
+
+	<update id="ApproveUser" parameterType="java.lang.Integer">
+		update alumni.students
+		set status = 2 where id = #{p.id};
+	</update>
+
+	<update id="RejectUser" parameterType="java.lang.Integer">
+		update alumni.students set
+		status = 3 where id = #{p.id};
+	</update>
+
+
+</mapper>  

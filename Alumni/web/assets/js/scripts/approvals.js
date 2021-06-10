@@ -66,16 +66,16 @@ Student.controller('ApprovalsController', ['$scope', '$http', function($scope, $
 
 	
 	/* Approve User */
-	$scope.ApproveUser = function(ApproveUserData){
-		console.log(ApproveUserData.id);    
-		$http.post('/alumni/approval/ApproveUser', ApproveUserData).then(
+	$scope.ApproveUser = function(id){
+		console.log(id);    
+		$http.post('/alumni/approval/ApproveUser', id).then(
 				function(response) {
 					$scope.data = response.data;  
 					if ($scope.data.successful) {
 						swal("User Approved Successfully");
-						Alumni.showApprovalsPage();
+						Alumni.showStudentApprovals();
 					} else {   
-						alert("Data not updated");
+						swal("Data not updated");
 					}
 				}, function(errResponse) {
 					console.error('Error while fetching notes');
@@ -84,16 +84,16 @@ Student.controller('ApprovalsController', ['$scope', '$http', function($scope, $
 	
 	
 	/* Reject User */
-	$scope.RejectUser = function(RejectUserData){
-		console.log(RejectUserData.id);    
-		$http.post('/alumni/approval/RejectUser', RejectUserData).then(
+	$scope.RejectUser = function(id){
+		console.log(id);    
+		$http.post('/alumni/approval/RejectUser', id).then(
 				function(response) {
 					$scope.data = response.data;  
 					if ($scope.data.successful) {
 						swal("User Rejected Successfully");
-						Alumni.showApprovalsPage();
+						Alumni.showStudentApprovals();
 					} else {   
-						alert("Data not updated");
+						swal("Data not updated");
 					}
 				}, function(errResponse) {
 					console.error('Error while fetching notes');

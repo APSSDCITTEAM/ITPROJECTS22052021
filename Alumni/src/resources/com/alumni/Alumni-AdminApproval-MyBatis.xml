@@ -3,101 +3,147 @@
 <mapper namespace="AdminApproval">
 
 	<select id="getallusers" resultType="map">
-	select id, concat(first_name,' ',last_name) as name,email as email, case when status = 0 then 'Mail Not verified' 
-		when status = 1 then 'Mail Verified' when status = 2 then 'Approved' when status = 3 then 'Rejected' end as Status_type 
-		from alumni.students order by id
+		select id, concat(first_name,' ',last_name) as name,email as email,
+		mobile_no, case when status = 0 then 'Mail Not verified'
+		when status = 1 then 'Mail Verified' when status = 2 then 'Approved' when
+		status = 3 then 'Rejected' end as Status_type
+		from alumni.students WHERE role_id=6 order by id
 	</select>
-	
+
 	<select id="getallVerifiedUsers" resultType="map">
-	select id, concat(first_name,' ',last_name) as name,email as email, case when status = 1 then 'Mail Verified' end as status_type
-		from alumni.students where status = 1 order by id
+		select id, concat(first_name,' ',last_name) as name,email as email,
+		mobile_no, case when status = 1 then 'Mail Verified' end as
+		status_type
+		from alumni.students where status = 1 and role_id=6 order
+		by id
 	</select>
-	
+
 	<select id="getallRejectedUsers" resultType="map">
-	select id, concat(first_name,' ',last_name) as name,email as email, case when status = 3 then 'Rejected' end as status_type
-		from alumni.students where status = 3 order by id
+		select id, concat(first_name,' ',last_name) as name,email as email,
+		mobile_no, case when status = 3 then 'Rejected' else 'Mail not Verified' end as status_type
+		from alumni.students where status in (3,0) and role_id=6 order by id
 	</select>
-	
+
 	<select id="getallApprovedUsers" resultType="map">
-	select id, concat(first_name,' ',last_name) as name,email as email, case when status = 2 then 'Approved' end as status_type
-		from alumni.students where status = 2 order by id
+		select id, concat(first_name,' ',last_name) as name,email as email,
+		mobile_no, case when status = 2 then 'Approved' end as status_type
+		from alumni.students where status = 2 and role_id=6 order by id
 	</select>
 
 	<update id="ApproveUser" parameterType="map">
-		update alumni.students set status = 2 where id = #{p.id};
+		update alumni.students
+		set status = 2 where id = #{p.id};
 	</update>
-	
+
 	<update id="RejectUser" parameterType="map">
-		update alumni.students set status = 3 where id = #{p.id};
+		update alumni.students set
+		status = 3 where id = #{p.id};
 	</update>
-	
+
 	<select id="getallJobs" resultType="map">
-	select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
-		from alumni.jobs order by id   
-	</select>	
-	
+		select
+		id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
+		:: date as created_date,
+		case when status = 0 then 'Submitted' when
+		status = 1 then 'Open' when status = 2 then 'Rejected' when status = 3
+		then 'Closed' end as status_type
+		from alumni.jobs order by id
+	</select>
+
 	<select id="getSubmittedJobs" resultType="map">
-	select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
+		select
+		id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
+		:: date as created_date,
+		case when status = 0 then 'Submitted' when
+		status = 1 then 'Open' when status = 2 then 'Rejected' when status = 3
+		then 'Closed' end as status_type
 		from alumni.jobs where status = 0 order by id
-	</select>	   
-	
+	</select>
+
 	<select id="getApprovedJobs" resultType="map">
-	select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
+		select
+		id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
+		:: date as created_date,
+		case when status = 0 then 'Submitted' when
+		status = 1 then 'Approved' when status = 2 then 'Rejected' when status
+		= 3 then 'Closed' end as status_type
 		from alumni.jobs where status = 1 order by id
 	</select>
-	
+
 	<select id="getRejectedJobs" resultType="map">
-	select id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
+		select
+		id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
+		:: date as created_date,
+		case when status = 0 then 'Submitted' when
+		status = 1 then 'Approved' when status = 2 then 'Rejected' when status
+		= 3 then 'Closed' end as status_type
 		from alumni.jobs where status = 2 order by id
-	</select>	
-	
-	<update id="ApproveJob" parameterType="map">
-		update alumni.jobs set status = 1 where id = #{p.id};
+	</select>
+
+	<update id="ApproveJob" parameterType="java.lang.Integer">
+		update alumni.jobs set
+		status = 1 where id = #{p.id};
 	</update>
-	
-	<update id="RejectJob" parameterType="map">
-		update alumni.jobs set status = 2 where id = #{p.id};
+
+	<update id="RejectJob" parameterType="java.lang.Integer">
+		update alumni.jobs set
+		status = 2 where id = #{p.id};
 	</update>
-	
-	
-	<!-- ............................................... Internship Approvals ................................. -->
+
+
+	<!-- ............................................... Internship Approvals 
+		................................. -->
 	<select id="getallInternships" resultType="map">
-	select id,title,company_name,location,contact_email,duration,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
-		from alumni.interships order by id   
-	</select>	
-	
+		select
+		id,title,company_name,location,contact_email,duration,description,std_id,date_added
+		:: date as created_date,
+		case when status = 0 then 'Submitted' when
+		status = 1 then 'Open' when status = 2 then 'Rejected' when status = 3
+		then 'Closed' end as status_type
+		from alumni.interships order by id
+	</select>
+
 	<select id="getSubmittedInternships" resultType="map">
-	select id,title,company_name,location,contact_email,duration,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
-		from alumni.interships where status = 0 order by id   
-	</select>	   
-	
+		select
+		id,title,company_name,location,contact_email,duration,description,std_id,date_added
+		:: date as created_date,
+		case when status = 0 then 'Submitted' when
+		status = 1 then 'Open' when status = 2 then 'Rejected' when status = 3
+		then 'Closed' end as status_type
+		from alumni.interships where status = 0 order by id
+	</select>
+
 	<select id="getApprovedInternships" resultType="map">
-	select id,title,company_name,location,contact_email,duration,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
+		select
+		id,title,company_name,location,contact_email,duration,description,std_id,date_added
+		:: date as created_date,
+		case when status = 0 then 'Submitted' when
+		status = 1 then 'Approved' when status = 2 then 'Rejected' when status
+		= 3 then 'Closed' end as status_type
 		from alumni.interships where status = 1 order by id
 	</select>
-	
+
 	<select id="getRejectedInternships" resultType="map">
-	select id,title,company_name,location,contact_email,duration,description,std_id,date_added :: date as created_date,
-		case when status = 0 then 'Submitted' when status = 1 then 'Approved' when status = 2 then 'Rejected' when status = 3 then 'Closed' end as status_type 
+		select
+		id,title,company_name,location,contact_email,duration,description,std_id,date_added
+		:: date as created_date,
+		case when status = 0 then 'Submitted' when
+		status = 1 then 'Approved' when status = 2 then 'Rejected' when status
+		= 3 then 'Closed' end as status_type
 		from alumni.interships where status = 2 order by id
-	</select>	
-	
-	<update id="ApproveInternships" parameterType="map">
-		update alumni.interships set status = 1 where id = #{p.id};    
+	</select>
+
+	<update id="ApproveInternships" parameterType="java.lang.Integer">
+		update
+		alumni.interships set status = 1 where id = #{p.id};
 	</update>
-	
-	<update id="RejectInternships" parameterType="map">
-		update alumni.interships set status = 2 where id = #{p.id};
+
+	<update id="RejectInternships" parameterType="java.lang.Integer">
+		update
+		alumni.interships set status = 2 where id = #{p.id};
 	</update>
-	
-	
-	
+
+
+
 
 </mapper>  

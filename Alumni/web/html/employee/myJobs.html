@@ -1,0 +1,64 @@
+<script src="assets/js/scripts/viewjob.js"></script>
+
+
+<!--== Single Album Page Content Start ==-->
+<section id="page-content-wrap">
+	<div class="career-page-wrapper" id="ViewjobDiv"
+		data-ng-controller="JobViewController">
+
+		<div class="career-page-content-wrap section-padding">
+			<div class="container">
+
+				<div class="job-opportunity-wrapper">
+					<div class="row">
+						<!--== Single Job opportunity Start ==-->
+						<div class="col-lg-4 col-sm-6 text-center"
+							data-ng-repeat="jobs in myjobs">
+							<div class="single-job-opportunity">
+								<div class="job-opportunity-text">
+									<div class="job-oppor-logo">
+										<div class="display-table">
+											<div class="display-table-cell">
+												<img src="assets/img/company-building-icon.png" alt="Job">
+											</div>
+										</div>
+									</div>
+									<h3>
+										<a href="javascript:void(0);">{{jobs.title}}</a>
+									</h3>
+									<p><ul class="list-group">
+										<li class="list-group-item">Company : {{jobs.company_name}}</li>
+										<li class="list-group-item">Location : {{jobs.location}}</li>
+										<li class="list-group-item">Min Exp : {{jobs.min_exp}}</li>
+										<li class="list-group-item">Max Exp : {{jobs.max_exp}}</li>
+										<li class="list-group-item">Contact : {{jobs.contact_email}}</li>
+                                               <!--  <li
+											class="list-group-item">Date : {{jobs.created_date | date: 'dd MMM, yyyy'}}</li> -->
+                                            </ul>
+									</p>
+									
+									<p>
+										{{jobs.description}}
+									</p>
+									
+									
+								</div>
+								<!-- <a href="#" class="btn btn-job">Apply now</a> -->
+							</div>
+						</div>
+						<!--== Single Job opportunity End ==-->
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--== Single Album Page Content End ==-->
+
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#ViewjobDiv"), [ 'jobview' ]);
+	});
+</script>

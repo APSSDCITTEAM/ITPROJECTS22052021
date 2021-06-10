@@ -1,0 +1,67 @@
+<script src="assets/js/scripts/viewjob.js"></script>
+
+
+<!--== Single Album Page Content Start ==-->
+<section id="page-content-wrap">
+	<div class="career-page-wrapper" id="ViewjobDiv"
+		data-ng-controller="JobViewController">
+
+		<div class="career-page-content-wrap section-padding">
+			<div class="container">
+
+				<div class="job-opportunity-wrapper">
+					<div class="row">
+						<!--== Single Job opportunity Start ==-->
+						<div class="col-lg-4 col-sm-6 text-center"
+							data-ng-repeat="data in alldata">
+							<div class="single-job-opportunity">
+								<div class="job-opportunity-text">
+									<div class="job-oppor-logo">
+										<div class="display-table">
+											<div class="display-table-cell">
+												<img src="assets/img/company-building-icon.png" alt="Job">
+											</div>
+										</div>
+									</div>
+									<h3>
+										<a href="javascript:void(0);">{{data.title}}</a>
+									</h3>
+									<p><ul class="list-group">
+										<li class="list-group-item">Company : {{data.company_name}}</li>
+										<li class="list-group-item">Location : {{data.location}}</li>
+										<li class="list-group-item">Min Exp : {{data.min_exp}}</li>
+										<li class="list-group-item">Max Exp : {{data.max_exp}}</li>
+										<li class="list-group-item">Contact : {{data.contact_email}}</li>
+                                               <!--  <li
+											class="list-group-item">Date : {{data.created_date | date: 'dd MMM, yyyy'}}</li> -->
+                                            </ul>
+									</p>
+									
+									<p>
+										{{data.description}}
+									</p>
+									
+									<button class="btn btn-primary btn-mini"
+												data-ng-click="Applyjob(data.id);">Apply</button>
+									
+									
+								</div>
+								<!-- <a href="#" class="btn btn-job">Apply now</a> -->
+							</div>
+						</div>
+						<!--== Single Job opportunity End ==-->
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--== Single Album Page Content End ==-->
+
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#ViewjobDiv"), [ 'jobview' ]);
+	});
+</script>

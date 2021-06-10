@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.andromeda.commons.model.Response;
 
 import com.alumni.Model.AlumniRegisterModel;
-import com.alumni.Model.EventsModel;
-import com.alumni.Model.PostjobModel;
+
 import com.alumni.Service.AlumniRegisterService;
 
 import org.json.JSONException;
@@ -107,9 +106,16 @@ public class AlumniRegisterController {
 	@RequestMapping(value = "studentRegister", method = { RequestMethod.POST })
 	public Response Registeralumni(@RequestBody AlumniRegisterModel job)
 	{
+		String token = job.getFirst_name() + job.getMobile_no() + job.getEmail() + job.getCollege_code();
+		Integer hashToken = token.hashCode();
+		job.setToken(hashToken) ;
+		System.out.println(hashToken);
+		String username = job.getEmail();
+		String password = job.getMobile_no().toString();
+		job.setPassword(password);
+		job.setUsername(username);
 		return alumniregisterService.Registeralumni(job);       
 	}
-	
 	
 	
 	/* .......................................... Role creation .......................................... */
@@ -128,9 +134,6 @@ public class AlumniRegisterController {
 	{
 		return alumniregisterService.CreateRole(event);       
 	}
-	
-	
-	
 	
 
 }

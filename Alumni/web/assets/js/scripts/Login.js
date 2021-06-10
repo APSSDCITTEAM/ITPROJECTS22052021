@@ -20,37 +20,46 @@ LoginModule.controller('LoginController', ['$http', '$scope', function($http, $s
 				console.log(a);
 				console.log(".............................");
 
-				if ((Alumni.getSessionValue("roleid") == 1)) {
-					/*alert(Alumni.getSessionValue("username"));*/
+				if ((Alumni.getSessionValue("roleid") == 2)) {
+					/*$('#login-modal').modal('toggle');*/
 					Alumni.showMD();
 				}
-				else if ((Alumni.getSessionValue("roleid") == 2)) {
-					/*alert(Alumni.getSessionValue("username"));*/
+				else if ((Alumni.getSessionValue("roleid") == 3)) {
+					/*$('#login-modal').modal('toggle');*/
 					Alumni.showED();
 				}
-				else if ((Alumni.getSessionValue("roleid") == 3)) {
-					/*alert(Alumni.getSessionValue("username"));*/
+				else if ((Alumni.getSessionValue("roleid") == 4)) {
+					/*$('#login-modal').modal('toggle');*/
 					Alumni.showCGM();
 				}
-				else if ((Alumni.getSessionValue("roleid") == 4)) {
-					/*alert(Alumni.getSessionValue("username"));*/
-					Alumni.showAdmin();
+				else if ((Alumni.getSessionValue("roleid") == 1)) {
+					/*$('#login-modal').modal('toggle');*/
+					Alumni.showAdminHeader();
+					Alumni.showStudentApprovals();
+				}
+				else if ((Alumni.getSessionValue("roleid") == 6)) {
+					/*$('#login-modal').modal('toggle');*/
+					Alumni.showStudentHeader();
+					Alumni.showJobs();
 				}
 				else if ((Alumni.getSessionValue("roleid") == 5)) {
-					/*alert(Alumni.getSessionValue("username"));*/
-					Alumni.showUser();
+					/*$('#login-modal').modal('toggle');*/
+					Alumni.showEmployeeHeader();
+					Alumni.showEmployeeHeader_1();
 				}
 				else {
-					Alumni.showLoginPage();
+					Alumni.showHome();
 				}
 			} else {
+				swal(
+					{
+						title: "Oops!",
+						text: "Wrong Username or Password!",
+						type: "error"
+					}, function() {
+						Alumni.showHome();
+					});
 
-				Alumni.showError($scope.data.errorMessage);
-				var message = "<div class=\"alert alert-danger\"><strong>Error: </strong>" + $scope.data.errorMessage + "</div>";
-				jQuery("#errorDiv").html(message);
-				$("#errorDiv").show();
-				$("#errorDiv").html("<b style='margin-left: 28%;font-size: medium;color:blue'>Note:</b> Invalid login credentials");
-				console.log('Error while validating user');
 			}
 		}, function(errResponse) {
 			console.error('Error while fetching notes');

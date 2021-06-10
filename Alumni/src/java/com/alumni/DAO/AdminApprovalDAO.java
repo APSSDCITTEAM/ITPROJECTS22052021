@@ -49,19 +49,19 @@ public class AdminApprovalDAO {
 		return userdetails;
 	}
 	
-	public void ApproveUser(AdminApprovalModel faculty) {
+	public void ApproveUser(Integer id) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("p", faculty);
+		params.put("p", id);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.update("AdminApproval.ApproveUser", params);
+		sqlSession.update("AdminApproval.ApproveUser", id);
 		sqlSession.close();
 	}
 	
-	public void RejectUser(AdminApprovalModel faculty) {
+	public void RejectUser(Integer id) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("p", faculty);
+		params.put("p", id);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.update("AdminApproval.RejectUser", params);
+		sqlSession.update("AdminApproval.RejectUser", id);
 		sqlSession.close();
 	}
 	
@@ -100,20 +100,20 @@ public class AdminApprovalDAO {
 	}
 	
 	/* Approve Jobs */
-	public void ApproveJob(AdminApprovalModel faculty) {
+	public void ApproveJob(Integer id) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("p", faculty);
+		params.put("p", id);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.update("AdminApproval.ApproveJob", params);
+		sqlSession.update("AdminApproval.ApproveJob", id);
 		sqlSession.close();
 	}
 	
 	/* Reject Jobs */
-	public void RejectJob(AdminApprovalModel faculty) {
+	public void RejectJob(Integer id) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("p", faculty);
+		params.put("p", id);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.update("AdminApproval.RejectJob", params);
+		sqlSession.update("AdminApproval.RejectJob", id);
 		sqlSession.close();
 	}
 	
@@ -152,20 +152,20 @@ public class AdminApprovalDAO {
 	}
 	
 	/* Approve Jobs */
-	public void ApproveInternships(AdminApprovalModel faculty) {
+	public void ApproveInternships(Integer id) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("p", faculty);
+		params.put("p", id);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.update("AdminApproval.ApproveInternships", params);
+		sqlSession.update("AdminApproval.ApproveInternships", id);
 		sqlSession.close();
 	}
 	
 	/* Reject Jobs */
-	public void RejectInternships(AdminApprovalModel faculty) {
+	public void RejectInternships(Integer id) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("p", faculty);
+		params.put("p", id);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.update("AdminApproval.RejectInternships", params);
+		sqlSession.update("AdminApproval.RejectInternships", id);
 		sqlSession.close();
 	}
 	

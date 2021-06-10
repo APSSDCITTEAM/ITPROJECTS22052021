@@ -30,7 +30,7 @@ public class LoginService {
 		if (loginStatus == 0) {
 			response.setSuccessful(false);
 		} else if (loginStatus == 1) {
-			
+
 			Login details = loginDAO.getUserDetails(login);
 			details.setIpaddress(login.getIpaddress());
 			// loginDAO.saveToLogins(details);
@@ -59,9 +59,9 @@ public class LoginService {
 		Boolean status = false;
 		if ((!StringUtils.isEmpty(login.getUsername())) && (!StringUtils.isEmpty(login.getPassword()))) {
 			Integer loginStatus = loginDAO.isUserLoggedIn(login);
-			System.out.println("-------------------------");
+			System.out.println("||============Servcie=============||");
 			System.out.println(loginStatus);
-			System.out.println("-------------------------");
+			System.out.println("||============Service=============||");
 			if (loginStatus == 0) {
 				status = false;
 			} else if (loginStatus > 0) {
@@ -131,6 +131,14 @@ public class LoginService {
 		List<Login> userdetails = loginDAO.gettodayLogins();
 		response.setSuccessful(true);
 		response.setResponseObject(userdetails);
+		return response;
+	}
+
+	public Response ChangePassword(Login login) {
+		response.setSuccessful(false);
+		loginDAO.ChangePassword(login);
+		response.setSuccessful(true);
+		response.setResponseObject(login);
 		return response;
 	}
 

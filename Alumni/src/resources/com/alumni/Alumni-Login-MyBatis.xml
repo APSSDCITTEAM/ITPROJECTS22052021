@@ -9,6 +9,13 @@
 		password = md5(#{p.password})
 	</select>	<!-- OR phone = #{p.username} -->
 
+	<select resultType="java.lang.Integer" parameterType="map"
+		id="isUserLoggedIn">
+		select count(*) from alumni.users where (username = #{p.username})
+		AND
+		password = #{p.password}
+	</select>
+
 	<select parameterType="map" id="getRole"
 		resultType="java.lang.Integer">
 		select role_id as roleid from alumni.users where username =
@@ -19,7 +26,8 @@
 	<select resultType="Login" parameterType="map"
 		id="getUserDetails">
 		select username,password,user_id,CURRENT_TIMESTAMP as logtime from
-		alumni.users where username = #{username} AND password = md5(#{password});
+		alumni.users where username = #{username} AND password =
+		md5(#{password});
 	</select>
 
 	<update id="assignRole" parameterType="map">
@@ -119,6 +127,12 @@
 		(b.user_id =
 		a.user_id)
 	</select>
+
+	<update id="ChangePassword" parameterType="map">
+		update alumni.users
+		SET password = md5(#{p.password}) where user_id = #{p.user_id}
+	</update>
+
 
 
 

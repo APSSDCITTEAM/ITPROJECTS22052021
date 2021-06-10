@@ -1,0 +1,109 @@
+<script src="assets/js/scripts/viewinternship.js"></script>
+
+
+<!--== Single Album Page Content Start ==-->
+<section id="page-content-wrap">
+	<div class="career-page-wrapper" id="viewinternshipdiv"
+		data-ng-controller="InternshipViewController">
+
+		<div class="career-page-content-wrap section-padding"
+			id="myInternshipsDiv">
+			<div class="container">
+
+				<div class="job-opportunity-wrapper">
+					<div class="row">
+						<!--== Single Job opportunity Start ==-->
+						<div class="col-lg-4 col-sm-6 text-center"
+							data-ng-repeat="interns in myinterns">
+							<div class="single-job-opportunity">
+								<div class="job-opportunity-text">
+									<div class="job-oppor-logo">
+										<div class="display-table">
+											<div class="display-table-cell">
+												<img src="assets/img/company-building-icon.png" alt="Job">
+											</div>
+										</div>
+									</div>
+									<h3>
+										<a href="javascript:void(0);">{{interns.title}}</a>
+									</h3>
+									<p>
+									<ul class="list-group">
+										<li class="list-group-item">Company :
+											{{interns.company_name}}</li>
+										<li class="list-group-item">Location :
+											{{interns.location}}</li>
+										<li class="list-group-item">Duration :
+											{{interns.duration}}</li>
+										<li class="list-group-item">Contact :
+											{{interns.contact_email}}</li>
+										<!-- <li class="list-group-item">Date : {{interns.created_date |
+											date: 'dd MMM, yyyy'}}</li> -->
+									</ul>
+									</p>
+
+									<p>{{interns.description}}</p>
+
+								</div>
+								<button type="" class="btn btn-job"
+									data-ng-click="InternApplicants(interns.id)">View
+									Applicants</button>
+							</div>
+						</div>
+						<!--== Single Job opportunity End ==-->
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="career-page-content-wrap section-padding" id="myInternshipsApplicantsDiv">
+			<div class="container">
+
+				<div class="card">
+					<div class="row">
+						<div class="col-sm-12 col-md-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="dt-responsive table-responsive">
+										<table class="table table-striped table-bordered nowrap">
+											<thead>
+												<tr>
+													<th>S.No</th>
+													<th>Name</th>
+													<th>Contact Email</th>
+													<th>Mobile No</th>
+													<th>Applied Date</th>
+
+												</tr>
+											</thead>
+											<tbody>   
+												<tr>
+												<tr data-ng-repeat=" user in AppliedCandidates">
+													<td>{{$index+1}}</td>
+													<td>{{user.first_name}}</td>
+													<td>{{user.email}}</td>
+													<td>{{user.mobile_no}}</td>
+													<td>{{user.date_created | date : 'dd-MM-yyyy'}}
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--== Single Album Page Content End ==-->
+
+<script>
+	jQuery(document).ready(function() {
+		$("#myInternshipsDiv").show();
+		$("#myInternshipsApplicantsDiv").hide();
+		angular.bootstrap(jQuery("#viewinternshipdiv"), [ 'intership' ]);
+	});
+</script>

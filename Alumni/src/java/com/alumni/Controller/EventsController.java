@@ -87,9 +87,9 @@ public class EventsController {
 	
 	@ResponseBody
 	@RequestMapping(value = "changeEventStatus", method = { RequestMethod.POST })
-	public Response changeEventStatus(@RequestBody EventsModel event)
+	public Response changeEventStatus(@RequestBody Integer id)
 	{
-		return eventsService.changeEventStatus(event);
+		return eventsService.changeEventStatus(id);
 	}
 	
 	

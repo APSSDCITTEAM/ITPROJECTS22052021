@@ -16,6 +16,7 @@ import com.alumni.Model.DiscussionModel;
 import com.alumni.Model.EventsModel;
 import com.alumni.Model.PostjobModel;
 import com.alumni.Model.ViewJobModel;
+import com.alumni.Model.AlumniRegisterModel;
 
 @RestController
 @RequestMapping("/viewjob")
@@ -31,16 +32,31 @@ public class ViewJobController {
 	
 	@ResponseBody
 	@RequestMapping(value = "getalljobs", method = { RequestMethod.POST, RequestMethod.GET })
-	public Response getalljobs(@RequestBody Integer std_id)
+	public Response getalljobs(@RequestBody String std_id)
 	{
 		return viewjobService.getalljobs(std_id);
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "getmyjobs", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getmyjobs(@RequestBody String std_id)
+	{
+		return viewjobService.getmyjobs(std_id);
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "getallinternships", method = { RequestMethod.POST, RequestMethod.GET })
-	public Response getallinternships(@RequestBody Integer std_id)
+	public Response getallinternships(@RequestBody String std_id)
 	{
 		return viewjobService.getallinternships(std_id);
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "getmyinternships", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getmyinternships(@RequestBody String std_id)
+	{
+		return viewjobService.getmyinternships(std_id);
 	}
 	
 	@ResponseBody
@@ -100,6 +116,42 @@ public class ViewJobController {
 	{
 		return viewjobService.changeInternStatus(event);
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "Applyjob", method = { RequestMethod.POST })
+	public Response Applyjob(@RequestBody AlumniRegisterModel job)
+	{
+		return viewjobService.Applyjob(job);       
+	}
+
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "ApplyInternship", method = { RequestMethod.POST })
+	public Response ApplyInternship(@RequestBody AlumniRegisterModel job)
+	{
+		return viewjobService.ApplyInternship(job);       
+	}
+	
+	/* .................................. Interns Applicants ............................................ */
+	
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "InternshipApplicants", method = {
+	 * RequestMethod.POST, RequestMethod.GET }) public Response
+	 * InternshipApplicants(@RequestBody ViewJobModel job) { return
+	 * viewjobService.InternshipApplicants(job); }
+	 */
+	
+	@ResponseBody
+	@RequestMapping(value = { "/InternshipApplicants" }, method = { RequestMethod.POST, RequestMethod.GET })
+	public Response InternshipApplicants(@RequestBody Integer id) {
+		return viewjobService.InternshipApplicants(id);
+	}
+
+
 		
 
 }

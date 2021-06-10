@@ -73,12 +73,12 @@ Student.controller('InternshipsApprovalsController', ['$scope', '$http', functio
 	/* Approve Job */
 	$scope.ApproveInternships = function(ApproveInternData){
 		console.log(ApproveInternData.id);    
-		$http.post('/alumni/approval/ApproveInternships', ApproveInternData).then(
+		$http.post('/alumni/approval/ApproveInternships', ApproveInternData.id).then(
 				function(response) {
 					$scope.data = response.data;  
 					if ($scope.data.successful) {
 						swal("Internship Approved Successfully");
-						Alumni.showInternshipsApprovalPage();
+						Alumni.showInternshipApprovals();
 					} else {   
 						alert("Data not updated");
 					}
@@ -91,12 +91,12 @@ Student.controller('InternshipsApprovalsController', ['$scope', '$http', functio
 	/* Reject Job */
 	$scope.RejectInternships = function(RejectInternData){
 		console.log(RejectInternData.id);    
-		$http.post('/alumni/approval/RejectInternships', RejectInternData).then(
+		$http.post('/alumni/approval/RejectInternships', RejectInternData.id).then(
 				function(response) {
 					$scope.data = response.data;  
 					if ($scope.data.successful) {
 						swal("Internship Rejected Successfully");
-						Alumni.showInternshipsApprovalPage();
+						Alumni.showInternshipApprovals();
 					} else {   
 						alert("Data not updated");
 					}

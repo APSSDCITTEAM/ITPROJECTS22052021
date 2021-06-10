@@ -27,7 +27,7 @@ Student.controller('EventActionController', ['$scope', '$http', function($scope,
 	/* update event data */
 	$scope.changeEventStatus = function(EventData){
 		console.log(EventData.id);   
-		$http.post('/alumni/event/changeEventStatus', EventData).then(
+		$http.post('/alumni/event/changeEventStatus', EventData.id).then(
 				function(response) {
 					$scope.data = response.data;  
 					if ($scope.data.successful) {

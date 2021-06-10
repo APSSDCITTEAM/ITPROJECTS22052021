@@ -13,7 +13,8 @@ import com.alumni.Model.FileModel;
 public class AlumniRegisterModel extends BaseModel {    
 	
 	private static long serialVersionUID = 1L;
-	public Integer std_id;
+	
+	public String std_id;
 	public String username;
 	public String first_name; 
 	public String last_name; 
@@ -46,14 +47,39 @@ public class AlumniRegisterModel extends BaseModel {
 	public String district;
 	public String other_qualifiction;
 	public Integer role_id;
+	public Integer token;
+	public Integer id;
+	public Integer job_id;
+	public Integer intership_id;
+
 	
 	
 	
 	
-	
-	
-	
-	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Integer getJob_id() {
+		return job_id;
+	}
+	public void setJob_id(Integer job_id) {
+		this.job_id = job_id;
+	}
+	public Integer getIntership_id() {
+		return intership_id;
+	}
+	public void setIntership_id(Integer intership_id) {
+		this.intership_id = intership_id;
+	}
+	public Integer getToken() {
+		return token;
+	}
+	public void setToken(Integer token) {
+		this.token = token;
+	}
 	public String getQualification() {
 		return qualification;
 	}
@@ -242,10 +268,10 @@ public class AlumniRegisterModel extends BaseModel {
 	public void setFile_name(String file_name) {
 		this.file_name = file_name;
 	}
-	public Integer getStd_id() {
+	public String getStd_id() {
 		return std_id;
 	}
-	public void setStd_id(Integer std_id) {
+	public void setStd_id(String std_id) {
 		this.std_id = std_id;
 	}
 	public void setFile(String file) {

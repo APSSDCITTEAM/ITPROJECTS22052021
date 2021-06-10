@@ -51,19 +51,19 @@ public class AdminApprovalService {
 		return response;
 	}
 	
-	public Response ApproveUser(AdminApprovalModel faculty) {
+	public Response ApproveUser(Integer id) {
 		response.setSuccessful(false);
-		adminApprovalDAO.ApproveUser(faculty);
+		adminApprovalDAO.ApproveUser(id);
 		response.setSuccessful(true);
-		response.setResponseObject(faculty);
+		response.setResponseObject(id);
 		return response;
 	}
 	
-	public Response RejectUser(AdminApprovalModel faculty) {
+	public Response RejectUser(Integer id) {
 		response.setSuccessful(false);
-		adminApprovalDAO.RejectUser(faculty);
+		adminApprovalDAO.RejectUser(id);
 		response.setSuccessful(true);
-		response.setResponseObject(faculty);
+		response.setResponseObject(id);
 		return response;
 	}
 	
@@ -106,20 +106,20 @@ public class AdminApprovalService {
 	}
 	
 	/* Approve Jobs */
-	public Response ApproveJob(AdminApprovalModel faculty) {
+	public Response ApproveJob(Integer id) {
 		response.setSuccessful(false);
-		adminApprovalDAO.ApproveJob(faculty);
+		adminApprovalDAO.ApproveJob(id);
 		response.setSuccessful(true);
-		response.setResponseObject(faculty);
+		response.setResponseObject(id);
 		return response;
 	}
 	
 	/* Reject Jobs */
-	public Response RejectJob(AdminApprovalModel faculty) {
+	public Response RejectJob(Integer id) {
 		response.setSuccessful(false);
-		adminApprovalDAO.RejectJob(faculty);
+		adminApprovalDAO.RejectJob(id);
 		response.setSuccessful(true);
-		response.setResponseObject(faculty);
+		response.setResponseObject(id);
 		return response;
 	}
 	
@@ -162,20 +162,20 @@ public class AdminApprovalService {
 	}
 	
 	/* Approve Jobs */
-	public Response ApproveInternships(AdminApprovalModel faculty) {
+	public Response ApproveInternships(Integer id) {
 		response.setSuccessful(false);
-		adminApprovalDAO.ApproveInternships(faculty);
+		adminApprovalDAO.ApproveInternships(id);
 		response.setSuccessful(true);
-		response.setResponseObject(faculty);
+		response.setResponseObject(id);
 		return response;
 	}
 	
 	/* Reject Jobs */
-	public Response RejectInternships(AdminApprovalModel faculty) {
+	public Response RejectInternships(Integer id) {
 		response.setSuccessful(false);
-		adminApprovalDAO.RejectInternships(faculty);
+		adminApprovalDAO.RejectInternships(id);
 		response.setSuccessful(true);
-		response.setResponseObject(faculty);
+		response.setResponseObject(id);
 		return response;
 	}
 	

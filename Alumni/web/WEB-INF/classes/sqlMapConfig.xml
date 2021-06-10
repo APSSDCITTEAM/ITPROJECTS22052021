@@ -3,23 +3,28 @@
 
 <configuration>
 	<typeAliases>
+		<!-- Regsiter Model  -->
+		<typeAlias alias="AlumniRegister" type="com.alumni.Model.AlumniRegisterModel" />
+		<!-- Login Model -->
 		<typeAlias alias="Login" type="com.alumni.Model.Login" />
-		<typeAlias alias="DiscussionModel" type="com.alumni.Model.DiscussionModel" />
+		<typeAlias alias="AdminApprovalModel" type="com.alumni.Model.AdminApprovalModel" />
+		<typeAlias alias="AdminEmployeeApprovalModel" type="com.alumni.Model.AdminEmployeeApprovalModel" />
 		<typeAlias alias="PostjobModel" type="com.alumni.Model.PostjobModel" />
 		<typeAlias alias="ViewJobModel" type="com.alumni.Model.ViewJobModel" />
-		<typeAlias alias="AlumniRegister" type="com.alumni.Model.AlumniRegisterModel" />
-		<typeAlias alias="AdminApprovalModel" type="com.alumni.Model.AdminApprovalModel" />
 		<typeAlias alias="EventsModel" type="com.alumni.Model.EventsModel" />
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="com/alumni/Alumni-Discussion-MyBatis.xml" />
+		<!-- Regsiter MyBatis -->
 		<mapper resource="com/alumni/Alumni-Register-MyBatis.xml" />
+		<!-- Login MyBatis -->
 		<mapper resource="com/alumni/Alumni-Login-MyBatis.xml" />
+		
+		<mapper resource="com/alumni/Alumni-AdminApproval-MyBatis.xml" />
+		<mapper resource="com/alumni/Alumni-AdminEmployeeApproval-MyBatis.xml" />
 		<mapper resource="com/alumni/Alumni-Postjob-MyBatis.xml" />
 		<mapper resource="com/alumni/Alumni-ViewJob-MyBatis.xml" />
-		<mapper resource="com/alumni/Alumni-AdminApproval-MyBatis.xml" />
 		<mapper resource="com/alumni/Alumni-Events-MyBatis.xml" />
 	</mappers>
 
-</configuration>                                                    
+</configuration>                                                       

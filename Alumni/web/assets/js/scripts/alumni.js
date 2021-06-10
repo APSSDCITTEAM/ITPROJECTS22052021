@@ -6,154 +6,201 @@ var Alumni = {
 		});
 	},
 
-	showHomePage: function() {
-		var path = "/alumni/html/home/Home.html";
+	showHeader: function() {
+		var path = "/alumni/html/header.html";
+		Alumni.showPage(path, "header-div");
+	},
+
+	showHome: function() {
+		window.location.reload();
+	},
+
+	showRegister: function() {
+		var path = "/alumni/html/register.html";
 		Alumni.showPage(path, "body-div");
 	},
 
-	showJobsPage: function() {
-		var path = "/alumni/html/home/Jobs.html";
+	showLogin: function() {
+		var path = "/alumni/html/login.html";
 		Alumni.showPage(path, "body-div");
 	},
 
-	showInternshipsPage: function() {
-		var path = "/alumni/html/home/Internships.html";
+	showAdminHeader: function() {
+		var path = "/alumni/html/adminHeader.html";
+		Alumni.showPage(path, "header-div");
+	},
+
+	showStudentHeader: function() {
+		var path = "/alumni/html/studentHeader.html";
+		Alumni.showPage(path, "header-div");
+	},
+
+	showEmployeeHeader: function() {
+		var path = "/alumni/html/employeeHeader.html";
+		Alumni.showPage(path, "header-div");
+	},
+
+	/* Post Jobs */
+	showEmployeeHeader_1: function() {
+		var path = "/alumni/html/employee/postJobs.html";
 		Alumni.showPage(path, "body-div");
 	},
 
-	showDiscussionsPage: function() {
-		var path = "/alumni/html/home/Discussions.html";
+	/* Post Inernships */
+
+	showEmployeeHeader_2: function() {
+		var path = "/alumni/html/employee/postInternships.html";
 		Alumni.showPage(path, "body-div");
 	},
 
-	showLoginPage: function() {
-		var path = "/alumni/html/home/Login.html";
+	/* View Jobs */
+
+	showEmployeeHeader_3: function() {
+		var path = "/alumni/html/employee/viewJobs.html";
 		Alumni.showPage(path, "body-div");
 	},
 
-	showRegisterPage: function() {
-		var path = "/alumni/html/home/Register.html";
+	/* View Internships */
+
+	showEmployeeHeader_4: function() {
+		var path = "/alumni/html/employee/viewInternships.html";
 		Alumni.showPage(path, "body-div");
 	},
 
-	showAdmin: function() {
-		var path = "/alumni/html/dashboard/AdminHome.html";
+	/* View My Jobs */
+
+	showEmployeeHeader_5: function() {
+		var path = "/alumni/html/employee/myJobs.html";
 		Alumni.showPage(path, "body-div");
 	},
 
-	showMD: function() {
-		var path = "/alumni/html/dashboard/MDHome.html";
+	/* View My Internships */
+
+	showEmployeeHeader_6: function() {
+		var path = "/alumni/html/employee/myInternships.html";
 		Alumni.showPage(path, "body-div");
 	},
 
-	showED: function() {
-		var path = "/alumni/html/dashboard/EDHome.html";
+	/* Job Approvals */
+
+	showJobApprovals: function() {
+		var path = "/alumni/html/admin/jobApprovals.html";
 		Alumni.showPage(path, "body-div");
 	},
 
-	showCGM: function() {
-		var path = "/alumni/html/dashboard/CGMHome.html";
+	/* Internships Approvals */
+
+	showInternshipApprovals: function() {
+		var path = "/alumni/html/admin/internshipApprovals.html";
 		Alumni.showPage(path, "body-div");
 	},
 
-	showUser: function() {
-		var path = "/alumni/html/dashboard/UserHome.html";
+	/* View Events */
+
+	showEmployeeHeader_9: function() {
+		var path = "/alumni/html/employee/viewEvents.html";
 		Alumni.showPage(path, "body-div");
 	},
 
-	showAdminHomePage: function() {
-		var path = "/alumni/html/admin/Home.html";
-		Alumni.showPage(path, "admin-div");    
-	},
-	
-	showRolesAssaignPage: function() {
-		var path = "/alumni/html/admin/AssaignRole.html";
-		Alumni.showPage(path, "admin-div");
-	},
-	
-	showApprovalsPage: function() {
-		var path = "/alumni/html/admin/approvals.html";
-		Alumni.showPage(path, "admin-div");
-	},
-	
-	showJobApprovalsPage: function() {
-		var path = "/alumni/html/admin/JobApprovals.html";
-		Alumni.showPage(path, "admin-div");
-	},
-	
-	showJobActionPage: function() {
-		var path = "/alumni/html/admin/JobAction.html";
-		Alumni.showPage(path, "admin-div");
-	},
-	
-	showEventCreationPage: function() {
-		var path = "/alumni/html/admin/CreateEvent.html";
-		Alumni.showPage(path, "admin-div");
-	},
-	
-	showViewEventsPage: function() {
-		var path = "/alumni/html/admin/ViewEvents.html";
-		Alumni.showPage(path, "admin-div");
-	},
-	
-	showEventActionPage: function() {
-		var path = "/alumni/html/admin/EventAction.html";
-		Alumni.showPage(path, "admin-div");
-	},
-	
-	showInternshipActionPage: function() {
-		var path = "/alumni/html/admin/InternshipAction.html";
-		Alumni.showPage(path, "admin-div");
-	},
-	
-	showInternshipsApprovalPage: function() {
-		var path = "/alumni/html/admin/InternshipApprovals.html";
-		Alumni.showPage(path, "admin-div");
+	showAssignRoles: function() {
+		var path = "/alumni/html/admin/assignRoles.html";
+		Alumni.showPage(path, "body-div");
 	},
 
-	showMDHomePage: function() {
-		var path = "/alumni/html/md/Home.html";
-		Alumni.showPage(path, "md-div");
+	showCreateEvents: function() {
+		var path = "/alumni/html/admin/createEvents.html";
+		Alumni.showPage(path, "body-div");
 	},
 
-	showEDHomePage: function() {
-		var path = "/alumni/html/ed/Home.html";
-		Alumni.showPage(path, "ed-div");
+	showViewEvents: function() {
+		var path = "/alumni/html/admin/viewEvents.html";
+		Alumni.showPage(path, "body-div");
 	},
 
-	showCGMHomePage: function() {
-		var path = "/alumni/html/cgm/Home.html";
-		Alumni.showPage(path, "cgm-div");
+	showEmployeeHeader_12: function() {
+		var path = "/alumni/html/admin/eventAction.html";
+		Alumni.showPage(path, "body-div");
 	},
 
-	showUserHomePage: function() {
-		var path = "/alumni/html/user/Home.html";
-		Alumni.showPage(path, "user-div");
+	/* Job Actions */
+
+	showEmployeeHeader_10: function() {
+		var path = "/alumni/html/admin/jobActions.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	/* Internship Actions */
+
+	showEmployeeHeader_11: function() {
+		var path = "/alumni/html/admin/internshipAction.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	showAllStudents: function() {
+		var path = "/alumni/html/admin/allStudents.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	showActiveStudents: function() {
+		var path = "/alumni/html/admin/activeStudents.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	showStudentApprovals: function() {
+		var path = "/alumni/html/admin/studentApproval.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	showRejectedStudents: function() {
+		var path = "/alumni/html/admin/rejectedStudents.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	showAllEmployees: function() {
+		var path = "/alumni/html/admin/allEmployees.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	showActiveEmployees: function() {
+		var path = "/alumni/html/admin/activeEmployees.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	showEmployeeApprovals: function() {
+		var path = "/alumni/html/admin/EmployeeApproval.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	showRejectedEmployees: function() {
+		var path = "/alumni/html/admin/rejectedEmployees.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	showInternshipApplicants: function() {
+		var path = "/alumni/html/employee/InternshipAppliedCandidates.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	showJobs: function() {
+		var path = "/alumni/html/employee/viewJobs.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	showInternships: function() {
+		var path = "/alumni/html/employee/viewInternships.html";
+		Alumni.showPage(path, "body-div");
+	},
+
+	showEvents: function() {
+		var path = "/alumni/html/admin/viewEvents.html";
+		Alumni.showPage(path, "body-div");
 	},
 	
-	// Users Pages
-
-	showJobPostPage: function() {
-		var path = "/alumni/html/user/post-job.html";
-		Alumni.showPage(path, "user-div");
+	showChangePassword: function(){
+		var path = "/alumni/html/changePassword.html";
+		Alumni.showPage(path, "body-div");
 	},
 
-	showInternshipPostPage: function() {
-		var path = "/alumni/html/user/post-internship.html";
-		Alumni.showPage(path, "user-div");
-	},
-	
-	showViewJobsPage: function() {
-		var path = "/alumni/html/user/view-jobs.html";
-		Alumni.showPage(path, "user-div");
-	},
-
-	showViewInternshipsPage: function() {
-		var path = "/alumni/html/user/view-internships.html";
-		Alumni.showPage(path, "user-div");
-	},
-	
-	
 
 
 	setSessionValue: function(key, value) {
@@ -174,7 +221,7 @@ var Alumni = {
 		Alumni.setSessionValue("username", null);
 		Alumni.setSessionValue("password", null);
 		Alumni.setSessionValue("roleid", null);
-		Alumni.showHomePage();
+		Alumni.showHome();
 	},
 
 	post: function(url, data) {
@@ -199,7 +246,7 @@ var Alumni = {
 
 		return responseData;
 	},
-
+  
 	isUserLoggedIn: function() {
 
 		var username = Alumni.getSessionValue("username") || "";
@@ -210,7 +257,6 @@ var Alumni = {
 			username: username,
 			password: password,
 			roleid: roleid,
-			username: username,
 			user_id: user_id,
 		};
 		return Alumni.post('/alumni/logins/loggedin', login) || false;

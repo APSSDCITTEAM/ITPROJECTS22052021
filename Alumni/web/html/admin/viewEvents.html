@@ -1,0 +1,85 @@
+<script src="assets/js/scripts/viewEvents.js"></script>
+<!--== Gallery Page Content Start ==-->
+<section id="page-content-wrap">
+
+	<div class="event-page-content-wrap section-padding" id="ViewEventsdiv"
+		data-ng-controller="EventsViewController">
+
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="all-event-list">
+						<!-- Single Event Start -->
+						<div class="single-upcoming-event"
+							data-ng-repeat="data in alldata">
+							<div class="row">
+								<div class="col-lg-5">
+									<div class="up-event-thumb">
+										<img src="assets/img/event/event-img-1.jpg" class="img-fluid"
+											alt="Upcoming Event">
+										<h4 class="up-event-date">{{data.start_date | date: 'dd MMM, yyyy'}}</h4>
+									</div>
+								</div>
+
+								<div class="col-lg-7">
+									<div class="display-table">
+										<div class="display-table-cell">
+											<div class="up-event-text">
+												
+												<h3>
+													<a href="javascript:void(0);">{{data.event_title}}</a>
+												</h3>
+												<p>
+													{{data.description}}
+												</p>
+												
+												<p>
+													Organizer : {{data.organizer}}<br>
+													Designation : {{data.organizer_designation}}
+												</p>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Single Event End -->
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+<!--== Gallery Page Content End ==-->
+
+
+
+<script>
+	$("#mainEventpage").show();
+	$("#ViewEventbtnPage").hide();
+	$("#updateEventpage").hide();
+
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#ViewEventsdiv"), [ 'viewEvents' ]);
+	});
+</script>
+
+<script>
+	jQuery(document).on('click', "#eventViewbtn", function() {
+		$("#mainEventpage").hide();
+		$("#ViewEventbtnPage").show();
+		$("#updateEventpage").hide();
+	});
+</script>
+
+<script>
+	jQuery(document).on('click', "#updateEventbtn", function() {
+		$("#mainEventpage").hide();
+		$("#ViewEventbtnPage").hide();
+		$("#updateEventpage").show();
+	});
+</script>

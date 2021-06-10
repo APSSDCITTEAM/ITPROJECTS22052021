@@ -83,12 +83,12 @@ public class EventsDAO extends BaseDAO {
 		return userdetails;
 	}
 	
-	public void changeEventStatus(EventsModel finance)
+	public void changeEventStatus(Integer id)
 	{
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("p", finance);
+		params.put("p", id);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.update("Event.changeEventStatus",params);
+		sqlSession.update("Event.changeEventStatus",id);
 		sqlSession.close();
 	}
 	

@@ -32,10 +32,7 @@ Student.controller('JobActionController', ['$scope', '$http', function($scope, $
 					$scope.data = response.data;  
 					if ($scope.data.successful) {
 						swal("Job Closed Successfully");
-						Alumni.showJobActionPage();
-						/*$("#myModel").hide();
-						$('.modal-backdrop').remove();*/
-						
+						Alumni.showEmployeeHeader_10();					
 					} else {
 						alert("Data not updated");
 					}

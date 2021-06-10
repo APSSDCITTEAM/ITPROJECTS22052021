@@ -1,0 +1,218 @@
+<script src="/alumni/assets/js/scripts/InternshipApprovals.js"></script>
+<!--== Directory Page Content Start ==-->
+<section id="page-content-wrap">
+	<div class="directory-page-content-warp section-padding"
+		id="InternApprovalsDiv"
+	data-ng-controller="InternshipsApprovalsController">
+		<div class="container">
+			<div class="card">
+				<div class="row">
+					<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xs-12 mt-1">
+						<button class="btn btn-info btn-block" type="button"
+							data-toggle="collapse" data-target="#allInternships"
+							aria-expanded="false" aria-controls="collapseExample">
+							All Internships</button>
+					</div>
+					<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xs-12 mt-1">
+						<button class="btn btn-info btn-block" type="button"
+							data-toggle="collapse" data-target="#Submitted"
+							aria-expanded="false" aria-controls="collapseExample">
+							Submitted Internships</button>
+					</div>
+					<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xs-12 mt-1">
+						<button class="btn btn-info btn-block" type="button"
+							data-toggle="collapse" data-target="#Approved"
+							aria-expanded="false" aria-controls="collapseExample">
+							Approved Internships</button>
+					</div>
+					<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xs-12 mt-1">
+						<button class="btn btn-info btn-block" type="button"
+							data-toggle="collapse" data-target="#Rejected"
+							aria-expanded="false" aria-controls="collapseExample">
+							Rejected Internships</button>
+					</div>
+
+				</div>
+			</div>
+			<br>
+
+
+			<div class="row collapse show mt-2" id="allInternships">
+				<div class="col-sm-12 col-md-12">
+					<div class="card">
+						<!-- <div class="card-header bg-info">
+						<h6 class="card-title">All Users</h6>
+					</div> -->
+						<div class="card-body">
+							<div class="dt-responsive table-responsive">
+								<table class="table table-striped table-bordered nowrap">
+									<thead>
+										<tr>
+											<th>S.No</th>
+											<th>Title</th>
+											<th>Company Name</th>
+											<th>Location</th>
+											<th>Contact Email</th>
+											<th>Duration</th>
+											<th>Created Date</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+										<tr data-ng-repeat="user in allInternships">
+											<td>{{$index+1}}</td>
+											<td>{{user.title}}</td>
+											<td>{{user.company_name}}</td>
+											<td>{{user.location}}</td>
+											<td>{{user.contact_email}}</td>
+											<td>{{user.duration}}</td>
+											<td>{{user.created_date | date : 'dd-MM-yyyy'}}
+											<td>{{user.status_type}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row collapse mt-2" id="Submitted">
+				<div class="col-sm-12 col-md-12">
+					<div class="card">
+						<!-- <div class="card-header bg-info">
+						<h4 class="card-title">Mail Verified Users</h4>
+					</div> -->
+						<div class="card-body">
+							<div class="dt-responsive table-responsive">
+								<table class="table table-striped table-bordered nowrap">
+									<thead>
+										<tr>
+											<th>S.No</th>
+											<th>Title</th>
+											<th>Company Name</th>
+											<th>Location</th>
+											<th>Contact Email</th>
+											<th>Duration</th>
+											<th>Created Date</th>
+											<th>Status</th>
+											<th>Approve</th>
+											<th>Reject</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+										<tr data-ng-repeat="Submitted in SubmittedInternships">
+											<td>{{$index+1}}</td>
+											<td>{{Submitted.title}}</td>
+											<td>{{Submitted.company_name}}</td>
+											<td>{{Submitted.location}}</td>
+											<td>{{Submitted.contact_email}}</td>
+											<td>{{Submitted.duration}}</td>
+											<td>{{Submitted.created_date | date: 'dd-MM-yyyy'}}</td>
+											<td>{{Submitted.status_type}}</td>
+											<td><button class="btn btn-primary btn-mini"
+													data-ng-click="ApproveInternships(Submitted);">Approve</button></td>
+											<td><button class="btn btn-danger btn-mini"
+													data-ng-click="RejectInternships(Submitted);">Reject</button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row collapse mt-2" id="Approved">
+				<div class="col-sm-12 col-md-12">
+					<div class="card">
+						<!-- <div class="card-header bg-info">
+						<h6 class="card-title">Rejected</h6>
+					</div> -->
+						<div class="card-body">
+							<div class="dt-responsive table-responsive">
+								<table class="table table-striped table-bordered nowrap">
+									<thead>
+										<tr>
+											<th>S.No</th>
+											<th>Title</th>
+											<th>Company Name</th>
+											<th>Location</th>
+											<th>Contact Email</th>
+											<th>Duration</th>
+											<th>Created Date</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+										<tr data-ng-repeat="Approved in ApprovedInternships">
+											<td>{{$index+1}}</td>
+											<td>{{Approved.title}}</td>
+											<td>{{Approved.company_name}}</td>
+											<td>{{Approved.location}}</td>
+											<td>{{Approved.contact_email}}</td>
+											<td>{{Approved.duration}}</td>
+											<td>{{Approved.created_date | date : 'dd-MM-yyyy'}}</td>
+											<td>{{Approved.status_type}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row collapse mt-2" id="Rejected">
+				<div class="col-sm-12 col-md-12">
+					<div class="card">
+						<!-- <div class="card-header bg-info">
+						<h6 class="card-title">Rejected</h6>
+					</div> -->
+						<div class="card-body">
+							<div class="dt-responsive table-responsive">
+								<table class="table table-striped table-bordered nowrap">
+									<thead>
+										<tr>
+											<th>S.No</th>
+											<th>Title</th>
+											<th>Company Name</th>
+											<th>Location</th>
+											<th>Contact Email</th>
+											<th>Duration</th>
+											<th>Created Date</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+										<tr data-ng-repeat="rejected in RejectedInternships">
+											<td>{{$index+1}}</td>
+											<td>{{rejected.title}}</td>
+											<td>{{rejected.company_name}}</td>
+											<td>{{rejected.location}}</td>
+											<td>{{rejected.contact_email}}</td>
+											<td>{{rejected.duration}}</td>
+											<td>{{rejected.created_date | date : 'dd-MM-yyyy'}}</td>
+											<td>{{rejected.status_type}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--== Directory Page Content End ==-->
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#InternApprovalsDiv"), [ 'InternshipApprovals' ]);
+	});
+</script>

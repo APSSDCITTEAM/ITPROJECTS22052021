@@ -25,7 +25,7 @@ public class PostjobController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "CreateJob", method = { RequestMethod.POST })
+	@RequestMapping(value = "CreateJob", produces = { "application/json", "application/xml" },  method = { RequestMethod.POST })
 	public Response CreateJob(@RequestBody PostjobModel job)
 	{
 		return postjobService.CreateJob(job);       

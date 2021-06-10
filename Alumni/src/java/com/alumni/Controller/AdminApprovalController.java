@@ -56,14 +56,14 @@ public class AdminApprovalController {
 	
 	@ResponseBody
 	@RequestMapping(value = "ApproveUser", method = { RequestMethod.POST })
-	public Response ApproveUser(@RequestBody AdminApprovalModel faculty) {
-		return adminApprovalService.ApproveUser(faculty);
+	public Response ApproveUser(@RequestBody Integer id) {
+		return adminApprovalService.ApproveUser(id);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "RejectUser", method = { RequestMethod.POST })
-	public Response RejectUser(@RequestBody AdminApprovalModel faculty) {
-		return adminApprovalService.RejectUser(faculty);
+	public Response RejectUser(@RequestBody Integer id) {
+		return adminApprovalService.RejectUser(id);
 	}
 	
 	
@@ -104,15 +104,15 @@ public class AdminApprovalController {
 	/* Approve jobs */ 
 	@ResponseBody
 	@RequestMapping(value = "ApproveJob", method = { RequestMethod.POST })
-	public Response ApproveJob(@RequestBody AdminApprovalModel faculty) {
-		return adminApprovalService.ApproveJob(faculty);
+	public Response ApproveJob(@RequestBody Integer id) {
+		return adminApprovalService.ApproveJob(id);
 	}
 	
 	/* Reject Jobs */
 	@ResponseBody
 	@RequestMapping(value = "RejectJob", method = { RequestMethod.POST })
-	public Response RejectJob(@RequestBody AdminApprovalModel faculty) {
-		return adminApprovalService.RejectJob(faculty);
+	public Response RejectJob(@RequestBody Integer id) {
+		return adminApprovalService.RejectJob(id);
 	}
 	
 	
@@ -150,14 +150,14 @@ public class AdminApprovalController {
 	
 	@ResponseBody
 	@RequestMapping(value = "ApproveInternships", method = { RequestMethod.POST })
-	public Response ApproveInternships(@RequestBody AdminApprovalModel faculty) {
-		return adminApprovalService.ApproveInternships(faculty);
+	public Response ApproveInternships(@RequestBody Integer id) {
+		return adminApprovalService.ApproveInternships(id);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "RejectInternships", method = { RequestMethod.POST })
-	public Response RejectInternships(@RequestBody AdminApprovalModel faculty) {
-		return adminApprovalService.RejectInternships(faculty);
+	public Response RejectInternships(@RequestBody Integer id) {
+		return adminApprovalService.RejectInternships(id);
 	}
 	
 	

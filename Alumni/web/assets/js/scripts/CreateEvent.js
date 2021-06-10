@@ -4,8 +4,8 @@ Student.controller('EventCreationController', ['$scope', '$http', function($scop
 
 	$scope.CreateEvent = function(CreateEvent) {	
 		console.log(CreateEvent);
-		/*CreateJob['std_id'] = Alumni.getSessionValue("user_id");*/
-		/*console.log(CreateJob);*/
+		CreateEvent['std_id'] = Alumni.getSessionValue("user_id");
+		console.log(CreateEvent);
 		$http.post('/alumni/event/CreateEvent',CreateEvent).then(  
 				function(response) {    
 					$scope.data = response.data;           

@@ -1,0 +1,91 @@
+<script src="/alumni/assets/js/scripts/job-post.js"></script>
+
+<section id="page-content-wrap">
+	<div class="directory-page-content-warp section-padding"
+		>
+		<div class="container" id="JobpostDiv"
+			data-ng-controller="JobPostController">
+			<div class="col-md-8 mx-auto text-center">
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="form-register-username">Job Title</label> <input
+								type="title" class="form-control"
+								data-ng-model="data.object.title" id="form-register-username">
+						</div>
+						<!-- /.form-group -->
+
+						<div class="form-group">
+							<label for="form-register-first-name">Company Name</label> <input
+								type="text" class="form-control"
+								data-ng-model="data.object.company_name"
+								id="form-register-first-name">
+						</div>
+						<!-- /.form-group -->
+
+						<div class="form-group">
+							<label for="form-login-surname">Location</label> <input
+								type="text" class="form-control"
+								data-ng-model="data.object.location" id="form-register-username">
+						</div>
+						<!-- /.form-group -->
+
+
+
+						<div class="form-group">
+							<label for="form-register-retype">Contact Email</label> <input
+								type="email" class="form-control"
+								data-ng-model="data.object.contact_email"
+								id="form-register-retype">
+						</div>
+						<!-- /.form-group -->
+					</div>
+					<!-- /.col-* -->
+
+					<div class="col-sm-6">
+						<div class="row">
+							<div class="form-group col-sm-6">
+								<label for="form-register-email">Min Experience</label> <input
+									type="text" class="form-control"
+									data-ng-model="data.object.min_exp" id="form-register-email">
+							</div>
+							<!-- /.form-group -->
+
+							<div class="form-group col-sm-6">
+								<label for="form-register-password">Max Experience</label> <input
+									type="text" class="form-control"
+									data-ng-model="data.object.max_exp" id="form-register-password">
+							</div>
+							<!-- /.form-group -->
+							<div class="form-group col-sm-12">
+								<label form="form-register-photo">Description</label>
+								<textarea class="form-control"
+									placeholder="Enter Description Here"
+									data-ng-model="data.object.description" style="height: 200px;"></textarea>
+							</div>
+						</div>
+						<!-- /.row -->
+
+
+						<!-- /.form-group-->
+					</div>
+					<!-- /.col-* -->
+				</div>
+				<!-- /.row -->
+
+				<div class="center">
+					<button type="submit" class="btn btn-secondary"
+						data-ng-click="CreateJob(data.object);">Post Job Detail</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#JobpostDiv"), [ 'jobpost' ]);
+	});
+</script>
