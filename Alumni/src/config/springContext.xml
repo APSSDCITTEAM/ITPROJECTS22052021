@@ -21,7 +21,7 @@
 		<property name="driverClassName"
 			value="org.postgresql.Driver" />
 		<property name="url"
-			value="jdbc:postgresql://localhost:5432/10-06-2021Alumni" />
+			value="jdbc:postgresql://localhost:5432/alumni" />
 		<property name="username" value="postgres" />
 		<property name="password" value="apssdc" />
 	</bean>
