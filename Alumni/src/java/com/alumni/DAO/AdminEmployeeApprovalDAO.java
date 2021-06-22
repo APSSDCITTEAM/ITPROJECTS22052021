@@ -35,6 +35,13 @@ public class AdminEmployeeApprovalDAO {
 		return userdetails;
 	}
 	
+	public List<AdminEmployeeApprovalModel> getallunverifiedUsers() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<AdminEmployeeApprovalModel> userdetails = sqlSession.selectList("AdminEmployeeApproval.getallunverifiedUsers");
+		sqlSession.close();
+		return userdetails;
+	}
+	
 	public List<AdminEmployeeApprovalModel> getallApprovedUsers() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<AdminEmployeeApprovalModel> userdetails = sqlSession.selectList("AdminEmployeeApproval.getallApprovedUsers");

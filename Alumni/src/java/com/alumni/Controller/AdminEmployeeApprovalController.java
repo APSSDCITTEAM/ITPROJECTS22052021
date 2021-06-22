@@ -41,6 +41,13 @@ public class AdminEmployeeApprovalController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "getallunverifiedUsers", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getallunverifiedUsers()
+	{
+		return adminEmployeeApprovalService.getallunverifiedUsers();
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "getallApprovedUsers", method = { RequestMethod.POST, RequestMethod.GET })
 	public Response getallApprovedUsers()
 	{

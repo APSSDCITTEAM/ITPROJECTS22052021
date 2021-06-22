@@ -4,19 +4,26 @@
 
 	<insert id="AddJob" parameterType="map">
 		INSERT INTO
-		alumni.jobs(title,company_name,location,contact_email,min_exp,max_exp,description,std_id,status,date_added)
+		alumni.jobs(title,company_name,location,contact_email,min_exp,max_exp,description,std_id,status,date_added,end_date)
 		VALUES
 		(#{p.title},#{p.company_name},#{p.location},#{p.contact_email},#{p.min_exp},#{p.max_exp},#{p.description},
-		#{p.std_id},0,CURRENT_TIMESTAMP);
+		#{p.std_id},0,CURRENT_TIMESTAMP,#{p.end_date});
 	</insert>
 
 	<insert id="AddInternship" parameterType="map">
 		INSERT INTO
 		alumni.interships(title,company_name,location,contact_email,description,std_id,
-		duration,status,date_added)
+		duration,status,date_added,end_date)
 		VALUES
 		(#{p.title},#{p.company_name},#{p.location},#{p.contact_email},#{p.description},
-		#{p.std_id},#{p.duration},0,CURRENT_TIMESTAMP);
+		#{p.std_id},#{p.duration},0,CURRENT_TIMESTAMP,#{p.end_date});
+	</insert>
+	
+	<insert id="AddVolunteership" parameterType="map">
+		INSERT INTO
+		alumni.volunteership(hours,experience,number_of_students,technologies,user_id,status,date_added,description,start_date,end_date,duration)
+		VALUES
+		(#{p.hours},#{p.experience},#{p.number_of_students},#{p.technologies},#{p.std_id},#{p.status},CURRENT_TIMESTAMP,#{p.description},#{p.start_date},#{p.end_date},#{p.duration});
 	</insert>
 
 </mapper>

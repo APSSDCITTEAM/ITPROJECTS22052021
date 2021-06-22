@@ -10,8 +10,10 @@
 		<typeAlias alias="AdminApprovalModel" type="com.alumni.Model.AdminApprovalModel" />
 		<typeAlias alias="AdminEmployeeApprovalModel" type="com.alumni.Model.AdminEmployeeApprovalModel" />
 		<typeAlias alias="PostjobModel" type="com.alumni.Model.PostjobModel" />
-		<typeAlias alias="ViewJobModel" type="com.alumni.Model.ViewJobModel" />
+		<typeAlias alias="ViewJobModel" type="com.alumni.Model.ViewJobModel" />   
 		<typeAlias alias="EventsModel" type="com.alumni.Model.EventsModel" />
+		<typeAlias alias="IndexModel" type="com.alumni.Model.IndexModel" />
+		<typeAlias alias="ReportsModel" type="com.alumni.Model.ReportsModel" />
 	</typeAliases>
 
 	<mappers>
@@ -25,6 +27,9 @@
 		<mapper resource="com/alumni/Alumni-Postjob-MyBatis.xml" />
 		<mapper resource="com/alumni/Alumni-ViewJob-MyBatis.xml" />
 		<mapper resource="com/alumni/Alumni-Events-MyBatis.xml" />
+		<mapper resource="com/alumni/Alumni-Index-MyBatis.xml" />
+		<mapper resource="com/alumni/Alumni-Reports-MyBatis.xml" />
+		
 	</mappers>
 
 </configuration>                                                       

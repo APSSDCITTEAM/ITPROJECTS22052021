@@ -1,0 +1,74 @@
+<script src="/alumni/js/scripts/admin/EmployeeApprovals.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+    <div class="col-sm-6">
+        <div class="page-title-box">
+            <h4 class="font-size-18">Employees Approvals</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="javascript: void(0);" onclick="Alumni.showAllEmployees();">Employees</a></li>
+                <li class="breadcrumb-item active">Employees Approvals</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row clearfix" id="ApprovalsDiv" data-ng-controller="ApprovalsController">
+    <div class="col-md-12 col-sm-12 mx-auto">
+        <div class="card border border-primary">
+            <div class="card-header bg-primary text-white text-center">
+                <h4 class="card-title text-centernter">Employees Approvals</h4>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-bordered table-hover nowrap">
+                    <thead>
+                        <tr>
+                            <th>Sno</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Mobile No</th>
+                            <!-- <th>College Name</th>
+							<th>Roll Number</th>
+							<th>Qualification</th>
+							<th>Branch</th>
+							<th>Passed Out Year</th>
+							<th>District</th> -->
+                            <th>Status</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="Employees in VerifiedEmployees">
+                            <td>{{$index+1}}</td>
+                            <td>{{Employees.name}}</td>
+                            <td>{{Employees.email}}</td>
+                            <td>{{Employees.mobile_no}}</td>
+                            <td>{{Employees.status_type}}</td>
+                            <td>
+                                <button type="button" class="btn btn-success waves-effect waves-light btn-sm text-center" data-ng-click="ApproveUser(Employees.id);">
+									<i class="fas fa-check"></i>
+								</button>
+                                <button type="button" class="btn btn-danger waves-effect waves-light btn-sm text-center" data-ng-click="RejectUser(Employees.id);">
+									<i class="fas fa-times"></i>
+								</button>
+                            </td>
+                        </tr>
+                        <tr id="emptyrow" style="display: none">
+                            <td colspan="6" class="text-center">No Data Available</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    jQuery(document).ready(function() {
+        angular.bootstrap(jQuery("#ApprovalsDiv"), ['approvals']);
+    });
+</script>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.andromeda.commons.model.Response;
 import com.alumni.DAO.EventsDAO;
+import com.alumni.Model.AlumniRegisterModel;
 //Local
 import com.alumni.Model.EventsModel;
 import com.alumni.Model.ViewJobModel;
@@ -105,6 +106,32 @@ public class EventsService {
 		response.setResponseObject(id);
 		return response;
 	}
+	
+	/* Change event status by end date */
+	public Response UpdateEventStatusbyDate(EventsModel event)
+	{
+		response.setSuccessful(false);
+		eventsDAO.UpdateEventStatusbyDate(event);
+		response.setSuccessful(true);
+		response.setResponseObject(event);
+		return response;
+	}
+	
+	/* apply event */
+	public Response ApplyEvent(EventsModel event) {
+		response.setSuccessful(false);
+		Integer eventStatus = eventsDAO.checkEvent(event);
+
+		if (eventStatus == 0) {
+			eventsDAO.InsertApplyEvent(event);
+			response.setSuccessful(false);
+			response.setResponseObject(event);
+		} else if (eventStatus == 1) {
+			response.setSuccessful(true);
+		}
+		return response;
+	}
+	
 	
 	
 	

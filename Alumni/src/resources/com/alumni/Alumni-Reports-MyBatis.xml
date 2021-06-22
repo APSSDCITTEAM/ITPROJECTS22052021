@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Report">
+
+	<select id="getMembersCount" resultType="ReportsModel">
+		select count(*) as members_count from alumni.students where role_id = 5;
+	</select>
+	
+	<select id="getApprovedEmployeesCount" resultType="ReportsModel">
+		select count(*) as approved_employee_count,status from alumni.students where status = 2 and role_id = 5 group by status;
+	</select>
+	
+	<select id="getRejectedEmployeesCount" resultType="ReportsModel">
+		select count(*) as rejected_employee_count,status from alumni.students where status = 3 and role_id = 5 group by status;
+	</select>
+	
+	<select id="getVerifiedEmployeesCount" resultType="ReportsModel">
+		select count(*) as verified_employee_count,status from alumni.students where status = 1 and role_id = 5 group by status;
+	</select>
+	
+	<select id="getnonVerifiedEmployeesCount" resultType="ReportsModel">
+		select count(*) as nonverified_employee_count,status from alumni.students where status = 0 and role_id = 5 group by status;
+	</select>
+	
+	<select id="getApprovedEmpData" resultType="ReportsModel">
+		select concat(first_name,' ',last_name) as name,email,mobile_no,created_date::date as date_created,user_id from alumni.students 
+		where status = 2 and role_id = 5;
+	</select>
+	
+	<select id="getRejectedEmpData" resultType="ReportsModel">
+		select concat(first_name,' ',last_name) as name,email,mobile_no,created_date::date as date_created,user_id from alumni.students 
+		where status = 3 and role_id = 5;
+	</select>
+	
+	<select id="getVerifiedEmpData" resultType="ReportsModel">
+		select concat(first_name,' ',last_name) as name,email,mobile_no,created_date::date as date_created,user_id from alumni.students 
+		where status = 1 and role_id = 5;
+	</select>
+	
+	<select id="getnotVerifiedEmpData" resultType="ReportsModel">
+		select concat(first_name,' ',last_name) as name,email,mobile_no,created_date::date as date_created,user_id from alumni.students 
+		where status = 0 and role_id = 5;
+	</select>
+	
+	<select id="getEmployeeJobsData" resultType="ReportsModel">
+	select distinct a.id,a.user_id,b.title,b.company_name,b.location,b.min_exp,b.max_exp,b.date_created,b.closed_date::date as closeddate,
+	(case when status = 0 then 'Waiting for Approval' when status = 1 then 'Open' when status = 2 then 'Rejected' 
+	when status = 3 then 'Closed' end) as status_type from 
+	(select id,user_id,role_id from alumni.students where role_id = 5) a inner join 
+	(select id,std_id,title,company_name,location,min_exp,max_exp,date_added :: date as date_created,closed_date,status 
+	from alumni.jobs) b on(b.std_id = a.user_id) where a.user_id = #{user_id};
+	</select>
+	
+	<select id="getEmployeeInternshipsData" resultType="ReportsModel">
+	select distinct a.id,a.user_id,b.title,b.company_name,b.location,b.duration,b.date_created,b.closed_date::date as closeddate,
+	(case when status = 0 then 'Waiting for Approval' when status = 1 then 'Open' when status = 2 then 'Rejected' 
+	when status = 3 then 'Closed' end) as status_type from 
+	(select id,user_id,role_id from alumni.students where role_id = 5) a inner join 
+	(select id,std_id,title,company_name,location,duration,date_added :: date as date_created,closed_date,status 
+	from alumni.interships) b on(b.std_id = a.user_id) where a.user_id = #{user_id};
+	</select>
+	
+	<select id="getEmployeeDetails" resultType="ReportsModel">		
+	select b.job_count,a.user_id as std_id,c.intern_count,a.name,a.user_id from
+	(select id,concat(first_name,' ',last_name) as name,user_id from alumni.students where user_id = #{user_id}) a left join
+	(select count(*) as job_count,std_id from alumni.applied_jobs group by std_id) b on (a.user_id = b.std_id) left join
+	(select count(*) as intern_count,std_id from alumni.applied_internships group by std_id) c on (c.std_id = a.user_id)
+	</select>
+	
+	
+	<!-- ................................................ Student Reports ............................................ -->
+	<select id="getStudentMembersCount" resultType="ReportsModel">
+		select count(*) as members_count from alumni.students where role_id = 6;
+	</select>   
+	
+	<select id="getApprovedStudentsCount" resultType="ReportsModel">
+		select count(*) as approved_student_count,status from alumni.students where status = 2 and role_id = 6 group by status;
+	</select>
+	
+	<select id="getRejectedStudentsCount" resultType="ReportsModel">
+		select count(*) as rejected_students_count,status from alumni.students where status = 3 and role_id = 6 group by status;
+	</select>
+	
+	<select id="getVerifiedStudentsCount" resultType="ReportsModel">
+		select count(*) as verified_student_count,status from alumni.students where status = 1 and role_id = 6 group by status;
+	</select>   
+	
+	<select id="getnonVerifiedStudentsCount" resultType="ReportsModel">
+		select count(*) as nonverified_student_count,status from alumni.students where status = 0 and role_id = 6 group by status;
+	</select>
+	
+	<select id="getApprovedStdData" resultType="ReportsModel">
+		select concat(first_name,' ',last_name) as name,email,mobile_no,created_date::date as date_created,user_id from alumni.students 
+		where status = 2 and role_id = 6;
+	</select>
+	
+	<select id="getRejectedStdData" resultType="ReportsModel">
+		select concat(first_name,' ',last_name) as name,email,mobile_no,created_date::date as date_created,user_id from alumni.students 
+		where status = 3 and role_id = 6;
+	</select>   
+	
+	<select id="getVerifiedStdData" resultType="ReportsModel">
+		select concat(first_name,' ',last_name) as name,email,mobile_no,created_date::date as date_created,user_id from alumni.students 
+		where status = 1 and role_id = 6;
+	</select>
+	
+	<select id="getnotVerifiedStdData" resultType="ReportsModel">
+		select concat(first_name,' ',last_name) as name,email,mobile_no,created_date::date as date_created,user_id from alumni.students 
+		where status = 0 and role_id = 6;
+	</select>
+	
+	<select id="getStudentsJobsData" resultType="ReportsModel">
+	select distinct a.id,a.user_id,b.date_added :: date as date_created,c.title,c.company_name,c.location from 
+	(select id,user_id,role_id from alumni.students where role_id = 6) a inner join 
+	(select id,std_id,job_id,date_added from alumni.applied_jobs) b on(b.std_id = a.user_id) inner join
+	(select id,title,company_name,location from alumni.jobs) c on (c.id = b.job_id) where a.user_id = #{user_id};
+	</select>
+	
+	<select id="getStudentsInternshipsData" resultType="ReportsModel">
+	select distinct a.id,a.user_id,b.date_added :: date as date_created,c.title,c.company_name,c.location from    
+	(select id,user_id,role_id from alumni.students where role_id = 6) a inner join 
+	(select id,std_id,internship_id,date_added from alumni.applied_internships) b on(b.std_id = a.user_id) inner join
+	(select id,title,company_name,location from alumni.interships) c on (c.id = b.internship_id) where a.user_id = #{user_id};
+	</select>
+	
+	<select id="getEmployeeappliedJobs" resultType="ReportsModel">
+	select distinct a.id,a.user_id,b.date_added :: date as date_created,c.title,c.company_name,c.location from 
+	(select id,user_id,role_id from alumni.students where role_id = 5) a inner join 
+	(select id,std_id,job_id,date_added from alumni.applied_jobs) b on(b.std_id = a.user_id) inner join
+	(select id,title,company_name,location from alumni.jobs) c on (c.id = b.job_id) where a.user_id = #{user_id};
+	</select>
+	
+	<select id="getEmployeeappliedInternships" resultType="ReportsModel">
+	select distinct a.id,a.user_id,b.date_added :: date as date_created,c.title,c.company_name,c.location,c.duration from 
+	(select id,user_id,role_id from alumni.students where role_id = 5) a inner join 
+	(select id,std_id,internship_id,date_added from alumni.applied_internships) b on(b.std_id = a.user_id) inner join
+	(select id,title,company_name,location,duration from alumni.interships) c on (c.id = b.internship_id) where a.user_id = #{user_id};
+	</select>
+	
+	<!-- ......................................... Events Reports ................................................. -->
+	<select id="getEventsCount" resultType="ReportsModel">
+		select count(*) as events_count from alumni.events;
+	</select>
+	
+	<select id="getOpenEventsCount" resultType="ReportsModel">
+		select count(*) as open_event_count,case when status = 'TRUE' then 0 end as status from alumni.events 
+			where status = 'TRUE' group by status;
+	</select>
+	
+	<select id="getClosedEventsCount" resultType="ReportsModel">
+		select count(*) as closed_event_count,case when status = 'FALSE' then 1 end as status from alumni.events 
+			where status = 'FALSE' group by status;
+	</select>
+	
+	<select id="getOpenEventsData" resultType="ReportsModel">
+	select event_title,location,start_date,end_date,organizer,created_date :: date date_created,eventtype,created_by,status_type from
+		(select distinct id,event_title,location,start_date,end_date,organizer,created_date,(case when event_type = 0 then 'Workshops' 
+		when event_type = 1 then 'Guest Lecture' when event_type = 2 then 'Hackathon' end) as eventtype,user_id,status,
+		(case when status = 'TRUE' then 'Open' when status = 'FALSE' then 'Closed' end) as status_type from alumni.events) a inner join
+		(select concat(first_name,' ',last_name) as created_by,user_id from alumni.students) b on (b.user_id = a.user_id)
+		where a.status = 'TRUE'
+	</select>
+	
+	<select id="getClosedEventsData" resultType="ReportsModel">
+	select event_title,location,start_date,end_date,organizer,created_date :: date date_created,eventtype,created_by,status_type from
+		(select distinct id,event_title,location,start_date,end_date,organizer,created_date,(case when event_type = 0 then 'Workshops' 
+		when event_type = 1 then 'Guest Lecture' when event_type = 2 then 'Hackathon' end) as eventtype,user_id,status,
+		(case when status = 'TRUE' then 'Open' when status = 'FALSE' then 'Closed' end) as status_type from alumni.events) a inner join
+		(select concat(first_name,' ',last_name) as created_by,user_id from alumni.students) b on (b.user_id = a.user_id)
+		where a.status = 'FALSE'
+	</select>
+	
+	
+	<!-- .............................. jobs and internships ........................................  -->
+	<select id="getJobCount" resultType="ReportsModel">
+		select count(*) as job_count from alumni.jobs;
+	</select>
+	
+	<select id="getApprovedJobCount" resultType="ReportsModel">
+		select count(*) as approved_job_count from alumni.jobs where status = 1;
+	</select>
+	
+	<select id="getRejectedJobsCount" resultType="ReportsModel">
+		select count(*) as rejected_job_count from alumni.jobs where status = 2;
+	</select>
+	
+	<select id="getClosedJobCount" resultType="ReportsModel">
+		select count(*) as closed_job_count from alumni.jobs where status = 3;
+	</select>
+	
+	<select id="getPendingJobCount" resultType="ReportsModel">
+		select count(*) as pending_job_count from alumni.jobs where status = 0;
+	</select>
+	
+	<select id="getJobsData" resultType="ReportsModel">
+	select a.id,name,email,mobile_no,a.job_id,a.date_created from
+(select id,std_id,job_id,date_added::date as date_created from alumni.applied_jobs where job_id = #{id}) a inner join
+(select id,concat(first_name,' ',last_name) as name,email,mobile_no,user_id from alumni.students) b on (b.user_id = a.std_id)
+	</select>
+	
+	<select id="getInternshipCount" resultType="ReportsModel">
+		select count(*) as internship_count from alumni.interships;
+	</select>
+	
+	<select id="getApprovedInternshipCount" resultType="ReportsModel">
+		select count(*) as approved_internship_count from alumni.interships where status = 1;
+	</select>
+	
+	<select id="getRejectedInternshipsCount" resultType="ReportsModel">
+		select count(*) as rejected_internship_count from alumni.interships where status = 2;
+	</select>
+	
+	<select id="getClosedInternshipCount" resultType="ReportsModel">
+		select count(*) as closed_internship_count from alumni.interships where status = 3;
+	</select>
+	
+	<select id="getPendingInternshipCount" resultType="ReportsModel">
+		select count(*) as pending_internship_count from alumni.interships where status = 0;
+	</select>
+	
+	<select id="getInternsData" resultType="ReportsModel">
+	select a.id,name,email,mobile_no,a.job_id,a.date_created from
+(select id,std_id,job_id,date_added::date as date_created from alumni.applied_jobs where job_id = #{id}) a inner join
+(select id,concat(first_name,' ',last_name) as name,email,mobile_no,user_id from alumni.students) b on (b.user_id = a.std_id)
+	</select>
+	
+	<!-- getting event applicants -->
+	<select id="getEventApplicants" resultType="ReportsModel">
+	select a.id,b.name,b.email,b.mobile_no,b.user_id,a.date_created from
+		(select id,event_id,std_id,date_added :: date as date_created from alumni.applied_events 
+		where event_id = #{id}) a inner join
+		(select id,concat(first_name,' ',last_name) as name,email,mobile_no,user_id from alumni.students) b on 
+		(b.user_id = a.std_id) order by a.id;
+	</select>
+	
+	
+	
+	
+</mapper>  

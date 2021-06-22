@@ -1,5 +1,6 @@
 package com.alumni.Model;
 
+import java.math.BigInteger;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -21,10 +22,45 @@ public class EventsModel extends BaseModel{
 	public Date created_date;
 	public Timestamp date_created;
 	public String std_id;
+	public Integer event_type;
+	public String eventtype;
+	public Integer events_type;
+	public BigInteger organizer_contact_number;
+	public Integer count;
 	
 	
 	
 	
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+	public BigInteger getOrganizer_contact_number() {
+		return organizer_contact_number;
+	}
+	public void setOrganizer_contact_number(BigInteger organizer_contact_number) {
+		this.organizer_contact_number = organizer_contact_number;
+	}
+	public Integer getEvents_type() {
+		return events_type;
+	}
+	public void setEvents_type(Integer events_type) {
+		this.events_type = events_type;
+	}
+	public String getEventtype() {
+		return eventtype;
+	}
+	public void setEventtype(String eventtype) {
+		this.eventtype = eventtype;
+	}
+	public Integer getEvent_type() {
+		return event_type;
+	}
+	public void setEvent_type(Integer event_type) {
+		this.event_type = event_type;
+	}
 	public Date getCreated_date() {
 		return created_date;
 	}

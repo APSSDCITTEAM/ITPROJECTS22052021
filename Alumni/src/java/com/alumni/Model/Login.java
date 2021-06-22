@@ -19,6 +19,14 @@ public class Login extends BaseModel {
 	private String user_id;
 	private String userStatus;
 	private String email;
+	public Integer count;
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 
 	/*
 	 * ........................................ employee login

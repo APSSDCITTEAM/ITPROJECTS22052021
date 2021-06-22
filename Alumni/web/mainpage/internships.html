@@ -1,0 +1,162 @@
+<script src="/alumni/js/scripts/internships.js"></script>
+<!-- Header -->
+<header id="header"
+	class="header modern-header modern-header-theme-colored2">
+	<div class="header-top bg-theme-colored2 sm-text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="widget text-white">
+						<ul class="list-inline xs-text-center text-white">
+							<li class="m-0 pl-10 pr-10"><a href="javascript:void(0)"
+								class="text-white"><i class="fa fa-phone text-white"></i>
+									1800-425-2422</a></li>
+							<li class="m-0 pl-10 pr-10"><a href="javascript:void(0)"
+								class="text-white"><i
+									class="fa fa-envelope-o text-white mr-5"></i> support@apssdc.in</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-3 pr-0">
+					<!-- <div class="widget">
+                                <ul class="styled-icons icon-sm pull-right flip sm-pull-none sm-text-center mt-5">
+                                    <li><a href="javascript:void(0)"><i class="fa fa-facebook text-white"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-twitter text-white"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-google-plus text-white"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-instagram text-white"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-linkedin text-white"></i></a></li>
+                                </ul>
+                            </div> -->
+				</div>
+				<div class="col-md-3">
+					<ul
+						class="list-inline sm-pull-none sm-text-center text-right text-white mb-sm-20 mt-10">
+						<li class="m-0 pl-10"><a href="javascript:void(0);"
+							onclick="Alumni.showLogin();"
+							class="btn btn-default btn-transparent btn-flat btn-xs font-weight-bold"
+							style="margin-right: 20px;"><i class="fa fa-user-o mr-5"></i>
+								Login </a></li>
+						<li class="m-0 pl-0 pr-10"><a href="javascript:void(0);"
+							onclick="Alumni.showRegister();"
+							class="btn btn-default btn-transparent btn-flat btn-xs font-weight-bold"><i
+								class="fa fa-edit mr-5"></i>Register</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="header-middle p-0 bg-light xs-text-center">
+		<div class="container-fluid pt-5 pb-5">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="widget text-center">
+						<a class="" href="javascript:void(0);"><img
+							src="images/ap_aproved-newheader.png" alt=""></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="header-nav">
+		<div class="header-nav-wrapper navbar-scrolltofixed">
+			<div class="container">
+				<nav id="menuzord" class="menuzord blue">
+					<ul class="menuzord-menu">
+						<li><a href="javascript:void(0);"
+							onclick="Alumni.showHome();">Home</a></li>
+						<li><a href="javascript:void(0);"
+							onclick="Alumni.showHome();">About</a></li>
+						<li><a href="javascript:void(0);"
+							onclick="Alumni.showJobs();">Jobs</a></li>
+						<li class="active"><a href="javascript:void(0);"
+							onclick="Alumni.showInternships();">Internships</a></li>
+						<li><a href="javascript:void(0);"
+							onclick="Alumni.showEvents();">Events</a></li>
+						<li><a href="javascript:void(0);"
+							onclick="Alumni.showVolunteers();">Volunteers</a></li>
+						<li><a href="javascript:void(0);"
+							onclick="Alumni.showHome();">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</header>
+
+<!-- Start main-content -->
+<div class="main-content" id="viewinternshipdiv"
+	data-ng-controller="InternshipViewController">
+	<!-- Section: inner-header -->
+	<section
+		class="inner-header divider layer-overlay overlay-theme-colored-7"
+		style="background-image: url(/alumni/images/typingcomputer.jpg);">
+		<div class="container pt-120 pb-60">
+			<!-- Section Content -->
+			<div class="section-content">
+				<div class="row">
+					<div class="col-md-6">
+						<h2 class="title text-theme-colored2">Internships</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section: Contact -->
+	<section data-bg-img="images/pattern/p5.png">
+		<div class="container">
+			<div class="section-title text-center">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<h2 class="text-uppercase font-28 mt-0">
+							Our <span class="text-theme-colored">Recent</span> Internships
+						</h2>
+					</div>
+				</div>
+			</div>
+			<div class="section-content">
+				<div class="row text-center">
+					<div class="col-sm-6" data-ng-repeat="jobs in internhomedata">
+						<div class="icon-box iconbox-border iconbox-theme-colored"
+							style="border: 2px solid #222655; padding: 20px; border-radius: 15px;">
+							<a href="javascript:void(0)"
+								class="icon icon-gray icon-bordered icon-border-effect effect-flat">
+								<i class="pe-7s-users"></i>
+							</a>
+							<h5 class="icon-box-title">{{jobs.title}}</h5>
+							<h6 class="icon-box-title">{{jobs.company_name}}</h6>
+							<ul class="list-group mt-2" style="flex-direction: row;">
+								<li class="list-group-item float-left"><i
+									class="fa fa-briefcase"
+									style="margin-right: 10px; font-size: inherit;"></i>{{jobs.duration}}</li>
+								<li class="list-group-item float-left"><i
+									class="fa fa-map-marker"
+									style="margin-right: 10px; font-size: inherit;"></i>{{jobs.location}}</li>
+								<li class="list-group-item float-left"><i
+									class="fa fa-envelope-square"
+									style="margin-right: 10px; font-size: inherit;"></i>{{jobs.contact_email}}</li>
+								<li class="list-group-item float-left"><i
+									class="fa fa-calendar"
+									style="margin-right: 10px; font-size: inherit;"></i>{{jobs.end_date}}</li>
+							</ul>
+							<hr style="border: none">
+							<hr style="border: none">
+							<a class="btn btn-dark btn-theme-colored btn-sm mt-15"
+								href="javascript:void(0)" onclick="Alumni.showLogin();">Apply
+								Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#viewinternshipdiv"), [ 'intership' ]);
+	});
+</script>
+

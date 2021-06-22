@@ -1,0 +1,72 @@
+<script src="/alumni/js/scripts/admin/closeEvents.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">Close Events</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Events</a></li>
+				<li class="breadcrumb-item active">Close Events</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+
+<div class="row clearfix" id="EventActionDiv"
+	data-ng-controller="EventActionController">
+	<div class="col-md-12 col-sm-12 mx-auto">
+		<div class="card border border-success">
+			<div class="card-header bg-primary">
+				<h4 class="text-white text-center">Close an Event</h4>
+			</div>
+			<div class="card-body">
+
+				<hr>
+				<div class="table-responsive">
+					<table class="table table-bordered table-hover nowrap">
+						<thead>
+							<tr>
+								<th>S.No</th>
+								<th>Event Title</th>
+								<th>Start Date</th>
+								<th>End Date</th>
+								<th>Location</th>
+								<th>Organizer</th>
+								<th>Created Date</th>
+								<th>Status</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="openEvent in allOpenEvents">
+								<td>{{$index+1}}</td>
+								<td>{{openEvent.event_title}}</td>
+								<td>{{openEvent.start_date}}</td>
+								<td>{{openEvent.end_date}}</td>
+								<td>{{openEvent.location}}</td>
+								<td>{{openEvent.organizer}}</td>
+								<td>{{openEvent.created_date | date : 'dd-MM-yyyy'}}
+								<td>{{openEvent.status_type}}</td>
+								<td><button class="btn btn-danger btn-sm"
+										data-ng-click="changeEventStatus(openEvent);">
+										<i class="fa fa-times mr-2"></i>Close
+									</button>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+    jQuery(document).ready(function() {
+        angular.bootstrap(jQuery("#EventActionDiv"), ['EventAction']);
+    });
+</script>

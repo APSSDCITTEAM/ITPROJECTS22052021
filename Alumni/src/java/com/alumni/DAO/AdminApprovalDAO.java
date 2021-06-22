@@ -28,6 +28,13 @@ public class AdminApprovalDAO {
 		return userdetails;
 	}
 	
+	public List<AdminApprovalModel> getinActiveJobs() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<AdminApprovalModel> userdetails = sqlSession.selectList("AdminApproval.getinActiveJobs");
+		sqlSession.close();
+		return userdetails;
+	}
+	
 	public List<AdminApprovalModel> getallVerifiedUsers() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<AdminApprovalModel> userdetails = sqlSession.selectList("AdminApproval.getallVerifiedUsers");
@@ -47,6 +54,13 @@ public class AdminApprovalDAO {
 		List<AdminApprovalModel> userdetails = sqlSession.selectList("AdminApproval.getallRejectedUsers");
 		sqlSession.close();
 		return userdetails;
+	}
+
+	public List<AdminApprovalModel> getallunverifiedUsers() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<AdminApprovalModel> userdetails = sqlSession.selectList("AdminApproval.getallunverifiedUsers");
+		sqlSession.close();
+		return userdetails;   
 	}
 	
 	public void ApproveUser(Integer id) {

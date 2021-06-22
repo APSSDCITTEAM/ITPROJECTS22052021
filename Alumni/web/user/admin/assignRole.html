@@ -1,0 +1,86 @@
+<script src="/alumni/js/scripts/admin/AssignRole.js"></script>
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">Assign a Role</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Roles</a></li>
+				<li class="breadcrumb-item active">Assign a Role</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+
+<div class="row clearfix" id="RoleCreationDiv"
+	data-ng-controller="RoleCreationController">
+	<div class="col-md-8 col-sm-12 mx-auto">
+		<
+		<div class="card border border-success">
+			<div class="card-header bg-primary">
+				<h4 class="text-white text-center">Assign Role</h4>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-6 col-sm-12 mx-auto">
+						<div class="form-group">
+							<label for="first-name" class="form-label">First Name</label> <input
+								class="form-control" type="text" placeholder="First Name"
+								data-ng-model="data.object.first_name" id="first-name">
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12 mx-auto">
+						<div class="form-group">
+							<label for="last-name" class="form-label">Last Name</label> <input
+								class="form-control" type="text" placeholder="Last Name"
+								data-ng-model="data.object.last_name" id="last-name">
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12 mx-auto">
+						<div class="form-group">
+							<label for="contact-email" class="form-label">Email ID</label> <input
+								class="form-control" type="email" placeholder="Email ID"
+								data-ng-model="data.object.email" id="contact-email">
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12 mx-auto">
+						<div class="form-group">
+							<label for="Contact-Number" class="form-label">Contact
+								Number</label> <input class="form-control" type="text"
+								data-ng-model="data.object.mobile_no"
+								placeholder="Contact Number" id="Contact-Number">
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12">
+						<div class="form-group">
+							<label for="event-type" class="form-label">Role</label> <select
+								class="form-control" id="event-type"
+								data-ng-model="data.object.role_id">
+								<!-- <option value="1">Admin</option> -->
+								<option value="2">MD/CEO</option>
+								<option value="3">ED</option>
+								<option value="4">CGM</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-md-12 col-sm-12">
+						<button type="button" class="btn btn-success float-right"
+							data-ng-click="CreateRole(data.object);">
+							<i class="ti-save-alt mr-2"></i>Upload
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#RoleCreationDiv"), [ 'AssignRole' ]);
+	});
+</script>

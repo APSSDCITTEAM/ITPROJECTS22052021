@@ -1,0 +1,250 @@
+<script src="/alumni/js/scripts/admin/activeEmployeesReports.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">Active Employee Reports</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Reports</a></li>
+				<li class="breadcrumb-item active">Employee Reports</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+
+<div class="row clearfix" id="JobpostDiv"
+	data-ng-controller="ActiveEmployeesController">
+	<div class="col-md-12 col-sm-12">
+		<div id="activestudents">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h4 class="card-title">Active Employees</h4>
+				</div>
+				<div class="card-body table-responsive">
+					<table class="table table-bordered table-hover no-wrap">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Mobile</th>
+								<th>Registered Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="empData in ApprovedEmployeesData">
+								<td><a href=""
+									data-ng-click="getEmployeeJobsData(empData.user_id);
+											getEmployeeDetails(empData.user_id);">{{empData.name}}</a></td>
+								<td>{{empData.email}}</td>
+								<td>{{empData.mobile_no}}</td>
+								<td>{{empData.date_created}}</td>
+							</tr>
+							<tr id="emptyrow" style="display: none">
+								<td colspan="4" class="text-center">No Data Available</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div id="individualEmployeedata">
+			<div class="row clearfix">
+				<div class="col-xl-12 col-md-12">
+					<label>Name: </label><b>{{empDetails.object.name}}</b>
+				</div>
+				<div class="col-xl-4 col-md-6">
+					<div class="card mini-stat bg-info text-white"
+						data-ng-click="getEmployeeappliedJobs(empDetails.object.user_id);">
+						<div class="card-body">
+							<div class="float-left mini-stat-img mr-4">
+								<i class="fa fa-users"></i>
+							</div>
+							<h5 class="font-size-16 text-uppercase mt-0 text-white">No.of
+								Jobs Applied</h5>
+							<h4 class="font-weight-medium font-size-24">{{empDetails.object.job_count
+								|| 0}}</h4>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-md-6">
+					<div class="card mini-stat bg-primary text-white"
+						data-ng-click="getEmployeeappliedJobs(empDetails.object.user_id);">
+						<div class="card-body">
+							<div class="float-left mini-stat-img mr-4">
+								<i class="fa fa-users"></i>
+							</div>
+							<h5 class="font-size-16 text-uppercase mt-0 text-white">No.of
+								Internships Applied</h5>
+							<h4 class="font-weight-medium font-size-24">{{empDetails.object.intern_count
+								|| 0}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-12 col-sm-12">
+					<div class="card">
+						<div class="card-header bg-primary text-white">
+							<h4 class="card-title">Uploaded Jobs</h4>
+						</div>
+						<div class="card-body table-responsive">
+							<table class="table table-bordered table-hover no-wrap">
+								<thead>
+									<tr>
+										<th>Job Title</th>
+										<th>Company Name</th>
+										<th>Location</th>
+										<th>Minimum Experience</th>
+										<th>Maximum Experience</th>
+										<th>Created Date</th>
+										<th>End Date</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="JobData in EmployeeJobsData">
+										<td>{{JobData.title}}</td>
+										<td>{{JobData.company_name}}</td>
+										<td>{{JobData.location}}</td>
+										<td>{{JobData.min_exp}}</td>
+										<td>{{JobData.max_exp}}</td>
+										<td>{{JobData.date_created}}</td>
+										<td>{{JobData.closeddate}}</td>
+										<td>{{JobData.status_type}}</td>
+									</tr>
+
+									<tr id="emptyrow" style="display: none">
+										<td colspan="8" class="text-center">No Data Available</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header bg-primary text-white">
+							<h4 class="card-title">Applied Internships</h4>
+						</div>
+						<div class="card-body table-responsive">
+							<table class="table table-bordered table-hover no-wrap">
+								<thead>
+									<tr>
+										<th>Internship Title</th>
+										<th>Company Name</th>
+										<th>Location</th>
+										<th>Duration</th>
+										<th>Created Date</th>
+										<th>End Date</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="InternData in EmployeeInternsData">
+										<td>{{InternData.title}}</td>
+										<td>{{InternData.company_name}}</td>
+										<td>{{InternData.location}}</td>
+										<td>{{InternData.duration}}</td>
+										<td>{{InternData.date_created}}</td>
+										<td>{{InternData.closeddate}}</td>
+										<td>{{InternData.status_type}}</td>
+									</tr>
+
+									<tr id="emptyrow" style="display: none">
+										<td colspan="7" class="text-center">No Data Available</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="appliedJobsInterns">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h4 class="card-title">Applied Jobs</h4>
+				</div>
+				<div class="card-body table-responsive">
+					<table class="table table-bordered table-hover no-wrap">
+						<thead>
+							<tr>
+								<th>Job Title</th>
+								<th>Company Name</th>
+								<th>Location</th>
+								<th>Applied Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="appliedJob in EmployeeappliedJobs">
+								<td>{{appliedJob.title}}</td>
+								<td>{{appliedJob.company_name}}</td>
+								<td>{{appliedJob.location}}</td>
+								<td>{{appliedJob.date_created}}</td>
+							</tr>
+
+							<tr id="emptyrow" style="display: none">
+								<td colspan="4" class="text-center">No Data Available</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h4 class="card-title">Applied Internships</h4>
+				</div>
+				<div class="card-body table-responsive">
+					<table class="table table-bordered table-hover no-wrap">
+						<thead>
+							<tr>
+								<th>Internship Title</th>
+								<th>Company Name</th>
+								<th>Location</th>
+								<th>Duration</th>
+								<th>Applied Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="JobData in EmployeeappliedInterns">
+								<td>{{JobData.title}}</td>
+								<td>{{JobData.company_name}}</td>
+								<td>{{JobData.location}}</td>
+								<td>{{JobData.duration}}</td>
+								<td>{{JobData.date_created}}</td>
+							</tr>
+
+							<tr id="emptyrow" style="display: none">
+								<td colspan="5" class="text-center">No Data Available</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+</div>
+
+<script>
+	$("#activestudents").show();
+	$("#individualEmployeedata").hide();
+	$("#appliedJobsInterns").hide();
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#JobpostDiv"), [ 'activeEmployeesReports' ]);
+	});
+</script>

@@ -31,7 +31,49 @@ public class AlumniVerifyUserController {
 			String verify_token = "Failed";
 			return verify_token;
 		}
-		
+
+	}
+
+	@RequestMapping("/home")
+	public String home() {
+		String pageName = "home";
+		return pageName;
+	}
+
+	@RequestMapping("/admin")
+	public String admin() {
+		String pageName = "admin";
+		return pageName;
+	}
+
+	@RequestMapping("/student")
+	public String student() {
+		String pageName = "student";
+		return pageName;
+	}
+
+	@RequestMapping("/employee")
+	public String employee() {
+		String pageName = "employee";
+		return pageName;
+	}
+
+	@RequestMapping("/md")
+	public String md() {
+		String pageName = "md";
+		return pageName;
+	}
+
+	@RequestMapping("/ed")
+	public String ed() {
+		String pageName = "ed";
+		return pageName;
+	}
+
+	@RequestMapping("/cgm")
+	public String cgm() {
+		String pageName = "cgm";
+		return pageName;
 	}
 
 }

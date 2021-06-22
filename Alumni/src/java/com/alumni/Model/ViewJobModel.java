@@ -28,23 +28,86 @@ public class ViewJobModel extends BaseModel{
 	public BigInteger mobile_no;
 	public Timestamp date_added;
 	public Date date_created;
-	public String last_name;
+	public Date end_date;
+	public String user_id;
+	public String experience; 
+	public String  hours ;
+	public String  number_of_students;
+	public String  technologies;
+	public Integer job_id;
+	
+	public String getExperience() {
+		return experience;
+	}
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+	public String getHours() {
+		return hours;
+	}
+	public void setHours(String hours) {
+		this.hours = hours;
+	}
+	public String getNumber_of_students() {
+		return number_of_students;
+	}
+	public void setNumber_of_students(String number_of_students) {
+		this.number_of_students = number_of_students;
+	}
+	public String getTechnologies() {
+		return technologies;
+	}
+	public void setTechnologies(String technologies) {
+		this.technologies = technologies;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public Date getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String username;
+	public Date start_date;
+	
+	public String name;
 	
 	
 	
-	
-	
+	public Date getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public Integer getJob_id() {
+		return job_id;
+	}
+	public void setJob_id(Integer job_id) {
+		this.job_id = job_id;
+	}
 	public Date getDate_created() {
 		return date_created;
 	}
 	public void setDate_created(Date date_created) {
 		this.date_created = date_created;
-	}
-	public String getLast_name() {
-		return last_name;
-	}
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
 	}
 	public String getFirst_name() {
 		return first_name;

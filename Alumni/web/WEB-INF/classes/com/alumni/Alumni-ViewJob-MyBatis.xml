@@ -4,28 +4,30 @@
 
 	<select id="getalljobs" parameterType="map"
 		resultType="ViewJobModel">
-		select distinct id,
-		title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
-		as created_date,status
-		from alumni.jobs where std_id != #{std_id} order
-		by id;
-	</select>
+		select distinct
+		id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
+		as created_date,status,end_date from alumni.jobs
+		where std_id != #{std_id} and end_date > current_timestamp::date and status
+		= 1 order by id;
+	</select> 
 
 	<select id="getallinternships" parameterType="map"
 		resultType="ViewJobModel">
-		select distinct id,
-		title,company_name,location,contact_email,duration,description,std_id,date_added
-		as created_date,status
-		from alumni.interships where std_id != #{std_id}
-		order by id;
+		select distinct
+		id,title,company_name,location,contact_email,duration,description,std_id,date_added
+		as created_date,status,end_date
+		from alumni.interships where std_id !=
+		#{std_id} and end_date > current_timestamp::date and status = 1 order
+		by id;
 	</select>
 
 	<select id="getmyjobs" parameterType="map"
 		resultType="ViewJobModel">
 		select distinct id,
 		title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
-		as created_date,status
-		from alumni.jobs where std_id = #{std_id} order
+		as created_date,status,end_date
+		from alumni.jobs where std_id =
+		#{std_id} order
 		by id;
 	</select>
 
@@ -33,44 +35,47 @@
 		resultType="ViewJobModel">
 		select distinct id,
 		title,company_name,location,contact_email,duration,description,std_id,date_added
-		as created_date,status
-		from alumni.interships where std_id = #{std_id}
+		as created_date,status,end_date
+		from alumni.interships where std_id =
+		#{std_id}
 		order by id;
 	</select>
 
 	<select id="getalljobshome" resultType="map">
 		select distinct id,
 		title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
-		as created_date,status
-		from alumni.jobs order by id;
+		as created_date,status,end_date
+		from alumni.jobs where end_date >
+		current_timestamp::date and status = 1 order by id;
 	</select>
 
 	<select id="getallinternshipshome" resultType="map">
-		select distinct
-		id,
+		select distinct id,
 		title,company_name,location,contact_email,duration,description,std_id,date_added
-		as created_date,status
-		from alumni.interships order by id;
+		as created_date,status,end_date
+		from alumni.interships where end_date >
+		current_timestamp :: date and status = 1 order by id;
 	</select>
 
 	<select id="getallOpenJobs" resultType="map">
 		select distinct
-		a.id,a.title,a.company_name,a.location,a.contact_email,a.min_exp,a.max_exp,a.description,a.date_added
-		:: date as created_date,
-		case when a.status = 3 then 'Closed' else
-		'Open' end as status_type, s.first_name as created_by from alumni.jobs
-		a inner join alumni.students s on a.std_id = s.user_id where a.status
-		not in (3,2) Order by a.id;
+		a.id,a.title,a.company_name,a.location,a.contact_email,a.min_exp,a.max_exp,a.description,
+		a.date_added :: date as created_date,case when a.status = 3 then
+		'Closed' else 'Open' end as status_type,
+		s.first_name as created_by,a.end_date from
+		alumni.jobs a inner join
+		alumni.students s on a.std_id = s.user_id where a.status not in (3,2) Order by a.id;
 	</select>
 
 	<select id="getallClosedJobs" resultType="map">
 		select distinct
-		a.id,a.title,a.company_name,a.location,a.contact_email,a.min_exp,a.max_exp,a.description,a.date_added
-		:: date as created_date,
-		case when a.status = 3 then 'Closed' else
-		'Open' end as status_type, s.first_name as created_by from alumni.jobs
-		a inner join alumni.students s on a.std_id = s.user_id where a.status
-		= 3 Order by a.id;
+		a.id,a.title,a.company_name,a.location,a.contact_email,a.min_exp,a.max_exp,a.description,
+		a.date_added :: date as created_date,case when a.status = 3 then
+		'Closed' else 'Open' end as status_type,
+		s.first_name as created_by,a.end_date from
+		alumni.jobs a
+		inner join alumni.students s on a.std_id = s.user_id
+		where a.status = 3 Order by a.id;
 	</select>
 
 	<update id="changeJobStatus" parameterType="map">
@@ -82,23 +87,24 @@
 
 	<select id="getallOpenInterns" resultType="map">
 		select distinct
-		a.id,a.title,a.company_name,a.location,a.contact_email,a.duration,a.description,a.date_added
-		:: date as created_date,
-		case when a.status = 3 then 'Closed' else
-		'Open' end as status_type, s.first_name as created_by from
-		alumni.interships a inner join alumni.students s on a.std_id =
-		s.user_id where a.status not in (3,2) Order by a.id;
+		a.id,a.title,a.company_name,a.location,a.contact_email,a.duration,a.description,
+		a.date_added :: date as created_date,case when a.status = 3 then
+		'Closed' else 'Open' end as status_type,
+		s.first_name as created_by,a.end_date from
+		alumni.interships a
+		inner join alumni.students s on a.std_id = s.user_id where a.status not in
+		(3,2) Order by a.id;
 	</select>
 
 	<select id="getallClosedInterns" resultType="map">
-
 		select distinct
-		a.id,a.title,a.company_name,a.location,a.contact_email,a.duration,a.description,a.date_added
-		:: date as created_date,
-		case when a.status = 3 then 'Closed' else
-		'Open' end as status_type, s.first_name as created_by from
-		alumni.interships a inner join alumni.students s on a.std_id =
-		s.user_id where a.status = 3 Order by a.id;
+		a.id,a.title,a.company_name,a.location,a.contact_email,a.duration,a.description,
+		a.date_added :: date as created_date,case when a.status = 3 then
+		'Closed' else 'Open' end as status_type,
+		s.first_name as created_by,a.end_date from
+		alumni.interships a inner join
+		alumni.students s on a.std_id = s.user_id where a.status = 3 Order by
+		a.id;
 	</select>
 
 	<update id="changeInternStatus" parameterType="map">
@@ -118,7 +124,7 @@
 
 
 
-	<insert id="InsertApplyinternship" parameterType="map">
+	<insert id="InsertApplyInternship" parameterType="map">    
 		INSERT INTO
 		alumni.applied_internships(std_id,date_added,internship_id)
 		VALUES
@@ -127,11 +133,118 @@
 
 
 	<!-- ............................................. Intern Applicants ................................. -->
-	
 	<select id="InternshipApplicants" resultType="ViewJobModel">
-		select s.first_name,s.email,s.mobile_no,ai.date_added :: date as date_created from 
-		alumni.applied_internships ai inner join 
-		alumni.students s on ai.std_id = s.user_id where ai.id=#{id}
+		select
+		s.first_name,s.email,s.mobile_no,ai.date_added :: date as date_created
+		from
+		alumni.applied_internships ai inner join
+		alumni.students s on
+		ai.std_id = s.user_id where ai.internship_id = #{id}
 	</select>
+
+	<!-- ............................................. Job Applicants ................................. -->
+	<select id="JobApplicants" resultType="ViewJobModel">
+		select b.first_name,b.email,b.mobile_no,a.date_added :: date as date_created
+		from
+		(select * from alumni.applied_jobs) as a inner join
+		(select * from
+		alumni.students) as b on (a.std_id = b.user_id) where a.job_id =#{id}
+	</select>
+
+	<update id="UpdateJobStatusbyDate" parameterType="map">
+		update
+		alumni.jobs set status = 3 where current_timestamp :: date > end_date
+	</update>
+
+	<update id="UpdateInternStatusbyDate" parameterType="map">
+		update
+		alumni.interships set status = 3 where current_timestamp :: date >
+		end_date
+	</update>
+
+	<insert id="InsertApplyvolunteer" parameterType="map">
+		INSERT INTO
+		alumni.applied_volunteership(user_id,date_added,vol_tech_id)
+		VALUES
+		(#{p.std_id},CURRENT_TIMESTAMP,#{p.id});
+	</insert>
+
+	<select id="getallvolunteerships" parameterType="map" resultType="ViewJobModel">
+		select
+		a.id,a.hours,a.experience,a.number_of_students,a.technologies,a.description,a.created_date,a.status,b.first_name as username,b.email,a.start_date,
+		a.end_date,a.duration
+		from
+
+		(select distinct id,
+		hours,experience,number_of_students,technologies,description,user_id,date_added
+		as created_date,status,start_date,end_date,duration
+		from
+		alumni.volunteership )as a inner join
+		(select * from alumni.students)as
+		b on a.user_id=b.user_id
+		where a.user_id != #{std_id}::character
+		varying and a.status=1 order
+		by id;
+	</select>
+	<select id="getmyvolunteerships" parameterType="map"
+		resultType="ViewJobModel">
+		select
+		a.id,a.hours,a.experience,a.number_of_students,a.technologies,a.description,a.created_date,a.status,b.first_name as username,b.email,a.start_date,a.end_date,a.duration
+		from
+
+		(select distinct id,
+		hours,experience,number_of_students,technologies,description,user_id,date_added
+		as created_date,status,start_date,end_date,duration
+		from
+		alumni.volunteership )as a inner join
+		(select * from alumni.students)as
+		b on a.user_id=b.user_id
+		where a.user_id = #{std_id}::character varying
+		and a.status=1 order
+		by id;
+
+	</select>
+
+	<select id="getallvolunteershipshome" resultType="map">
+		select
+		a.id,a.hours,a.experience,a.number_of_students,a.technologies,a.description,a.created_date,a.status,b.first_name as username,b.email,a.start_date,a.end_date,a.duration
+		from
+
+		(select distinct id,
+		hours,experience,number_of_students,technologies,description,user_id,date_added
+		as created_date,status,start_date,end_date,duration
+		from
+		alumni.volunteership )as a inner join
+		(select * from alumni.students)as
+		b on a.user_id=b.user_id
+		where a.status=1
+		order by id;
+	</select>
+
+
+	<select id="VolunteershipApplicants" resultType="ViewJobModel">
+		select
+		s.first_name,s.email,s.mobile_no,a.date_added :: date as
+		date_created,a.vol_tech_id,c.technologies
+		from
+		alumni.applied_volunteership a inner join
+		alumni.students s on   
+		a.user_id = s.user_id inner join alumni.volunteership c on
+		c.id=a.vol_tech_id
+		where a.id=#{id}
+	</select>
+	
+	<select resultType="java.lang.Integer" parameterType="map" id="checkJob">
+		select count(*) as count from alumni.applied_jobs where std_id = #{p.std_id} and job_id = #{p.id}
+	</select>
+	
+	<select resultType="java.lang.Integer" parameterType="map" id="checkInternship">
+		select count(*) as count from alumni.applied_internships where std_id = #{p.std_id} and internship_id = #{p.id}
+	</select>
+	
+	<select resultType="java.lang.Integer" parameterType="map" id="checkVolunteer">
+		select count(*) as count from alumni.applied_volunteership where user_id = #{p.std_id} and vol_tech_id = #{p.id}
+	</select>
+
 
 </mapper>  

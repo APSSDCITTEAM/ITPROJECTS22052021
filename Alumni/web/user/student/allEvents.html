@@ -1,0 +1,72 @@
+<script src="/alumni/js/scripts/student/allEvents.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">All Events</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Events</a></li>
+				<li class="breadcrumb-item active">All Events</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+
+<div class="row clearfix">
+	<div class="col-md-12 colsm-12">
+		<div class="event-page-content-wrap section-padding"
+			id="ViewEventsdiv" data-ng-controller="EventsViewController">
+
+			<div class="row clearfix" id="mainEventpage">
+				<div class="col-md-10 mx-auto" data-ng-repeat="data in alldata">
+					<div class="card border border-primary">
+						<div class="card-body">
+							<div class="media">
+								<img class="d-flex align-self-center rounded mr-3"
+									src="/alumni/images/Events.jpg" alt="" height="100">
+								<div class="media-body">
+									<h5 class="mt-0 font-16">{{data.event_title}}</h5>
+									<p>
+									<ul style="flex-direction: row;" class="list-group">
+										<li class="list-group-item"><i class="ti-user mr-2"></i>
+											{{data.organizer}}, {{data.organizer_designation}}</li>
+										<li class="list-group-item"><i
+											class="ti-headphone-alt mr-2"></i>{{data.organizer_contact_number}}</li>
+										<li class="list-group-item"><i class="ti-calendar mr-2"></i>
+											{{data.start_date | date: 'dd MMM, yyyy'}}</li>
+										<li class="list-group-item"><i class="ti-calendar mr-2"></i>
+											{{data.end_date | date: 'dd MMM, yyyy'}}</li>
+										<li class="list-group-item"><i
+											class="ti-location-pin mr-2"></i>{{data.location}}</li>
+									</ul>
+									</p>
+									<p>{{data.description}}</p>
+									
+									<button type="button" class="btn btn-success"
+										data-ng-click="ApplyEvent(data.id);" id="get-applicants">
+										<i class="fa fa-paper-plane mr-2"></i>Apply
+									</button>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+</div>
+
+
+<script>
+    jQuery(document).ready(function() {
+        angular.bootstrap(jQuery("#ViewEventsdiv"), ['allEvents']);
+    });
+</script>

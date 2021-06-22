@@ -6,17 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.andromeda.commons.model.Response;
 import com.alumni.DAO.AdminApprovalDAO;
+import com.alumni.DAO.AlumniRegisterDAO;
 //Local
 import com.alumni.Model.AdminApprovalModel;
+import com.alumni.Model.Email;
 
 @Service
 public class AdminApprovalService {
 
 	Response response = new Response();
+	
+	@Autowired
+	private EmailService emailService;
 
 	@Autowired
-//Discussion DAO
+	//Discussion DAO
 	private AdminApprovalDAO adminApprovalDAO;
+	@Autowired
+	private AlumniRegisterDAO alumniregisterDAO;
 
 	
 	public Response getallusers() {
@@ -30,6 +37,14 @@ public class AdminApprovalService {
 	public Response getallVerifiedUsers() {
 		response.setSuccessful(false);
 		List<AdminApprovalModel> userdetails = adminApprovalDAO.getallVerifiedUsers();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	public Response getinActiveJobs() {
+		response.setSuccessful(false);
+		List<AdminApprovalModel> userdetails = adminApprovalDAO.getinActiveJobs();
 		response.setSuccessful(true);
 		response.setResponseObject(userdetails);
 		return response;
@@ -51,9 +66,33 @@ public class AdminApprovalService {
 		return response;
 	}
 	
+	public Response getallunverifiedUsers() {
+		response.setSuccessful(false);
+		List<AdminApprovalModel> userdetails = adminApprovalDAO.getallunverifiedUsers();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
 	public Response ApproveUser(Integer id) {
 		response.setSuccessful(false);
 		adminApprovalDAO.ApproveUser(id);
+		
+		
+		String UserEmail = alumniregisterDAO.getUserEmailbyId(id);
+		String Password = alumniregisterDAO.getUserPasswordbyId(id);
+//		Mail Service Starts
+		Email email = new Email();
+		email.setFrom("APSSDC Alumni Registration <siemensrecruitment@apssdc.in>");
+		email.setTo(UserEmail.trim());
+		email.setSubject("Email Verification for the Alumni Portal");
+		String msg = "Dear Participant,<br><br>" + "<b>You are approved as APSSDC Alumni.</b><br><br>"
+				+ "<p>Your UserName is " + UserEmail + "<br>Your Password is "
+				+ Password + "</p><br><br>";
+		email.setText(msg);
+
+		this.emailService.sendHtmlMsg(email);
+		
 		response.setSuccessful(true);
 		response.setResponseObject(id);
 		return response;

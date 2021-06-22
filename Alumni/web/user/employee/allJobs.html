@@ -1,0 +1,57 @@
+<script src="/alumni/js/scripts/employee/allJobs.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">All Jobs</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Jobs</a></li>
+				<li class="breadcrumb-item active">All Jobs</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+
+<div class="row clearfix" id="ViewjobDiv"
+	data-ng-controller="JobViewController">
+
+	<div class="col-md-6 col-sm-12" data-ng-repeat="jobs in alljobs">
+		<div class="card  border border-primary">
+			<div class="card-body">
+				<div class="media"> 
+					<div class="media-body">
+						<h5 class="mt-0 font-16">{{jobs.title}}</h5>
+						<span>{{jobs.company_name}}</span>
+						<ul class="list-group mt-2" style="flex-direction: row;">
+							<li class="list-group-item"><i class="ti-briefcase mr-2"></i>{{jobs.min_exp}}
+								- {{jobs.max-exp}}</li>
+							<li class="list-group-item"><i class="ti-location-pin mr-2"></i>{{jobs.location}}</li>
+							<li class="list-group-item"><i
+								class="fas fa-envelope-square mr-2"></i>{{jobs.contact_email}}</li>
+							<li class="list-group-item"><i class="ti-calendar mr-2"></i>{{jobs.end_date
+								| date: 'dd MMM, yyyy'}}</li>
+						</ul>
+						<p>{{jobs.description}}</p>
+
+						<button type="button" class="btn btn-success"
+							data-ng-click="Applyjob(jobs.id);" id="get-applicants">
+							<i class="fa fa-paper-plane mr-2"></i>Apply
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#ViewjobDiv"), [ 'jobview' ]);
+	});
+</script>

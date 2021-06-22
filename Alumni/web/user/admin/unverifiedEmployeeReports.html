@@ -1,0 +1,67 @@
+<script src="/alumni/js/scripts/admin/unVerifiedEmployeeReports.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">Not Verified Employees</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Reports</a></li>
+				<li class="breadcrumb-item active">Employee Reports</li>
+			</ol>
+		</div>
+	</div>
+</div>   
+<!-- end page title -->
+
+<div class="row clearfix" id="JobpostDiv"
+	data-ng-controller="notVerifiedEmployeeController">
+	<div class="col-md-12 col-sm-12">
+		<div id="activestudents">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h4 class="card-title">Un-Verified Employees</h4>
+				</div>
+				<div class="card-body table-responsive">
+					<table class="table table-bordered table-hover no-wrap">
+						<thead>
+							<tr>    
+								<th>Name</th>
+								<th>Email</th>
+								<th>Mobile</th>
+								<th>Registered Date</th>
+							</tr>
+						</thead>
+						<tbody>  
+							<tr data-ng-repeat="stdData in StudentsData">
+								<td>{{stdData.name}}</td>
+								<td>{{stdData.email}}</td>   
+								<td>{{stdData.mobile_no}}</td>
+								<td>{{stdData.date_created}}</td>
+							</tr>
+							
+							<tr id="emptyrow" style="display: none">
+                            <td colspan="4" class="text-center">No Data Available</td>
+                        </tr>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+</div>
+
+<script>
+		jQuery(document).ready(
+				function() {
+					angular.bootstrap(jQuery("#JobpostDiv"),
+							[ 'unVerifiedEmployeeReports' ]);
+				});
+	</script>

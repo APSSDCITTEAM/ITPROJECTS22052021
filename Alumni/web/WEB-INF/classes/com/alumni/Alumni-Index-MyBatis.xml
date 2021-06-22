@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Index">
+
+	
+	<select id="getallRecentjobs" resultType="map">
+	select distinct id,
+		title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
+		as created_date,status,end_date
+		from alumni.jobs where status = 1 order by created_date DESC limit 6;
+	</select>
+	
+	<select id="getJobsCount" resultType="IndexModel">
+		select count(*) as jobs_count from alumni.jobs;
+	</select>
+	
+	<select id="getMembersCount" resultType="IndexModel">
+		select count(*) as members_count from alumni.students;
+	</select>
+	
+	<select id="getInternsCount" resultType="IndexModel">
+		select count(*) as interns_count from alumni.interships;
+	</select>
+	
+	<select id="getEventsCount" resultType="IndexModel">
+		select count(*) as events_data from alumni.events;
+	</select>
+	
+
+</mapper>  

@@ -35,5 +35,13 @@ public class PostjobService {
 		response.setResponseObject(finance);
 		return response;
 	}
+	public Response CreateVolunteership(PostjobModel finance) {		
+		response.setSuccessful(false);
+		postjobDAO.CreateVolunteership(finance);
+		response.setSuccessful(true);
+		System.out.println("hi1");
+		response.setResponseObject(finance);
+		return response;
+	}
 
 }

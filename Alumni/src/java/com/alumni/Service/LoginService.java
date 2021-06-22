@@ -141,5 +141,23 @@ public class LoginService {
 		response.setResponseObject(login);
 		return response;
 	}
+	
+	/* match password */
+	public Response matchPassword(Login login) {
+		response.setSuccessful(false);
+		/* login.setPassword(CryptoUtils.getMD5Hash(login.getPassword())); */
+		Integer loginStatus = loginDAO.checkPassword(login);
+
+		if (loginStatus == 0) {
+			response.setSuccessful(false);
+		} else if (loginStatus == 1) {
+			response.setSuccessful(true);
+		}
+		return response;
+	}
+	
+	
+	
+	
 
 }

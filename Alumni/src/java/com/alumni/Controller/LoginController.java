@@ -110,5 +110,15 @@ public class LoginController {
 	public Response ChangePassword(@RequestBody Login Data) {
 		return loginService.ChangePassword(Data);
 	}
+	
+	/* match password */
+	@ResponseBody
+	@RequestMapping(value = "/matchPassword", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response matchPassword(@RequestBody Login login)
+			throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		return loginService.matchPassword(login);
+	}
+	
+	
 
 }

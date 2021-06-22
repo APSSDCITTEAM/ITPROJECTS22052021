@@ -1,0 +1,261 @@
+<script src="/alumni/js/scripts/admin/StudentReports.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">Student Reports</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Reports</a></li>
+				<li class="breadcrumb-item active">Student Reports</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+
+<div id="StudentsReportsdiv"
+	data-ng-controller="StudentReportsController">
+	<div class="row" id="mainpage">
+
+		<div class="col-xl-3 col-md-6">
+			<div class="card mini-stat bg-info text-white"
+				onclick = "Alumni.showActivestudentReportsPage();">	<!-- data-ng-click="getApprovedStdData(ApprovedStdData.object.status);" -->
+				<div class="card-body">
+					<div class="float-left mini-stat-img mr-4">
+						<i class="fa fa-users"></i>
+					</div>
+					<h5 class="font-size-16 text-uppercase mt-0 text-white">Active</h5>
+					<h4 class="font-weight-medium font-size-24">{{ApprovedStdData.object.approved_student_count
+						|| 0}}</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-md-6">
+			<div class="card mini-stat bg-primary text-white"
+				onclick="Alumni.showRejectedstudentsReportsPage();">	<!-- data-ng-click="getRejectedStdData(RejectedStdData.object.status);" -->
+				<div class="card-body">
+					<div class="float-left mini-stat-img mr-4">
+						<i class="fa fa-users"></i>
+					</div>
+					<h5 class="font-size-16 text-uppercase mt-0 text-white">Rejected</h5>
+					<h4 class="font-weight-medium font-size-24">{{RejectedStdData.object.rejected_students_count
+						|| 0}}</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-md-6">
+			<div class="card mini-stat bg-info text-white"
+				onclick = "Alumni.showVerifiedStudentsReportsPage();">	<!-- data-ng-click="getVerifiedStdData(VerifiedStdData.object.status);" -->
+				<div class="card-body">
+					<div class="float-left mini-stat-img mr-4">
+						<i class="fa fa-users"></i>
+					</div>
+					<h5 class="font-size-16 text-uppercase mt-0 text-white">Verified</h5>
+					<h4 class="font-weight-medium font-size-24">{{VerifiedStdData.object.verified_student_count
+						|| 0}}</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-md-6">
+			<div class="card mini-stat bg-primary text-white" onclick = "Alumni.showUnverifiedstudentsReportsPage();">
+			<!-- data-ng-click="getnotVerifiedStdData(NonVerifiedStdData.object.status);" -->
+				<div class="card-body">
+					<div class="float-left mini-stat-img mr-4">
+						<i class="fa fa-users"></i>
+					</div>
+					<h5 class="font-size-16 text-uppercase mt-0 text-white">Un-Verified</h5>
+					<h4 class="font-weight-medium font-size-24">{{NonVerifiedStdData.object.nonverified_student_count
+						|| 0}}</h4>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xl-6 col-md-6">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h4>Data</h4>
+				</div>
+				<div class="card-body">
+					<div class="row justify-content-center">
+						<div class="col-sm-4 mx-auto">
+							<div class="text-center">
+								<h5 class="mb-0 font-size-20" id="total"></h5>
+								<p class="text-muted">Total</p>
+							</div>
+						</div>
+						<div class="col-sm-4 mx-auto">
+							<div class="text-center">
+								<h5 class="mb-0 font-size-20" id="active"></h5>
+								<p class="text-muted">Active</p>
+							</div>
+						</div>
+						<div class="col-sm-4 mx-auto">
+							<div class="text-center">
+								<h5 class="mb-0 font-size-20" id="rejected"></h5>
+								<p class="text-muted">Rejected</p>
+							</div>
+						</div>
+						<div class="col-sm-4 mx-auto">
+							<div class="text-center">
+								<h5 class="mb-0 font-size-20" id="verified"></h5>
+								<p class="text-muted">Verified</p>
+							</div>
+						</div>
+						<div class="col-sm-4 mx-auto">
+							<div class="text-center">
+								<h5 class="mb-0 font-size-20" id="unverified"></h5>
+								<p class="text-muted">Un-Verified</p>
+							</div>
+						</div>
+					</div>
+					<canvas id="myChart3"></canvas>
+				</div>    
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="row" id='approvedEmpDatadiv'>
+		<div class="col-md-12 col-sm-12">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h4 class="card-title">Approved Students</h4>
+				</div>
+				<div class="card-body table-responsive">
+					<table class="table table-bordered table-hover no-wrap">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Mobile</th>
+								<th>Registered Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="stdData in ApprovedStudentsData">
+								<td><a href=""
+									data-ng-click="getStudentsJobsData(stdData.user_id);">{{stdData.name}}</a></td>
+								<td>{{stdData.email}}</td>
+								<td>{{stdData.mobile_no}}</td>
+								<td>{{stdData.date_created}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+	<!-- <div class="row" id='approvedEmpJobs'>
+		<div class="col-md-12 col-sm-12">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h4 class="card-title">Applied Jobs</h4>
+				</div>
+				<div class="card-body table-responsive">
+					<table class="table table-bordered table-hover no-wrap">
+						<thead>
+							<tr>
+								<th>Job Title</th>
+								<th>Company Name</th>
+								<th>Location</th>
+								<th>Applied Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="JobData in StudentsJobsData">
+								<td>{{JobData.title}}</td>
+								<td>{{JobData.company_name}}</td>
+								<td>{{JobData.location}}</td>
+								<td>{{JobData.date_created}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12 col-sm-12">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h4 class="card-title">Applied Internships</h4>
+				</div>
+				<div class="card-body table-responsive">
+					<table class="table table-bordered table-hover no-wrap">
+						<thead>
+							<tr>
+								<th>Internship Title</th>
+								<th>Company Name</th>
+								<th>Location</th>
+								<th>Applied Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="InternData in StudentInternsData">
+								<td>{{InternData.title}}</td>
+								<td>{{InternData.company_name}}</td>
+								<td>{{InternData.location}}</td>
+								<td>{{InternData.date_created}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<!-- <div class="row" id='EmpDatadiv'>
+		<div class="col-md-12 col-sm-12">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h4 class="card-title">Data</h4>
+				</div>
+				<div class="card-body table-responsive">
+					<table class="table table-bordered table-hover no-wrap">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Mobile</th>
+								<th>Registered Date</th>
+							</tr>
+						</thead>   
+						<tbody>
+							<tr data-ng-repeat="stdData in StudentsData">
+								<td>{{stdData.name}}</td>
+								<td>{{stdData.email}}</td>
+								<td>{{stdData.mobile_no}}</td>
+								<td>{{stdData.date_created}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+</div>
+<!-- end row -->
+
+<script>
+	$("#mainpage").show();
+	$("#approveEmpDatadiv").hide();
+	$("#ApprovedEmpJobs").hide();
+	$("#EmpDatadiv").hide();
+	jQuery(document).ready(function() {
+
+		angular.bootstrap(jQuery("#StudentsReportsdiv"), [ 'StudentReports' ]);
+		a1 = Alumni.getSessionValue("a1");
+		a2 = Alumni.getSessionValue("a2");
+		a3 = Alumni.getSessionValue("a3");
+		a4 = Alumni.getSessionValue("a4");
+		a5 = Alumni.getSessionValue("a5");
+		document.getElementById("total").innerHTML = a1;
+		document.getElementById("active").innerHTML = a2;
+		document.getElementById("rejected").innerHTML = a3;
+		document.getElementById("verified").innerHTML = a4;
+		document.getElementById("unverified").innerHTML = a5;
+
+	});
+</script>

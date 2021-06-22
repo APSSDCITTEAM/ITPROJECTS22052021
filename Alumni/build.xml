@@ -12,10 +12,10 @@
 		<copy todir="C:\Tomcat\apache-tomcat-7.0.85\webapps" flatten="true">
 			<resources>
 				<file file="warfile/alumni.war" />                
-			</resources>                                      
+			</resources>                                   
 		</copy>        
-	</target>                                                         
+	</target>                                                            
 	<target name="clean" description="clean up">        
 		<delete dir="${dist}" />           
-	</target>                        
+	</target>                          
 </project>                                                                                                                                     

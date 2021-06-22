@@ -1,0 +1,139 @@
+<script src="/alumni/js/scripts/admin/EmployeeReports.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">Employee Reports</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Reports</a></li>
+				<li class="breadcrumb-item active">Employee Reports</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+
+<div id="StudentsReportsdiv"
+	data-ng-controller="EmployeeReportsController">
+	<div class="row" id="mainpage">  
+
+		<div class="col-xl-3 col-md-6">
+			<div class="card mini-stat bg-info text-white"
+				onclick = "Alumni.showActiveEmployeeReport();"><!-- data-ng-click="getApprovedEmpData(ApprovedEmpData.object.status);" -->
+				<div class="card-body">
+					<div class="float-left mini-stat-img mr-4">
+						<i class="fa fa-users"></i>
+					</div>
+					<h5 class="font-size-16 text-uppercase mt-0 text-white">Active</h5>
+					<h4 class="font-weight-medium font-size-24">{{ApprovedEmpData.object.approved_employee_count
+						|| 0}}</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-md-6">
+			<div class="card mini-stat bg-primary text-white"
+				onclick = "Alumni.showRejectedEmployeeReport();"><!-- data-ng-click="getRejectedEmpData(RejectedEmpData.object.status);" -->
+				<div class="card-body">
+					<div class="float-left mini-stat-img mr-4">
+						<i class="fa fa-users"></i>
+					</div>
+					<h5 class="font-size-16 text-uppercase mt-0 text-white">Rejected</h5>
+					<h4 class="font-weight-medium font-size-24">{{RejectedEmpData.object.rejected_employee_count
+						|| 0}}</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-md-6">
+			<div class="card mini-stat bg-info text-white"
+				onclick = "Alumni.showVerifiedEmployeeReport();"><!-- data-ng-click="getVerifiedEmpData(VerifiedEmpData.object.status);" -->
+				<div class="card-body">
+					<div class="float-left mini-stat-img mr-4">
+						<i class="fa fa-users"></i>
+					</div>
+					<h5 class="font-size-16 text-uppercase mt-0 text-white">Verified</h5>
+					<h4 class="font-weight-medium font-size-24">{{VerifiedEmpData.object.verified_employee_count
+						|| 0}}</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-md-6">
+			<div class="card mini-stat bg-primary text-white"
+				onclick = "Alumni.showUnVerifiedEmployeeReport();"><!-- data-ng-click="getnotVerifiedEmpData(NonVerifiedEmpData.object.status);" -->
+				<div class="card-body">
+					<div class="float-left mini-stat-img mr-4">
+						<i class="fa fa-users"></i>
+					</div>
+					<h5 class="font-size-16 text-uppercase mt-0 text-white">Un-Verified</h5>
+					<h4 class="font-weight-medium font-size-24">{{NonVerifiedEmpData.object.nonverified_employee_count
+						|| 0}}</h4>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xl-6 col-md-6">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h4>Data</h4>
+				</div>
+				<div class="card-body">
+					<div class="row justify-content-center">
+						<div class="col-sm-4 mx-auto">
+							<div class="text-center">
+								<h5 class="mb-0 font-size-20" id="total"></h5>
+								<p class="text-muted">Total</p>
+							</div>
+						</div>
+						<div class="col-sm-4 mx-auto">
+							<div class="text-center">
+								<h5 class="mb-0 font-size-20" id="active"></h5>
+								<p class="text-muted">Active</p>
+							</div>
+						</div>
+						<div class="col-sm-4 mx-auto">
+							<div class="text-center">
+								<h5 class="mb-0 font-size-20" id="rejected"></h5>
+								<p class="text-muted">Rejected</p>
+							</div>
+						</div>
+						<div class="col-sm-4 mx-auto">
+							<div class="text-center">
+								<h5 class="mb-0 font-size-20" id="verified"></h5>
+								<p class="text-muted">Verified</p>
+							</div>
+						</div>
+						<div class="col-sm-4 mx-auto">
+							<div class="text-center">
+								<h5 class="mb-0 font-size-20" id="unverified"></h5>
+								<p class="text-muted">Un-Verified</p>
+							</div>
+						</div>
+					</div>
+					<canvas id="myChart3"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- end row -->
+
+<script>
+	jQuery(document).ready(function() {
+		
+		angular.bootstrap(jQuery("#StudentsReportsdiv"), [ 'EmployeeReports' ]);
+		a1 = Alumni.getSessionValue("b1");
+		a2 = Alumni.getSessionValue("b2");
+		a3 = Alumni.getSessionValue("b3");
+		a4 = Alumni.getSessionValue("b4");
+		a5 = Alumni.getSessionValue("b5");
+		document.getElementById("total").innerHTML = a1;
+		document.getElementById("active").innerHTML = a2;
+		document.getElementById("rejected").innerHTML = a3;
+		document.getElementById("verified").innerHTML = a4;
+		document.getElementById("unverified").innerHTML = a5;
+
+	});
+</script>

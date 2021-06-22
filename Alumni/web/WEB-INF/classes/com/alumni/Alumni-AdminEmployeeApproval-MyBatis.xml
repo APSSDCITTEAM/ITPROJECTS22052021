@@ -20,7 +20,7 @@
 		concat(first_name,' ',last_name) as name,email as email,
 		mobile_no,
 		case when status = 1 then 'Mail Verified' end as
-		status_type
+		status_type,created_date::date as date_created,user_id
 		from
 		alumni.students where status = 1 and role_id = 5 order
 		by id
@@ -30,16 +30,25 @@
 		select id,
 		concat(first_name,' ',last_name) as name,email as email,
 		mobile_no,
-		case when status = 3 then 'Rejected' else 'Mail Not Verified' end as status_type
-		from
-		alumni.students where status = 3 and role_id = 5 order by id
+		case when status = 3 then 'Rejected' else 'Mail Not Verified' end as status_type,
+		created_date::date as date_created,user_id
+		from alumni.students where status = 3 and role_id = 5 order by id
+	</select>
+
+	<select id="getallunverifiedUsers" resultType="map">
+		select id,
+		concat(first_name,' ',last_name) as name,email as email,
+		mobile_no,
+		case when status = 3 then 'Rejected' else 'Mail Not Verified' end as status_type,
+		created_date::date as date_created,user_id
+		from alumni.students where status = 0 and role_id = 5 order by id
 	</select>
 
 	<select id="getallApprovedUsers" resultType="map">
 		select id,
 		concat(first_name,' ',last_name) as name,email as email,
 		mobile_no,
-		case when status = 2 then 'Approved' end as status_type
+		case when status = 2 then 'Approved' end as status_type,created_date::date as date_created,user_id
 		from
 		alumni.students where status = 2 and role_id = 5 order by id
 	</select>

@@ -16,7 +16,68 @@ public class PostjobModel extends BaseModel{
 	public String min_exp;
 	public String max_exp;
 	public String std_id;
+	public Date end_date;
+
+	public String experience; 
+	public String  hours ;
+	public String  number_of_students;
+	public String  technologies;
+	public String user_id;
+	public Date start_date;
 	
+	public String getExperience() {
+		return experience;
+	}
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+	public String getHours() {
+		return hours;
+	}
+	public void setHours(String hours) {
+		this.hours = hours;
+	}
+	public String getNumber_of_students() {
+		return number_of_students;
+	}
+	public void setNumber_of_students(String number_of_students) {
+		this.number_of_students = number_of_students;
+	}
+	public String getTechnologies() {
+		return technologies;
+	}
+	public void setTechnologies(String technologies) {
+		this.technologies = technologies;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public Date getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
+	public Timestamp getDate_added() {
+		return date_added;
+	}
+	public void setDate_added(Timestamp date_added) {
+		this.date_added = date_added;
+	}
+	public Timestamp  date_added;
+	
+	
+	
+	
+	public Date getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
+	}
 	public String getStd_id() {
 		return std_id;
 	}

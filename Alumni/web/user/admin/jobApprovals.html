@@ -1,0 +1,73 @@
+<script src="/alumni/js/scripts/admin/JobApprovals.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">Job Approvals</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Jobs</a></li>
+				<li class="breadcrumb-item active">Job Approvals</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+
+<div class="row clearfix" id="jobApprovalsDiv"
+	data-ng-controller="JobApprovalsController">
+	<div class="col-md-12 col-sm-12 mx-auto">
+		<div class="card border border-success">
+			<div class="card-header bg-primary">
+				<h4 class="text-white text-center">Job Approvals</h4>
+			</div>
+			<div class=" card-body table-responsive">
+				<table class="table table-bordered table-hover nowrap">
+					<thead>
+						<tr>
+							<th>S.No</th>
+							<th>Title</th>
+							<th>Company Name</th>
+							<th>Location</th>
+							<th>Contact Email</th>
+							<th>End Date</th>
+							<th>Created Date</th>
+							<th>Status</th>
+							<th>Approve</th>
+							<th>Reject</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-ng-repeat="Submitted in SubmittedJobs">
+							<td>{{$index+1}}</td>
+							<td>{{Submitted.title}}</td>
+							<td>{{Submitted.company_name}}</td>
+							<td>{{Submitted.location}}</td>
+							<td>{{Submitted.contact_email}}</td>
+							<td>{{Submitted.end_date | date : 'dd-MM-yyyy'}}</td>
+							<td>{{Submitted.created_date | date: 'dd-MM-yyyy'}}</td>
+							<td>{{Submitted.status_type}}</td>
+							<td><button class="btn btn-primary btn-mini"
+									data-ng-click="ApproveJob(Submitted);">Approve</button></td>
+							<td><button class="btn btn-danger btn-mini"
+									data-ng-click="RejectJob(Submitted);">Reject</button></td>
+						</tr>
+
+						<tr id="emptyrow" style="display: none">
+							<td colspan="10" class="text-center">No Data Available</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+    jQuery(document).ready(function() {
+        angular.bootstrap(jQuery("#jobApprovalsDiv"), ['JobApprovals']);
+    });
+</script>

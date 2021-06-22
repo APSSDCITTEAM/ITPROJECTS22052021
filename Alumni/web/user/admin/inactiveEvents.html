@@ -1,0 +1,67 @@
+<script src="/alumni/js/scripts/admin/inactiveEvents.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+    <div class="col-sm-6">
+        <div class="page-title-box">
+            <h4 class="font-size-18">In-Active Events</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Events</a></li>
+                <li class="breadcrumb-item active">In-Active Events</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row clearfix" id="EventActionDiv" data-ng-controller="EventActionController">
+    <div class="col-md-12 col-sm-12 mx-auto">
+        <div class="card border border-primary">
+            <div class="card-header bg-primary text-center text-white">
+                <h4 class="card-title text-centernter">In-Active Events</h4>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-bordered table-hover nowrap">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Event Title</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Location</th>
+                            <th>Organizer</th>
+                            <th>Created Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="openEvent in allClosedEvents">
+                            <td>{{$index+1}}</td>
+                            <td>{{openEvent.event_title}}</td>
+                            <td>{{openEvent.start_date | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{openEvent.end_date | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{openEvent.location}}</td>
+                            <td>{{openEvent.organizer}}</td>
+                            <td>{{openEvent.created_date | date : 'dd-MM-yyyy'}}
+                           	<td>{{openEvent.status_type}}</td>
+                        </tr>
+                        
+                         <tr id="emptyrow" style="display: none">
+                            <td colspan="8" class="text-center">No Data Available</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    jQuery(document).ready(function() {
+        angular.bootstrap(jQuery("#EventActionDiv"), ['EventAction']);
+    });
+</script>

@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.alumni.Model.AlumniRegisterModel;
 import com.alumni.Model.EventsModel;
+import com.alumni.Model.ViewJobModel;
 
 import software.amazon.ion.Decimal;
 
@@ -91,6 +93,37 @@ public class EventsDAO extends BaseDAO {
 		sqlSession.update("Event.changeEventStatus",id);
 		sqlSession.close();
 	}
+	
+	/* change event status by event by end date */
+	public void UpdateEventStatusbyDate(EventsModel event)
+	{
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("p", event);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("Event.UpdateEventStatusbyDate",params);
+		sqlSession.close();
+	}
+	
+	/* apply events */
+	public Integer checkEvent(EventsModel event) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("p", event);
+		Integer userStatus = sqlSessionTemplate.selectOne("Event.checkEvent", map);
+		
+		System.out.println("88888888888888888888888888888");
+		System.out.println(userStatus);
+		System.out.println("999999999999999999999999999999");
+		return userStatus;
+	}
+	
+	public void InsertApplyEvent(EventsModel event) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("p", event);
+
+		sqlSessionTemplate.insert("Event.InsertApplyEvent", map);
+	}
+	
+	
 	
 
 }

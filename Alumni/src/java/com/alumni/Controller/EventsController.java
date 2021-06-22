@@ -1,5 +1,8 @@
 package com.alumni.Controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,8 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.andromeda.commons.model.Response;
 import com.alumni.Service.EventsService;
+import com.alumni.Model.AlumniRegisterModel;
 // Local
 import com.alumni.Model.EventsModel;
+import com.alumni.Model.ViewJobModel;
 
 @RestController
 @RequestMapping("/event")
@@ -90,6 +95,22 @@ public class EventsController {
 	public Response changeEventStatus(@RequestBody Integer id)
 	{
 		return eventsService.changeEventStatus(id);
+	}
+	
+	/* change event status by end date */
+	@ResponseBody
+	@RequestMapping(value = "UpdateEventStatusbyDate", method = { RequestMethod.POST })
+	public Response UpdateEventStatusbyDate(@RequestBody EventsModel event)
+	{
+		return eventsService.UpdateEventStatusbyDate(event);
+	}
+	
+	/* apply event */
+	@ResponseBody
+	@RequestMapping(value = "/ApplyEvent", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response ApplyEvent(@RequestBody EventsModel event)
+			throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		return eventsService.ApplyEvent(event);
 	}
 	
 	

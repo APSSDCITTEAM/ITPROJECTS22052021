@@ -1,5 +1,8 @@
 package com.alumni.Controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -118,40 +121,112 @@ public class ViewJobController {
 	}
 	
 	
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "Applyjob", method = { RequestMethod.POST }) public
+	 * Response Applyjob(@RequestBody AlumniRegisterModel job) { return
+	 * viewjobService.Applyjob(job); }
+	 */
+	
 	@ResponseBody
-	@RequestMapping(value = "Applyjob", method = { RequestMethod.POST })
+	@RequestMapping(value = "/Applyjob", method = { RequestMethod.POST, RequestMethod.GET })
 	public Response Applyjob(@RequestBody AlumniRegisterModel job)
-	{
-		return viewjobService.Applyjob(job);       
+			throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		return viewjobService.Applyjob(job);
 	}
 
 	
 	
-	@ResponseBody
-	@RequestMapping(value = "ApplyInternship", method = { RequestMethod.POST })
-	public Response ApplyInternship(@RequestBody AlumniRegisterModel job)
-	{
-		return viewjobService.ApplyInternship(job);       
-	}
-	
-	/* .................................. Interns Applicants ............................................ */
-	
 	/*
 	 * @ResponseBody
 	 * 
-	 * @RequestMapping(value = "InternshipApplicants", method = {
-	 * RequestMethod.POST, RequestMethod.GET }) public Response
-	 * InternshipApplicants(@RequestBody ViewJobModel job) { return
-	 * viewjobService.InternshipApplicants(job); }
+	 * @RequestMapping(value = "ApplyInternship", method = { RequestMethod.POST })
+	 * public Response ApplyInternship(@RequestBody AlumniRegisterModel job) {
+	 * return viewjobService.ApplyInternship(job); }
 	 */
 	
+	@ResponseBody
+	@RequestMapping(value = "/ApplyInternship", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response ApplyInternship(@RequestBody AlumniRegisterModel job)
+			throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		return viewjobService.ApplyInternship(job);
+	}
+	
+	
+	/* .................................. Interns Applicants ............................................ */
 	@ResponseBody
 	@RequestMapping(value = { "/InternshipApplicants" }, method = { RequestMethod.POST, RequestMethod.GET })
 	public Response InternshipApplicants(@RequestBody Integer id) {
 		return viewjobService.InternshipApplicants(id);
 	}
+	
+	/* .................................. Interns Applicants ............................................ */
+	@ResponseBody
+	@RequestMapping(value = { "/JobApplicants" }, method = { RequestMethod.POST, RequestMethod.GET })
+	public Response JobApplicants(@RequestBody Integer id) {
+		return viewjobService.JobApplicants(id);
+	}
+	
+	
+	/* ............................... update job status based on end date ................................ */
+	@ResponseBody
+	@RequestMapping(value = "UpdateJobStatusbyDate", method = { RequestMethod.POST })
+	public Response UpdateJobStatusbyDate(@RequestBody ViewJobModel event)
+	{
+		return viewjobService.UpdateJobStatusbyDate(event);
+	}
+	
+	/* ............................... update job status based on end date ................................ */
+	@ResponseBody
+	@RequestMapping(value = "UpdateInternStatusbyDate", method = { RequestMethod.POST })
+	public Response UpdateInternStatusbyDate(@RequestBody ViewJobModel event)
+	{
+		return viewjobService.UpdateInternStatusbyDate(event);
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "getallvolunteerships", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getallvolunteerships(@RequestBody String std_id)
+	{
+		return viewjobService.getallvolunteerships(std_id);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getmyvolunteerships", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getmyvolunteerships(@RequestBody String std_id)
+	{
+		return viewjobService.getmyvolunteerships(std_id);
+	}
+	@ResponseBody
+	@RequestMapping(value = "getallvolunteershipshome", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getallvolunteershipshome()
+	{
+		return viewjobService.getallvolunteershipshome();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = { "/VolunteershipApplicants" }, method = { RequestMethod.POST, RequestMethod.GET })
+	public Response VolunteershipApplicants(@RequestBody Integer id) {
+		return viewjobService.VolunteershipApplicants(id);
+	}
+	
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "Applyvolunteer", method = { RequestMethod.POST })
+	 * public Response Applyvolunteer(@RequestBody AlumniRegisterModel job) { return
+	 * viewjobService.Applyvolunteer(job); }
+	 */
 
-
+	@ResponseBody
+	@RequestMapping(value = "/Applyvolunteer", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response Applyvolunteer(@RequestBody AlumniRegisterModel job)
+			throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		return viewjobService.Applyvolunteer(job);
+	}
+	
 		
 
 }

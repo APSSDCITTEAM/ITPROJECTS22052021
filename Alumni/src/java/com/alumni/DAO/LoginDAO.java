@@ -138,5 +138,24 @@ public class LoginDAO extends BaseDAO {
 		sqlSession.update("Login.ChangePassword", params);
 		sqlSession.close();
 	}
+	
+	/* match password */
+	public Integer checkPassword(Login login) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("p", login);
+		Integer userStatus = sqlSessionTemplate.selectOne("Login.checkPassword", map);
+		return userStatus;
+	}
+	
+	/*
+	 * public Login getPasswordDetails(Login login) { Map<String, Object> map = new
+	 * HashMap<String, Object>(); map.put("password", login.getPassword()); Login
+	 * details = sqlSessionTemplate.selectOne("Login.getPasswordDetails", map);
+	 * return details;
+	 * 
+	 * }
+	 */
+	
+	
 
 }

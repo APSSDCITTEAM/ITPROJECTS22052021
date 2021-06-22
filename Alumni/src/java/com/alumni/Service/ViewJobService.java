@@ -130,29 +130,53 @@ public class ViewJobService {
 
 	
 	
+	/*
+	 * public Response Applyjob(AlumniRegisterModel alumniregisterModel) {
+	 * response.setSuccessful(false); viewjobDAO.Applyjob(alumniregisterModel);
+	 * response.setSuccessful(true);
+	 * response.setResponseObject(alumniregisterModel); return response; }
+	 */
+	
+	
 	public Response Applyjob(AlumniRegisterModel alumniregisterModel) {
 		response.setSuccessful(false);
-		viewjobDAO.Applyjob(alumniregisterModel);
-		response.setSuccessful(true);
-		response.setResponseObject(alumniregisterModel);
+		Integer jobStatus = viewjobDAO.checkJob(alumniregisterModel);
+
+		if (jobStatus == 0) {
+			viewjobDAO.InsertApplyjob(alumniregisterModel);
+			response.setSuccessful(false);
+			response.setResponseObject(alumniregisterModel);
+		} else if (jobStatus == 1) {
+			response.setSuccessful(true);
+		}
 		return response;
 	}
-
+	
+	
+	/*
+	 * public Response ApplyInternship(AlumniRegisterModel alumniregisterModel) {
+	 * response.setSuccessful(false);
+	 * viewjobDAO.ApplyInternship(alumniregisterModel);
+	 * response.setSuccessful(true);
+	 * response.setResponseObject(alumniregisterModel); return response; }
+	 */
+	
 	
 	public Response ApplyInternship(AlumniRegisterModel alumniregisterModel) {
 		response.setSuccessful(false);
-		viewjobDAO.ApplyInternship(alumniregisterModel);
-		response.setSuccessful(true);
-		response.setResponseObject(alumniregisterModel);
+		Integer internStatus = viewjobDAO.checkInternship(alumniregisterModel);
+
+		if (internStatus == 0) {
+			viewjobDAO.InsertApplyInternship(alumniregisterModel);
+			response.setSuccessful(false);
+			response.setResponseObject(alumniregisterModel);
+		} else if (internStatus == 1) {
+			response.setSuccessful(true);
+		}
 		return response;
 	}
-
-	/*
-	 * public Response InternshipApplicants(ViewJobModel job) {
-	 * response.setSuccessful(false); List<Map<String, Object>> list =
-	 * viewjobDAO.InternshipApplicants(job); response.setSuccessful(true);
-	 * response.setResponseObject(list); return response; }
-	 */
+	
+	
 
 	public Response InternshipApplicants(Integer id) {
 		response.setSuccessful(false);
@@ -161,6 +185,95 @@ public class ViewJobService {
 		response.setResponseObject(list);
 		return response;
 	}
+	
+	
+	public Response JobApplicants(Integer id) {
+		response.setSuccessful(false);
+		Map<String, Object> list = viewjobDAO.JobApplicants(id);
+		response.setSuccessful(true);
+		response.setResponseObject(list);
+		return response;
+	}
+	
+	
+	
+	/* ..................................... update job status based on end date ............................. */
+	public Response UpdateJobStatusbyDate(ViewJobModel finance)
+	{
+		response.setSuccessful(false);
+		viewjobDAO.UpdateJobStatusbyDate(finance);
+		response.setSuccessful(true);
+		response.setResponseObject(finance);
+		return response;
+	}
+	
+	/* ..................................... update job status based on end date ............................. */
+	public Response UpdateInternStatusbyDate(ViewJobModel finance)
+	{
+		response.setSuccessful(false);
+		viewjobDAO.UpdateInternStatusbyDate(finance);
+		response.setSuccessful(true);
+		response.setResponseObject(finance);
+		return response;
+	}
+	
+	public Response getallvolunteerships(String std_id) {
+		response.setSuccessful(false);
+		List<ViewJobModel> userdetails = viewjobDAO.getallvolunteerships(std_id);
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	public Response getmyvolunteerships(String std_id) {
+		response.setSuccessful(false);
+		List<ViewJobModel> userdetails = viewjobDAO.getmyvolunteerships(std_id);
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	public Response getallvolunteershipshome() {
+		response.setSuccessful(false);
+		List<ViewJobModel> userdetails = viewjobDAO.getallvolunteershipshome();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+
+	/*
+	 * public Response Applyvolunteer(AlumniRegisterModel alumniregisterModel) {
+	 * response.setSuccessful(false);
+	 * viewjobDAO.Applyvolunteer(alumniregisterModel); response.setSuccessful(true);
+	 * response.setResponseObject(alumniregisterModel); return response; }
+	 */
+	
+	public Response Applyvolunteer(AlumniRegisterModel alumniregisterModel) {
+		response.setSuccessful(false);
+		Integer internStatus = viewjobDAO.checkVolunteer(alumniregisterModel);
+
+		if (internStatus == 0) {
+			viewjobDAO.InsertApplyvolunteer(alumniregisterModel);
+			response.setSuccessful(false);
+			response.setResponseObject(alumniregisterModel);
+		} else if (internStatus == 1) {
+			response.setSuccessful(true);
+		}
+		return response;
+	}
+	
+	
+	
+	public Response VolunteershipApplicants(Integer id) {
+		response.setSuccessful(false);
+		Map<String, Object> list = viewjobDAO.VolunteershipApplicants(id);
+		response.setSuccessful(true);
+		response.setResponseObject(list);
+		return response;
+	}
+
+
+
 	
 
 }

@@ -25,7 +25,7 @@ public class PostjobController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "CreateJob", produces = { "application/json", "application/xml" },  method = { RequestMethod.POST })
+	@RequestMapping(value = "CreateJob", method = { RequestMethod.POST })
 	public Response CreateJob(@RequestBody PostjobModel job)
 	{
 		return postjobService.CreateJob(job);       
@@ -38,7 +38,14 @@ public class PostjobController {
 		return postjobService.CreateInternship(job);       
 	}
 	
-	
-		
+	/* produces = { "application/json", "application/xml" }, */
+
+	@ResponseBody
+	@RequestMapping(value = "CreateVolunteership", produces = { "application/json", "application/xml" },  method = { RequestMethod.POST })
+	public Response CreateVolunteership(@RequestBody PostjobModel job)
+	{
+		return postjobService.CreateVolunteership(job);       
+	}	
+
 
 }

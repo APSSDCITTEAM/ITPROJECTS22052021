@@ -4,45 +4,44 @@
 
 	<insert id="CreateEvent" parameterType="map">
 		INSERT INTO
-		alumni.events(event_title,start_date,end_date,location,organizer,organizer_designation,description,status,user_id)
+		alumni.events(event_title,start_date,end_date,location,organizer,organizer_designation,description,status,
+		user_id,event_type,organizer_contact_number)
 		VALUES
 		(#{p.event_title},#{p.start_date},#{p.end_date},#{p.location},#{p.organizer},#{p.organizer_designation},#{p.description},
-		true,#{p.std_id});
+		true,#{p.std_id},#{p.event_type},#{p.organizer_contact_number});
 	</insert>
 
 	<select id="getallEvents" resultType="map">
 		select distinct
-		id,event_title,start_date,end_date,location,organizer,organizer_designation,description,status,
-		created_date :: date as created_date from alumni.events where status =
-		true order by id;
+		id,event_title,start_date,end_date,location,organizer,organizer_designation,description,status,organizer_contact_number,
+		created_date :: date as created_date,case when event_type = 0 then 'Workshop' when event_type = 1 then 'Guest Lecture' 
+		when event_type = 2 then 'Hackathon' end as eventtype from alumni.events 
+		where end_date >= current_timestamp::date and status = true order by id;
 	</select>
 
 	<!-- Events View page data -->
 	<select id="vieweventData" resultType="EventsModel">
-		select
-		id,event_title,start_date,end_date,location,organizer,organizer_designation,description,created_date::date
-		as created_date,
-		case when status = true then 'Open' when status =
-		false then 'Closed' end as status_type from alumni.events
-		where id =
-		#{id};
+	select id,event_title,start_date,end_date,location,organizer,organizer_designation,description,
+		created_date::date as created_date,case when status = true then 'Open' when status = false then 'Closed' end as status_type, 
+		case when event_type = 0 then 'Workshop' when event_type = 1 then 'Guest Lecture' 
+		when event_type = 2 then 'Hackathon' end as eventtype,organizer_contact_number from alumni.events where id = #{id};
 	</select>
 
 	<!-- view pop up event data -->
 	<select id="getEventPopdata" resultType="EventsModel">
 		SELECT id,event_title as event_title,start_date as start_date,end_date as
-		end_date,location as location,organizer as organizer,
+		end_date,location as location,organizer as organizer,organizer_contact_number,
 		organizer_designation as organizer_designation,description as
-		description from alumni.events WHERE id = #{id};
+		description,event_type as events_type from alumni.events WHERE id = #{id};
 	</select>
 
 	<!-- update event data -->
 	<update id="UpdateEventData" parameterType="map">
 		update alumni.events
 		SET event_title = #{p.event_title},start_date =
-		#{p.start_date},end_date = #{p.end_date},
+		#{p.start_date},end_date = #{p.end_date},organizer_contact_number = #{p.organizer_contact_number},
 		location = #{p.location},organizer = #{p.organizer},organizer_designation =
-		#{p.organizer_designation},description = #{p.description}
+		#{p.organizer_designation},description = #{p.description},event_type = #{p.events_type}
 		where id = #{p.id}
 	</update>
 
@@ -55,25 +54,52 @@
 	<!-- ....................................... change event status ................................... -->
 
 	<select id="getallOpenEvents" resultType="map">
-		select distinct
+		<!-- select distinct
 		id,event_title,start_date,end_date,location,organizer,organizer_designation,description,
 		case when status = true then 'Open' end status_type,created_date ::
 		date as created_date from alumni.events
-		where status = true order by id;
+		where status = true order by id; -->
+		
+	select a.id,event_title,location,start_date,end_date,organizer,organizer_designation,created_date :: date as created_date,eventtype,
+		created_by,status_type,a.organizer_contact_number from
+		(select distinct id,event_title,location,organizer_contact_number,start_date,end_date,organizer,organizer_designation,created_date,
+		(case when event_type = 0 then 'Workshops' when event_type = 1 then 'Guest Lecture' when 
+		event_type = 2 then 'Hackathon' end) as eventtype,user_id,status,(case when status = 'TRUE' then 'Open' 
+		when status = 'FALSE' then 'Closed' end) as status_type from alumni.events) a inner join
+		(select concat(first_name,' ',last_name) as created_by,user_id from alumni.students) b on (b.user_id = a.user_id)
+		where a.status = 'TRUE' order by a.id;
+		
 	</select>
 
 	<select id="getallClosedEvents" resultType="map">
-		select distinct
-		id,event_title,start_date,end_date,location,organizer,organizer_designation,description,
-		case when status = false then 'closed' end status_type,created_date ::
-		date as created_date from alumni.events
-		where status = false order by id;
+		select event_title,location,start_date,end_date,organizer,organizer_designation,created_date :: date as created_date,eventtype,
+		created_by,status_type,a.organizer_contact_number from
+		(select distinct id,event_title,location,start_date,end_date,organizer,organizer_designation,created_date,
+		(case when event_type = 0 then 'Workshops' when event_type = 1 then 'Guest Lecture' when 
+		event_type = 2 then 'Hackathon' end) as eventtype,user_id,status,organizer_contact_number,(case when status = 'TRUE' then 'Open' 
+		when status = 'FALSE' then 'Closed' end) as status_type from alumni.events) a inner join
+		(select concat(first_name,' ',last_name) as created_by,user_id from alumni.students) b on (b.user_id = a.user_id)
+		where a.status = 'False' order by a.id;
 	</select>
 
 	<update id="changeEventStatus" parameterType="java.lang.Integer">
 		update
 		alumni.events SET status = false,closed_date = CURRENT_TIMESTAMP where
 		id = #{p.id}
+	</update>
+	
+	<select resultType="java.lang.Integer" parameterType="map" id="checkEvent">
+		select count(*) as count from alumni.applied_events where std_id = #{p.std_id} and event_id = #{p.id}
+	</select>
+	
+	<insert id="InsertApplyEvent" parameterType="map">    
+		INSERT INTO alumni.applied_events(std_id,date_added,event_id)
+		VALUES (#{p.std_id},CURRENT_TIMESTAMP,#{p.id});
+	</insert>
+	
+	<!-- update status by end date -->
+	<update id="UpdateEventStatusbyDate" parameterType="map">
+		update alumni.events set status = 'false' where current_timestamp :: date > end_date;
 	</update>
 
 </mapper>

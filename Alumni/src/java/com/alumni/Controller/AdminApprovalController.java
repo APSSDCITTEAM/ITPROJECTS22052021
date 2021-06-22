@@ -40,6 +40,13 @@ public class AdminApprovalController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "getinActiveJobs", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getinActiveJobs()
+	{
+		return adminApprovalService.getinActiveJobs();
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "getallApprovedUsers", method = { RequestMethod.POST, RequestMethod.GET })
 	public Response getallApprovedUsers()
 	{
@@ -51,6 +58,13 @@ public class AdminApprovalController {
 	public Response getallRejectedUsers()
 	{
 		return adminApprovalService.getallRejectedUsers();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getallunverifiedUsers", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getallunverifiedUsers()
+	{
+		return adminApprovalService.getallunverifiedUsers();
 	}
 	
 	

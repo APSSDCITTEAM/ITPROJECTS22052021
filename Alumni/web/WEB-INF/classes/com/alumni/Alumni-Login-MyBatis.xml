@@ -4,16 +4,17 @@
 
 	<select resultType="java.lang.Integer" parameterType="map"
 		id="checkUser">
-		select count(*) from alumni.users where (username = #{p.username})
-		AND
-		password = md5(#{p.password})
+		SELECT count(*) FROM alumni.users u inner join alumni.students s on
+		u.user_id = s.user_id where s.status = 2 and u.username =
+		#{p.username} and u.password = md5(#{p.password})
+
 	</select>	<!-- OR phone = #{p.username} -->
 
 	<select resultType="java.lang.Integer" parameterType="map"
 		id="isUserLoggedIn">
-		select count(*) from alumni.users where (username = #{p.username})
-		AND
-		password = #{p.password}
+		SELECT count(*) FROM alumni.users u inner join alumni.students s on
+		u.user_id = s.user_id where s.status = 2 and u.username =
+		#{p.username} and u.password = #{p.password}
 	</select>
 
 	<select parameterType="map" id="getRole"
@@ -133,7 +134,9 @@
 		SET password = md5(#{p.password}) where user_id = #{p.user_id}
 	</update>
 
-
+	<select id="checkPassword" resultType="java.lang.Integer" parameterType="map">
+		SELECT count(*) as count FROM alumni.users where user_id = #{p.user_id} and password = md5(#{p.password})
+	</select>
 
 
 </mapper>                                        

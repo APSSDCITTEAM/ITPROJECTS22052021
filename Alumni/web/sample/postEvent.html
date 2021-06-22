@@ -1,0 +1,114 @@
+<script src="/alumni/js/scripts/admin/CreateEvent.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">Create an Event</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Events</a></li>
+				<li class="breadcrumb-item active">Create an Event</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+
+<div class="row clearfix" id="EventCreationDiv"
+	data-ng-controller="EventCreationController">
+	<div class="col-md-8 col-sm-12 mx-auto">
+		<div class="card card-body">
+			<h4 class="text-primary text-center">Create an Event</h4>
+			<hr>
+			<div class="row">
+				<div class="col-md-6 col-sm-12 mx-auto">
+					<div class="form-group">
+						<label for="title" class="form-label">Event Title</label> <input
+							class="form-control" type="text" placeholder="Title" id="title"
+							data-ng-model="data.object.title">
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12 mx-auto">
+					<div class="form-group">
+						<label for="event-type" class="form-label">Event Type</label> <select
+							class="form-control" id="event-type"
+							data-ng-model="data.object.event_type">
+							<option value="0">Workshops</option>
+							<option value="1">Guest Lectures</option>
+							<option value="2">Hackathon</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12 mx-auto">
+					<div class="form-group">
+						<label for="Organizer-Name" class="form-label">Organizer
+							Name</label> <input class="form-control" type="text"
+							placeholder="Organizer Name" id="Organizer-Name"
+							data-ng-model="data.object.organizer">
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12 mx-auto">
+					<div class="form-group">
+						<label for="Organizer-Designation" class="form-label">Organizer
+							Designation</label> <input class="form-control" type="text"
+							placeholder="Organizer Name" id="Organizer-Designation"
+							data-ng-model="data.object.organizer_designation">
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12 mx-auto">
+					<div class="form-group">
+						<label for="Organizer-Contact-Number" class="form-label">Organizer
+							Contact Number</label> <input class="form-control" type="text"
+							placeholder="Organizer Contact Number"
+							id="Organizer-Contact-Number"
+							data-ng-model="data.object.organizer_contact_number">
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12 mx-auto">
+					<div class="form-group">
+						<label for="Event-Location" class="form-label">Event
+							Location</label> <input class="form-control" type="text"
+							placeholder="Event Location" id="Event-Location"
+							data-ng-model="data.object.location">
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+						<label for="start-date" class="form-label">Start Date</label> <input
+							class="form-control" type="date" id="start-date"
+							data-ng-model="data.object.start_date">
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<div class="form-group">
+						<label for="close-date" class="form-label">Close Date</label> <input
+							class="form-control" type="date" id="close-date"
+							data-ng-model="data.object.end_date">
+					</div>
+				</div>
+				<div class="col-md-12 col-sm-12">
+					<div class="form-group">
+						<label for="event-description" class="form-label">Description</label>
+						<textarea class="form-control" id="event-description" rows="5"
+							placeholder="Event Description ..........."
+							data-ng-model="data.object.description"></textarea>
+					</div>
+				</div>
+				<div class="col-md-12 col-sm-12">
+					<button type="button" class="btn btn-success float-right"
+						data-ng-click="CreateEvent(data.object);">
+						<i class="ti-save-alt mr-2"></i>Upload
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#EventCreationDiv"), [ 'CreateEvent' ]);
+	});
+</script>

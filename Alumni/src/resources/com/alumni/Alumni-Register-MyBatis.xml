@@ -23,11 +23,12 @@
 	<insert id="InsertAlumniEmployee" parameterType="map">
 		INSERT INTO
 		alumni.students(username, first_name, last_name,
-		password,email,mobile_no,status,organization_name,user_id,employee_id,role_id,token,mail_verify)
+		password,email,mobile_no,status,organization_name,user_id,employee_id,role_id,token,mail_verify,mentorship)
 		VALUES
 		(#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},0,
 		#{p.organization_name},('AE' || '' ||lpad(CAST( #{id} AS character
-		varying ),4,'0')),#{p.employee_id},5,#{p.token},false);
+		varying
+		),4,'0')),#{p.employee_id},5,#{p.token},false,#{p.mentorship});
 	</insert>
 
 	<insert id="InsertAlumniUserEmployee" parameterType="map">
@@ -48,7 +49,7 @@
 
 	<select id="getAllAlumnisData" resultType="AlumniRegister">
 		SELECT id,username,
-		first_name, last_name, password,email,mobile_no, photo,status from
+		first_name, last_name, password,email,mobile_no, ,status from
 		alumni.students order by id;
 	</select>
 
@@ -56,10 +57,10 @@
 	<!-- ....................................... role assaign ............................... -->
 	<insert id="InsertAlumniAdmin" parameterType="map">
 		INSERT INTO
-		alumni.students(username, first_name, last_name,
+		alumni.students(role_id,username, first_name, last_name,
 		password,email,mobile_no,status,user_id)
 		VALUES
-		(#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},2,
+		(1,#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},2,
 		('AD' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
 	</insert>
 
@@ -73,10 +74,10 @@
 
 	<insert id="InsertAlumniMdCEO" parameterType="map">
 		INSERT INTO
-		alumni.students(username, first_name, last_name,
+		alumni.students(role_id,username, first_name, last_name,
 		password,email,mobile_no,status,user_id)
 		VALUES
-		(#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},2,
+		(2,#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},2,
 		('MDCEO' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
 	</insert>
 
@@ -90,10 +91,10 @@
 
 	<insert id="InsertAlumniED" parameterType="map">
 		INSERT INTO
-		alumni.students(username, first_name, last_name,
+		alumni.students(role_id,username, first_name, last_name,
 		password,email,mobile_no,status,user_id)
 		VALUES
-		(#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},2,
+		(3,#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},2,
 		('ED' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
 	</insert>
 
@@ -107,10 +108,10 @@
 
 	<insert id="InsertAlumniCGM" parameterType="map">
 		INSERT INTO
-		alumni.students(username, first_name, last_name,
+		alumni.students(role_id,username, first_name, last_name,
 		password,email,mobile_no,status,user_id)
 		VALUES
-		(#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},2,
+		(4,#{p.username},#{p.first_name},#{p.last_name},md5(#{p.password}),#{p.email},#{p.mobile_no},4,
 		('CGM' || '' ||lpad(CAST( #{id} AS character varying ),4,'0')));
 	</insert>
 
@@ -127,8 +128,97 @@
 
 	<update id="verifyToken" parameterType="java.lang.Integer">
 		update alumni.students
-		set mail_verify = true, status = 1 where token=#{token} and mail_verify = false;
+		set mail_verify = true, status = 1 where token=#{token} and
+		mail_verify = false;
 	</update>
+
+	<select id="getEmail" parameterType="java.lang.Integer"
+		resultType="java.lang.String">
+		select email from
+		alumni.students where
+		token=#{token} and
+		mail_verify = true ;
+	</select>
+
+	<select id="getPassword" parameterType="java.lang.Integer"
+		resultType="java.lang.String">
+		select mobile_no :: Character Varying from
+		alumni.students
+		where
+		token=#{token}
+		and mail_verify = true ;
+	</select>
+	
+	<select id="getEmailbyId" parameterType="java.lang.Integer"
+		resultType="java.lang.String">
+		select email from
+		alumni.students where
+		id=#{id};
+	</select>
+
+	<select id="getPasswordbyId" parameterType="java.lang.Integer"
+		resultType="java.lang.String">
+		select mobile_no :: Character Varying from
+		alumni.students
+		where
+		id=#{id};
+	</select>
+
+	<insert id="AddvolunteershipRegister" parameterType="map">
+		INSERT INTO
+		alumni.students(user_id,first_name, last_name,
+		email,mobile_no,college_code,
+		qualification,branch,passed_out_year,district,other_qualifiction,roll_number,technologies_id
+		)
+		VALUES
+		(#{p.std_id},#{p.first_name},#{p.last_name},#{p.email},#{p.mobile_no},#{p.college_code},
+		#{p.qualification},#{p.branch},#{p.passed_out_year},
+		#{p.district},#{p.other_qualifiction},#{p.roll_number},#{p.id});
+	</insert>
+
+	<select resultType="java.lang.Integer" parameterType="map"
+		id="checkMail">
+		select count(*) as mail_count from alumni.students where email =
+		#{p.email};
+	</select>
+
+	<select resultType="java.lang.Integer" parameterType="map"
+		id="checkMobile">
+		select count(*) as mail_count from alumni.students where mobile_no
+		=
+		#{p.mobile_no};
+	</select>
+
+
+	<!-- Roles -->
+	<insert id="AddRole" parameterType="map">
+		INSERT INTO
+		alumni.roles(role_name) VALUES (#{p.role_name});
+	</insert>
+
+	<!-- getting all roles -->
+	<select id="getallroles" resultType="AlumniRegister">
+		select id as
+		role_id,role_name from alumni.roles order by id;
+	</select>
+
+	<!-- getting role data in pop up -->
+	<select id="getRoleData" resultType="AlumniRegister">
+		SELECT id,role_name,role_id
+		from alumni.roles WHERE id = #{role_id};
+	</select>
+
+	<!-- update role data -->
+	<update id="updateRole" parameterType="map">
+		update alumni.roles SET
+		role_name = #{p.role_name} where id = #{p.id}
+	</update>
+
+	<!-- deleting role -->
+	<delete id="DeleteRoleData" parameterType="java.lang.Integer">
+		Delete from
+		alumni.roles where id = #{role_id};
+	</delete>
 
 
 </mapper>

@@ -33,5 +33,13 @@ public class PostjobDAO {
 		sqlSession.insert("Post.AddInternship", params);
 		sqlSession.close();
 	}
+	
+	public void CreateVolunteership(PostjobModel finance) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("p", finance);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.insert("Post.AddVolunteership", params);
+		sqlSession.close();
+	}
 
 }

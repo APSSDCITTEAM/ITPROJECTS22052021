@@ -1,0 +1,119 @@
+<script src="/alumni/js/scripts/admin/CreateRole.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">Create Role</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Roles</a></li>
+				<li class="breadcrumb-item active">Create Role</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+
+<div id="CreateRolesDiv" data-ng-controller="CreateRolesController">
+	<div class="row clearfix">
+		<div class="col-md-6 col-sm-12 mx-auto">
+			<div class="card border border-success">
+				<div class="card-header bg-primary">
+					<h4 class="text-white text-center">Create Role</h4>
+				</div>
+				<div class="card-body">
+					<div class="form-group">
+						<label for="form-register-username">Role Name</label> <input
+							type="text" class="form-control"
+							data-ng-model="data.object.role_name">
+					</div>
+
+					<button type="button" class="btn btn-primary float-right"
+						data-ng-click="AddRole(data.object);">Create a Role</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row clearfix">
+		<div class="col-md-8 col-sm-12 mx-auto">
+			<div class="card border border-priamry">
+				<div class="card-header bg-primary text-white text-center">
+					<h4 class="card-title">Available Roles</h4>
+				</div>
+				<div class="card-body table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Role Id</th>
+								<th>Role Name</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="role in RolesData">
+								<td>{{role.role_id}}</td>
+								<td>{{role.role_name}}</td>
+								<td>
+									<button class="btn btn-sm btn-success" data-toggle="modal"
+										data-target="#large-Modal"
+										data-ng-click="getRoleData(role.role_id);">
+										<i class="ti-pencil-alt mr-2"></i>
+									</button>
+									<button class="btn btn-sm btn-danger"
+										data-ng-click="DeleteRoleData(role);">
+										<i class="fa fa-times mr-2"></i>
+									</button>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- update model -->
+	<div class="modal fade md-effect-2" id="large-Modal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Update Role</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="card-body">
+
+						<div class="form-group">
+							<label class="font-weight-bold">Role Name&nbsp;&nbsp;<span
+								class="text-danger">*</span> :
+							</label> <input type="text" class="form-control form-control-primary"
+								data-ng-model="data.object.role_name"
+								placeholder="Enter Role Name">
+
+						</div>
+						
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary waves-effect "
+						data-dismiss="modal">Close</button>
+					<button type="button"
+						class="btn btn-primary waves-effect waves-light "
+						data-ng-click="updateRole(data.object);" data-dismiss="modal">Update</button>
+				</div>
+			</div>
+		</div>  
+	</div>
+</div>
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#CreateRolesDiv"), [ 'CreateRole' ]);
+	});
+</script>

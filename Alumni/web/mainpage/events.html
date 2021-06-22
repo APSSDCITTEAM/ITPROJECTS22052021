@@ -1,0 +1,148 @@
+<script src="/alumni/js/scripts/events.js">
+</script>
+
+<!-- Header -->
+<header id="header" class="header modern-header modern-header-theme-colored2">
+    <div class="header-top bg-theme-colored2 sm-text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="widget text-white">
+                        <ul class="list-inline xs-text-center text-white">
+                            <li class="m-0 pl-10 pr-10"><a href="javascript:void(0)" class="text-white"><i class="fa fa-phone text-white"></i>
+									1800-425-2422</a></li>
+                            <li class="m-0 pl-10 pr-10"><a href="javascript:void(0)" class="text-white"><i
+									class="fa fa-envelope-o text-white mr-5"></i> support@apssdc.in</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 pr-0">
+                    <!-- <div class="widget">
+                                <ul class="styled-icons icon-sm pull-right flip sm-pull-none sm-text-center mt-5">
+                                    <li><a href="javascript:void(0)"><i class="fa fa-facebook text-white"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-twitter text-white"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-google-plus text-white"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-instagram text-white"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-linkedin text-white"></i></a></li>
+                                </ul>
+                            </div> -->
+                </div>
+                <div class="col-md-3">
+                    <ul class="list-inline sm-pull-none sm-text-center text-right text-white mb-sm-20 mt-10">
+                        <li class="m-0 pl-10"><a href="javascript:void(0);" onclick="Alumni.showLogin();" class="btn btn-default btn-transparent btn-flat btn-xs font-weight-bold" style="margin-right: 20px;"><i class="fa fa-user-o mr-5"></i>
+								Login </a></li>
+                        <li class="m-0 pl-0 pr-10"><a href="javascript:void(0);" onclick="Alumni.showRegister();" class="btn btn-default btn-transparent btn-flat btn-xs font-weight-bold"><i
+								class="fa fa-edit mr-5"></i>Register</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-middle p-0 bg-light xs-text-center">
+        <div class="container-fluid pt-5 pb-5">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="widget text-center">
+                        <a class="" href="javascript:void(0);"><img src="images/ap_aproved-newheader.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-nav">
+        <div class="header-nav-wrapper navbar-scrolltofixed">
+            <div class="container">
+                <nav id="menuzord" class="menuzord blue">
+                    <ul class="menuzord-menu">
+                        <li><a href="javascript:void(0);" onclick="Alumni.showHome();">Home</a></li>
+                        <li><a href="javascript:void(0);" onclick="Alumni.showHome();">About</a></li>
+                        <li><a href="javascript:void(0);" onclick="Alumni.showJobs();">Jobs</a></li>
+                        <li><a href="javascript:void(0);" onclick="Alumni.showInternships();">Internships</a></li>
+                        <li class="active"><a href="javascript:void(0);" onclick="Alumni.showEvents();">Events</a></li>
+                        <li><a href="javascript:void(0);" onclick="Alumni.showVolunteers();">Volunteers</a></li>
+                        <li><a href="javascript:void(0);" onclick="Alumni.showHome();">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Start main-content -->
+<div class="main-content" id="ViewEventsdiv" data-ng-controller="EventsViewController">
+    <!-- Section: inner-header -->
+    <section class="inner-header divider layer-overlay overlay-theme-colored-7" style="background-image: url(/alumni/images/typingcomputer.jpg);">
+        <div class="container pt-120 pb-60">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="title text-theme-colored2">Events</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Contact -->
+    <section style="background-image: url(/alumni/images/pattern/p5.png);">
+        <div class="container">
+            <div class="section-title text-center">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h2 class="text-uppercase font-28 mt-0">
+                            Our <span class="text-theme-colored">Recent</span> Events
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12" data-ng-repeat="data in eventdata">
+                        <div class="upcoming-events bg-white-f3 mb-20" style="border:2px solid #222655;border-radius:20px">
+                            <div class="row">
+                                <div class="col-sm-3 pr-0 pr-sm-15">
+                                    <div class="thumb p-15">
+                                        <img class="img-fullwidth" src="/alumni/images/Events.jpg" alt="...">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 pl-0 pl-sm-15">
+                                    <div class="event-details p-15 mt-20">
+                                        <h4 class="media-heading text-uppercase font-weight-500">{{data.event_title}}</h4>
+                                        <p>
+                                            <span class="mr-5"><i class="fa fa-user mr-5"></i>{{data.organizer}},
+												{{data.organizer_designation}}</span><span><i class="fa fa-fax mr-5"></i>{{data.organizer_contact_number}}</span>
+                                        </p>
+                                        <p>{{data.description}}</p>
+                                        <a href="javascript:void(0);" onclick="Alumni.showLogin();" class="btn btn-flat btn-dark btn-theme-colored btn-sm">Details
+											<i class="fa fa-angle-double-right"></i>
+										</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="event-count p-15 mt-15">
+                                        <ul>
+                                            <li class="mb-10 text-theme-colored"><i class="fa fa-calendar mr-5"></i> <b>From</b> {{data.start_date | date: 'dd MMM, yyyy'}}</li>
+                                            <li class="mb-10 text-theme-colored"><i class="fa fa-calendar mr-5"></i> <b>To</b> {{data.end_date | date: 'dd MMM, yyyy'}}</li>
+                                            <li class="text-theme-colored"><i class="fa fa-map-marker mr-5"></i>{{data.location}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script>
+    jQuery(document).ready(function() {
+        angular.bootstrap(jQuery("#ViewEventsdiv"), ['viewEvents']);
+    });
+</script>
