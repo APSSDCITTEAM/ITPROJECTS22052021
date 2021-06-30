@@ -56,6 +56,11 @@ var Alumni = {
         var path = "/alumni/mainpage/login.html";
         Alumni.showPage(path, "body-div");
     },
+    
+    showForgotPassowrd: function() {
+        var path = "/alumni/mainpage/forgot-password.html";
+        Alumni.showPage(path, "body-div");
+    },
 
 
     /* Admin Dashboard Start */
@@ -182,8 +187,13 @@ var Alumni = {
     showAdminCreateEvent: function() {
         var path = "/alumni/user/admin/createEvent.html";
         Alumni.showPage(path, "admin-body-div");
-    },
+    },   
 
+    showAdminMyEvent: function() {
+        var path = "/alumni/user/admin/MyEvents.html";
+        Alumni.showPage(path, "admin-body-div");
+    },
+    
     showAdminAllEvents: function() {
         var path = "/alumni/user/admin/allEvents.html";
         Alumni.showPage(path, "admin-body-div");
@@ -191,6 +201,11 @@ var Alumni = {
 
     showAdminActiveEvents: function() {
         var path = "/alumni/user/admin/activeEvents.html";
+        Alumni.showPage(path, "admin-body-div");
+    },
+    
+    showAdminEventsApprovals: function() {
+        var path = "/alumni/user/admin/eventsApprovals.html";
         Alumni.showPage(path, "admin-body-div");
     },
 
@@ -325,7 +340,7 @@ var Alumni = {
     },
 
     showPendingInternshipsReport: function() {
-        var path = "/alumni/user/admin/pendinginternshipReports.html";
+        var path = "/alumni/user/admin/pendingInternshipReports.html";
         Alumni.showPage(path, "admin-body-div");
     },
 
@@ -394,6 +409,16 @@ var Alumni = {
 
     showEmployeeAllEvents: function() {
         var path = "/alumni/user/employee/allEvents.html";
+        Alumni.showPage(path, "employee-body-div");   
+    },
+    
+    showEmployeeCreateEvents: function() {
+        var path = "/alumni/user/employee/createEvent.html";
+        Alumni.showPage(path, "employee-body-div");
+    },
+    
+    showEmployeeMyEvents: function() {
+        var path = "/alumni/user/employee/MyEvents.html";
         Alumni.showPage(path, "employee-body-div");   
     },
 
