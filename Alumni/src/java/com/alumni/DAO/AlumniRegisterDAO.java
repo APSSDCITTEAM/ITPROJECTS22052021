@@ -137,6 +137,7 @@ public class AlumniRegisterDAO extends BaseDAO {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("p", login);
 		Integer userStatus = sqlSessionTemplate.selectOne("AlumniRegister.checkMobile", map);
+		System.out.println(userStatus);
 		return userStatus;
 	}
 
@@ -179,5 +180,30 @@ public class AlumniRegisterDAO extends BaseDAO {
 		sqlSession.delete("AlumniRegister.DeleteRoleData", role_id);
 		sqlSession.close();
 	}
+
+	public void sendOtp(AlumniRegisterModel alumniregisterModel) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("p", alumniregisterModel);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("AlumniRegister.updateotp", params);
+		sqlSession.close();		
+	}
+	
+	public Integer verifyotp(AlumniRegisterModel login) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("p", login);
+		Integer userStatus = sqlSessionTemplate.selectOne("AlumniRegister.verifyOtp", map);
+		return userStatus;
+	}
+	
+	/* update role data */
+	public void updatePassword(AlumniRegisterModel alumniregisterModel) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("p", alumniregisterModel);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("AlumniRegister.updatePassword", params);
+		sqlSession.close();
+	}
+
 
 }

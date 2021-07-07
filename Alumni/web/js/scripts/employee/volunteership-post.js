@@ -11,16 +11,16 @@ Student.controller('VolunteershipController', ['$scope', '$http', function($scop
 				function(response) {    
 					$scope.data = response.data;           
 					if ($scope.data.successful) {
-						/*swal("Volunteership Created Successfully");*/
+						/*swal("Volunteership Created Successfully");*/	
 						
 						swal(
-								{
-									title: "Done",
-									text: "Volunteership Created Successfully!",
-									type: "success"
-								}, function() {
-									Alumni.showEmployeePostVolunteership();
-								});
+							{
+								title: "Done!",
+								text: "Volunteership Uploaded Successfully!",
+								type: "success"
+							}, function() {
+								Alumni.showEmployeePostVolunteership();
+							});
 						
 					} else {
 						alert("Data not inserted");    

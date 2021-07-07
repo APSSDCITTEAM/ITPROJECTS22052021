@@ -1,0 +1,106 @@
+<script src="/alumni/js/scripts/employee/myEvents.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">My Events</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Events</a></li>
+				<li class="breadcrumb-item active">My Events</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+
+<div class="row clearfix">
+	<div class="col-md-12 colsm-12">
+		<div class="event-page-content-wrap section-padding"
+			id="ViewEventsdiv" data-ng-controller="MyEventsViewController">
+
+			<div class="row clearfix" id="mainEventpage">
+				<div class="col-md-10 mx-auto" data-ng-repeat="data in myEvents">
+					<div class="card border border-primary">
+						<div class="card-body">
+							<div class="media">
+								<img class="d-flex align-self-center rounded mr-3"
+									src="/alumni/images/Events.jpg" alt="" height="100">
+								<div class="media-body">
+									<h5 class="mt-0 font-16">{{data.event_title}}</h5>
+									<p>
+									<ul style="flex-direction: row;" class="list-group">
+										<li class="list-group-item"><i class="ti-user mr-2"></i>
+											{{data.organizer}}, {{data.organizer_designation}}</li>
+										<li class="list-group-item"><i
+											class="ti-headphone-alt mr-2"></i>{{data.organizer_contact_number}}</li>
+										<li class="list-group-item"><i class="ti-calendar mr-2"></i>
+											{{data.start_date | date: 'dd MMM, yyyy'}}</li>
+										<li class="list-group-item"><i class="ti-calendar mr-2"></i>
+											{{data.end_date | date: 'dd MMM, yyyy'}}</li>
+										<li class="list-group-item"><i
+											class="ti-location-pin mr-2"></i>{{data.location}}</li>
+									</ul>
+									</p>
+									<p>{{data.description}}</p>
+
+									<button type="button" class="btn btn-success"
+										data-ng-click="getEventApplicants(data.id)">
+										<i class=" fa fa-users mr-2"> </i>Get Applicants
+									</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="eventsApplicants">
+				<div class="card border border-primary">
+					<div class="card-header bg-primary text-center text-white">
+						<h4 class="card-title text-centernter">Event Applicants</h4>
+					</div>
+					<div class="card-body table-responsive">
+						<table class="table table-bordered table-hover no-wrap">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Email</th>
+									<th>Mobile Number</th>
+									<th>Applied Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr data-ng-repeat="eventData in EventApplicants">
+									<td>{{eventData.name}}</td>
+									<td>{{eventData.email}}</td>
+									<td>{{eventData.mobile_no}}</td>
+									<td>{{eventData.date_created | date : 'dd-MM-yyyy'}}</td>
+								</tr>
+
+								<tr id="emptyrow" style="display: none">
+									<td colspan="4" class="text-center">No Data Available</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<script>
+	$("#eventsApplicants").hide();
+	$("#mainEventpage").show();
+
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#ViewEventsdiv"), [ 'myEvents' ]);
+	});
+</script>

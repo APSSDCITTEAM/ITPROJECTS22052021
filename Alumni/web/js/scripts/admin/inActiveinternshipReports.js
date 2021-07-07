@@ -2,15 +2,15 @@ var Student = angular.module('inActiveinternshipReports', []);
 Student.controller('inActiveinternshipController', ['$scope', '$http', function($scope, $http) {
 
 	/* Individual Job applicants */
-	$scope.getJobsData = function(id) {
+	$scope.getInternsData = function(id) {
 		console.log(id);
-		$http.post('/alumni/report/getJobsData', id).then(function(response) {
-			$scope.jobdata = response.data;
-			if ($scope.jobdata.successful) {
-				$scope.JobApplicants = $scope.jobdata.responseObject.JobData;
-				console.log($scope.JobApplicants);
-				$("#activestudents").hide();
-				$("#individualJobdata").show();
+		$http.post('/alumni/report/getInternsData', id).then(function(response) {
+			$scope.interndata = response.data;
+			if ($scope.interndata.successful) {
+				$scope.InternApplicants = $scope.interndata.responseObject.InternData;
+				console.log($scope.InternApplicants);
+				$("#InactiveInterns").hide();
+				$("#individualInternsdata").show();
 				
 			}
 			else {
@@ -30,8 +30,8 @@ Student.controller('inActiveinternshipController', ['$scope', '$http', function(
 			}
 			else{
 				document.getElementById("emptyrow").style.display = "none";
-				$scope.RejectedInternships = $scope.rejecteddata.responseObject;
-				console.log($scope.RejectedInternships);
+				$scope.InactiveInterns = $scope.rejecteddata.responseObject;
+				console.log($scope.InactiveInterns);
 			}
 			
 		}

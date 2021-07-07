@@ -3,7 +3,21 @@ var documentsArr = [];
 Student.controller('EventsViewController', ['$scope', '$http', function($scope, $http) {
 
 	
-	$http.post('/alumni/event/getallEvents').then(function(response) {
+	/*$http.post('/alumni/event/getallEvents').then(function(response) {
+		$scope.Eventsdata = response.data;
+		if ($scope.Eventsdata.successful) {
+			$scope.alldata = $scope.Eventsdata.responseObject;
+			console.log($scope.alldata);
+		}
+		else {
+			console.log("Client error while getting data");
+		}
+	});*/
+	
+	/* get events except mine */
+	var std_id = Alumni.getSessionValue("user_id");
+	console.log(std_id);
+	$http.post('/alumni/event/getNotmyEvents', std_id).then(function(response) {
 		$scope.Eventsdata = response.data;
 		if ($scope.Eventsdata.successful) {
 			$scope.alldata = $scope.Eventsdata.responseObject;
@@ -29,7 +43,7 @@ Student.controller('EventsViewController', ['$scope', '$http', function($scope, 
 		$http.post('/alumni/event/ApplyEvent', Apply).then(
 			function(response) {
 				$scope.data = response.data;
-				if ($scope.data.successful) {
+				if ($scope.data.successful) {     
 					swal("Event already applied!!!");
 					
 				} else {

@@ -1,0 +1,304 @@
+<script src="/alumni/js/scripts/register.js"></script>
+
+<!-- Header -->
+<header id="header"
+	class="header modern-header modern-header-theme-colored2">
+	<div class="header-top bg-theme-colored2 sm-text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="widget text-white">
+						<ul class="list-inline xs-text-center text-white">
+							<li class="m-0 pl-10 pr-10"><a href="javascript:void(0)"
+								class="text-white"><i class="fa fa-phone text-white"></i>
+									1800-425-2422</a></li>
+							<li class="m-0 pl-10 pr-10"><a href="javascript:void(0)"
+								class="text-white"><i
+									class="fa fa-envelope-o text-white mr-5"></i> support@apssdc.in</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-3 pr-0"></div>
+				<div class="col-md-3">
+					<ul
+						class="list-inline sm-pull-none sm-text-center text-right text-white mb-sm-20 mt-10">
+						<li class="m-0 pl-10"><a href="javascript:void(0);"
+							onclick="Alumni.showLogin();"
+							class="btn btn-default btn-transparent btn-flat btn-xs font-weight-bold"
+							style="margin-right: 20px;"><i class="fa fa-user-o mr-5"></i>
+								Login </a></li>
+						<li class="m-0 pl-0 pr-10"><a href="javascript:void(0);"
+							onclick="Alumni.showRegister();"
+							class="btn btn-default btn-transparent btn-flat btn-xs font-weight-bold"><i
+								class="fa fa-edit mr-5"></i>Register</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="header-middle p-0 bg-light xs-text-center">
+		<div class="container-fluid pt-5 pb-5">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="widget text-center">
+						<a class="" href="javascript:void(0);"><img
+							src="images/ap_aproved-newheader_1.png" alt=""></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="header-nav">
+		<div class="header-nav-wrapper navbar-scrolltofixed">
+			<div class="container">
+				<nav id="menuzord" class="menuzord blue">
+					<ul class="menuzord-menu">
+						<li><a href="javascript:void(0);">Home</a></li>
+						<li><a href="javascript:void(0);">About</a></li>
+						<li><a href="javascript:void(0);">Jobs</a></li>
+						<li><a href="javascript:void(0);">Internships</a></li>
+						<li><a href="javascript:void(0);">Events</a></li>
+						<li><a href="javascript:void(0);">Volunteers</a></li>
+						<li><a href="javascript:void(0);">Contact</a></li>
+						<li class="active"><a href="javascript:void(0);">Register</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</header>
+
+<!-- Start main-content -->
+<div class="main-content">
+	<!-- Section: inner-header -->
+	<section
+		class="inner-header divider layer-overlay overlay-theme-colored-7"
+		style="background-image: url(/alumni/images/typingcomputer.jpg);">
+		<div class="container pt-120 pb-60">
+			<!-- Section Content -->
+			<div class="section-content">
+				<div class="row">
+					<div class="col-md-6">
+						<h2 class="title text-theme-colored2">Register Now</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section: Contact -->
+	<section style="background-image: url(/alumni/images/pattern/p5.png);">
+		<div class="container">
+			<div class="section-title text-center">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<h2 class="text-uppercase font-28 mt-0">
+							<span class="text-theme-colored">Register</span> Now
+						</h2>
+					</div>
+				</div>
+			</div>
+			<div class="section-content">
+				<div class="row" id="StudentRegisterDiv"
+					data-ng-controller="StudentRegisterController">
+					<div class="col-md-2"></div>
+					<div class="col-md-8"
+						style="border: 2px solid #222655; padding: 40px">
+
+						<div class="row">
+							<div class="form-group col-sm-6">
+								<label for="form-register-username">Are You a...?</label> <select
+									data-ng-model="data.object.type" class="form-control">
+									<option value="0">Student</option>
+									<option value="1">Employee</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-sm-6">
+								<label for="form-register-first-name">First Name</label> <input
+									type="text" class="form-control" id="form-register-first-name"
+									data-ng-model="data.object.first_name">
+							</div>
+							<!-- /.form-group -->
+
+							<div class="form-group col-sm-6">
+								<label for="form-login-surname">Surname</label> <input
+									type="text" class="form-control" id="form-register-surname"
+									data-ng-model="data.object.last_name">
+							</div>
+						</div>
+						<div class="row">
+
+							<div class="form-group col-sm-6">
+								<label for="form-register-email">E-mail</label> <input
+									type="email" class="form-control"
+									data-ng-model="data.object.email" id="form-register-email"
+									data-ng-blur="checkemail(data.object);">
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label for="form-register-retype">Mobile Number</label> <input
+									type="text" class="form-control" pattern="^[9|7|8|6][0-9]{9}"
+									maxlength="10" id="form-register-retype"
+									data-ng-model="data.object.mobile_no" required>
+							</div>
+						</div>
+						<div class="row" data-ng-show="data.object.type == '0'">
+							<div class="col-sm-12">
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label for="form-login-college-code">College Name</label> <input
+											type="text" class="form-control"
+											data-ng-model="data.object.college_code"
+											id="form-register-college-code">
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="form-login-roll-number">Roll Number</label> <input
+											type="text" class="form-control"
+											data-ng-model="data.object.roll_number">
+									</div>
+
+									<div class="form-group col-sm-6">
+										<label for="form-login-roll-number">Qualification</label> <select
+											class="form-control"
+											data-ng-model="data.object.qualification">
+											<option value="Below 10th">Below 10th</option>
+											<option value="10th">10th</option>
+											<option value="Intermediate">Intermediate</option>
+											<option value="Diploma">Diploma</option>
+											<option value="B.Tech">B.Tech</option>
+											<option value="M.Tech">M.Tech</option>
+											<option value="Masters">Masters</option>
+											<option value="Other">Other</option>
+										</select>
+									</div>
+
+									<div class="form-group col-sm-6"
+										data-ng-show="data.object.qualification == 'Other'">
+										<label>Other Qualification</label> <input type="text"
+											class="form-control"
+											data-ng-model="data.object.other_qualifiction">
+									</div>
+
+									<div class="form-group col-sm-6">
+										<label for="form-login-roll-number">Branch</label> <input
+											type="text" class="form-control"
+											data-ng-model="data.object.branch">
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="form-login-roll-number">Year of Passed Out</label>
+										<input type="text" class="form-control"
+											data-ng-model="data.object.passed_out_year">
+									</div>
+
+									<div class="form-group col-sm-6">
+										<label for="form-login-district">District</label> <select
+											data-ng-model="data.object.district" class="form-control">
+											<option value="Anantapur">Anantapur</option>
+											<option value="Chittoor">Chittoor</option>
+											<option value="Anantapur">East Godavari</option>
+											<option value="Guntur">Guntur</option>
+											<option value="Kadapa">Kadapa</option>
+											<option value="Krishna">Krishna</option>
+											<option value="Kurnool">Kurnool</option>
+											<option value="Nellore">Nellore</option>
+											<option value="Prakasam">Prakasam</option>
+											<option value="Srikakulam">Srikakulam</option>
+											<option value="Visakhapatnam">Visakhapatnam</option>
+											<option value="Vizianagaram">Vizianagaram</option>
+											<option value="West Godavari">West Godavari</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" data-ng-show="data.object.type == '1'">
+							<div class="col-sm-12">
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label for="form-login-college-code">Organization Name</label>
+										<input type="text" class="form-control"
+											data-ng-model="data.object.organization_name"
+											id="form-register-organization-name">
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="form-login-roll-number">Employee ID</label> <input
+											type="text" class="form-control"
+											data-ng-model="data.object.employee_id">
+									</div>
+
+									<div class="form-group col-sm-6">
+										<label for="form-login-college-code">College Name</label> <input
+											type="text" class="form-control"
+											data-ng-model="data.object.college_code"
+											id="form-register-college-code">
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="form-login-roll-number">Qualification</label> <select
+											class="form-control"
+											data-ng-model="data.object.qualification">
+											<option value="Below 10th">Below 10th</option>
+											<option value="10th">10th</option>
+											<option value="Intermediate">Intermediate</option>
+											<option value="Diploma">Diploma</option>
+											<option value="B.Tech">B.Tech</option>
+											<option value="M.Tech">M.Tech</option>
+											<option value="Masters">Masters</option>
+											<option value="Other">Other</option>
+										</select>
+									</div>
+
+									<div class="form-group col-sm-6"
+										data-ng-show="data.object.qualification == 'Other'">
+										<label>Other Qualification</label> <input type="text"
+											class="form-control"
+											data-ng-model="data.object.other_qualifiction">
+									</div>
+
+									<div class="form-group col-sm-6">
+										<label for="form-login-roll-number">Branch</label> <input
+											type="text" class="form-control"
+											data-ng-model="data.object.branch">
+									</div>
+
+									<div class="form-group col-sm-6">
+										<label for="form-login-roll-number">Year of Passed Out</label>
+										<input type="text" class="form-control"
+											data-ng-model="data.object.passed_out_year">
+									</div>
+									<div class="form-group col-sm-6">
+										<input type="checkbox" data-ng-model="data.object.mentorship"
+											id="mentorship" name="mentorship" value="true"> <label
+											for="form-login-roll-number">Are You Interested in
+											Mentorship?</label>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<button type="button"
+								class="btn btn-dark btn-theme-colored btn-flat btn-block"
+								data-ng-click="StudentRegister(data.object);">Create an
+								Account</button>
+
+						</div>
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<script>
+	jQuery(document).ready(
+			function() {
+				angular.bootstrap(jQuery("#StudentRegisterDiv"),
+						[ 'StudentRegister' ]);
+			});
+</script>

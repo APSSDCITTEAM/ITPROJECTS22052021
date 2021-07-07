@@ -410,7 +410,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 mb-md-50 text-center">
-                                        <button type="button" href="#" class="btn btn-theme-colored2 btn-lg btn-flat text-white font-weight-600 pl-30 pr-30 mr-15" style="margin-top: 50px">
+                                        <button type="button" onclick="Alumni.showRegister();" class="btn btn-theme-colored2 btn-lg btn-flat text-white font-weight-600 pl-30 pr-30 mr-15" style="margin-top: 50px">
 											Register Now&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i>
 										</button>
                                     </div>
@@ -837,12 +837,12 @@
 	                                    <li class="list-group-item float-left"><i class="fa fa-calendar" style="margin-right:10px;font-size: inherit;"></i>{{jobs.end_date}}</li>
 	                                </ul>
 	
-	                                <a class="btn btn-dark btn-theme-colored btn-sm mt-15" href="javascript:void(0)">Apply Now</a>
+	                                <a class="btn btn-dark btn-theme-colored btn-sm mt-15" href="javascript:void(0)" onclick="Alumni.showLogin();">Apply Now</a>
 	                            </div>
 	                        </div>
                             
                             <div class="col-sm-12 text-center">
-                                <button type="button" class="btn btn-theme-colored2 btn-lg btn-flat text-white font-weight-600 pl-30 pr-30 mr-15">
+                                <button type="button" class="btn btn-theme-colored2 btn-lg btn-flat text-white font-weight-600 pl-30 pr-30 mr-15" onclick="Alumni.showJobs();">
 								View All Jobs&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i>
 							</button>
                             </div>
@@ -998,7 +998,13 @@
                             <h4 class="widget-title line-bottom-theme-colored-2">Useful Links
                             </h4>
                             <div class="tags">
-                                <a href="javascript:void(0)">Jobs</a> <a href="javascript:void(0)">Internships</a> <a href="javascript:void(0)">Events</a> <a href="javascript:void(0)">Volunteers</a> <a href="javascript:void(0)">Login</a> <a href="javascript:void(0)">Register</a>
+                            	<a href="javascript:void(0)" onclick="Alumni.showHome();">Home</a>
+                                <a href="javascript:void(0)" onclick="Alumni.showJobs();">Jobs</a>
+								<a href="javascript:void(0)" onclick="Alumni.showInternships();">Internships</a>
+								<a href="javascript:void(0)" onclick="Alumni.showEvents();">Events</a>
+								<a href="javascript:void(0)" onclick="Alumni.showVolunteers();">Volunteers</a>
+								<a href="javascript:void(0)" onclick="Alumni.showLogin();">Login</a>
+								<a href="javascript:void(0)" onclick="Alumni.showRegister();">Register</a>
                             </div>
                         </div>
                     </div>

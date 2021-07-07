@@ -6,10 +6,10 @@
 		<mkdir dir="warfile" />      
 		<war destfile="warfile/alumni.war" webxml="web/WEB-INF/web.xml">
 			<fileset dir="web" />
-			<classes dir="web/WEB-INF/classes" />
+			<classes dir="web/WEB-INF/classes" />     
 		</war>       
  
-		<copy todir="F:\Tomcat\apache-tomcat-7.0.85\webapps" flatten="true">
+		<copy todir="c:\Tomcat\apache-tomcat-7.0.85\webapps" flatten="true">
 			<resources>
 				<file file="warfile/alumni.war" />                
 			</resources>                                   

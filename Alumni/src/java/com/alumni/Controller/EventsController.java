@@ -113,7 +113,42 @@ public class EventsController {
 		return eventsService.ApplyEvent(event);
 	}
 	
+	/* getting my event */
+	@ResponseBody
+	@RequestMapping(value = "getmyEvents", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getmyEvents(@RequestBody String std_id)
+	{
+		return eventsService.getmyEvents(std_id);
+	}
 	
+	/* getting my events except mine */
+	@ResponseBody
+	@RequestMapping(value = "getNotmyEvents", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getNotmyEvents(@RequestBody String std_id)
+	{
+		return eventsService.getNotmyEvents(std_id);
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "getSubmittedevents", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getSubmittedevents()
+	{
+		return eventsService.getSubmittedevents();
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "ApproveEvent", method = { RequestMethod.POST })
+	public Response ApproveEvent(@RequestBody Integer id) {
+		return eventsService.ApproveEvent(id);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "RejectEvent", method = { RequestMethod.POST })
+	public Response RejectEvent(@RequestBody Integer id) {
+		return eventsService.RejectEvent(id);
+	}
 	
 	
 

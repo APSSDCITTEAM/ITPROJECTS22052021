@@ -112,7 +112,7 @@
                                 <label for="form-login-password">Password</label> <input type="password" class="form-control" id="form-login-password" data-ng-model="data.object.password">
                             </div>
                         </div>
-
+						<a href="javascript:void(0);" onclick="Alumni.showForgotPassowrd();" class="text-theme-colored" style="float:right;margin-bottom:15px">Forgot Your Password?</a>
                         <div class="form-group">
                             <input name="form_botcheck" class="form-control" type="hidden" value="" />
                             <button type="button" class="btn btn-dark btn-theme-colored btn-flat btn-block" data-ng-click="login(data.object);">Login</button>
@@ -131,6 +131,5 @@
 <script type="text/javascript">
     jQuery(document).ready(function() {
         angular.bootstrap(jQuery("#login"), ['LoginModule']);
-
     });
 </script>

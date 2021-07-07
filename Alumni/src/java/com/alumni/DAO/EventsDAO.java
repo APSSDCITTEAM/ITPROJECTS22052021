@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.alumni.Model.AdminApprovalModel;
 import com.alumni.Model.AlumniRegisterModel;
 import com.alumni.Model.EventsModel;
 import com.alumni.Model.ViewJobModel;
@@ -121,6 +122,45 @@ public class EventsDAO extends BaseDAO {
 		map.put("p", event);
 
 		sqlSessionTemplate.insert("Event.InsertApplyEvent", map);
+	}
+	
+	/* getting my Events */
+	public List<EventsModel> getmyEvents(String std_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<EventsModel> userdetails = sqlSession.selectList("Event.getmyEvents",std_id);
+		sqlSession.close();
+		return userdetails;
+	}
+
+	/* getting Events except mine */
+	public List<EventsModel> getNotmyEvents(String std_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<EventsModel> userdetails = sqlSession.selectList("Event.getNotmyEvents",std_id);
+		sqlSession.close();
+		return userdetails;
+	}
+	
+	public List<EventsModel> getSubmittedevents() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<EventsModel> userdetails = sqlSession.selectList("Event.getSubmittedevents");
+		sqlSession.close();
+		return userdetails;
+	}
+	
+	public void ApproveEvent(Integer id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("p", id);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("Event.ApproveEvent", id);
+		sqlSession.close();
+	}
+	
+	public void RejectEvent(Integer id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("p", id);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("Event.RejectEvent", id);
+		sqlSession.close();
 	}
 	
 	

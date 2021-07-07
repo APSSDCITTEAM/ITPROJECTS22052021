@@ -35,6 +35,13 @@ public class AdminApprovalDAO {
 		return userdetails;
 	}
 	
+	public List<AdminApprovalModel> getinActiveInternships() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<AdminApprovalModel> userdetails = sqlSession.selectList("AdminApproval.getinActiveInternships");
+		sqlSession.close();
+		return userdetails;
+	}
+	
 	public List<AdminApprovalModel> getallVerifiedUsers() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<AdminApprovalModel> userdetails = sqlSession.selectList("AdminApproval.getallVerifiedUsers");
@@ -145,6 +152,13 @@ public class AdminApprovalDAO {
 	public List<AdminApprovalModel> getSubmittedInternships() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<AdminApprovalModel> userdetails = sqlSession.selectList("AdminApproval.getSubmittedInternships");
+		sqlSession.close();
+		return userdetails;
+	}
+	
+	public List<AdminApprovalModel> getRejectedInternshipsData() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<AdminApprovalModel> userdetails = sqlSession.selectList("AdminApproval.getRejectedInternshipsData");
 		sqlSession.close();
 		return userdetails;
 	}

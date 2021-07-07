@@ -7,8 +7,7 @@
 		select distinct
 		id,title,company_name,location,contact_email,min_exp,max_exp,description,std_id,date_added
 		as created_date,status,end_date from alumni.jobs
-		where std_id != #{std_id} and end_date > current_timestamp::date and status
-		= 1 order by id;
+		where std_id != #{std_id} and end_date > current_timestamp::date and status = 1 order by id;
 	</select> 
 
 	<select id="getallinternships" parameterType="map"
@@ -220,7 +219,6 @@
 		where a.status=1
 		order by id;
 	</select>
-
 
 	<select id="VolunteershipApplicants" resultType="ViewJobModel">
 		select

@@ -50,6 +50,14 @@ public class AdminApprovalService {
 		return response;
 	}
 	
+	public Response getinActiveInternships() {
+		response.setSuccessful(false);
+		List<AdminApprovalModel> userdetails = adminApprovalDAO.getinActiveInternships();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
 	public Response getallApprovedUsers() {
 		response.setSuccessful(false);
 		List<AdminApprovalModel> userdetails = adminApprovalDAO.getallApprovedUsers();
@@ -177,6 +185,14 @@ public class AdminApprovalService {
 	public Response getSubmittedInternships() {
 		response.setSuccessful(false);
 		List<AdminApprovalModel> userdetails = adminApprovalDAO.getSubmittedInternships();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	public Response getRejectedInternshipsData() {
+		response.setSuccessful(false);
+		List<AdminApprovalModel> userdetails = adminApprovalDAO.getRejectedInternshipsData();
 		response.setSuccessful(true);
 		response.setResponseObject(userdetails);
 		return response;

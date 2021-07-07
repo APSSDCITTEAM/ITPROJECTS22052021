@@ -10,17 +10,7 @@ Student.controller('internshipController', ['$scope', '$http', function($scope, 
 				function(response) {    
 					$scope.data = response.data;           
 					if ($scope.data.successful) {
-						/*swal("Internship Created Successfully");*/
-						
-						swal(
-								{
-									title: "Done",
-									text: "Internship Created Successfully!",
-									type: "success"
-								}, function() {
-									Alumni.showEmployeePostInternship();
-								});
-						
+						swal("Internship Created Successfully");
 					} else {
 						alert("Data not inserted");    
 					}   

@@ -1,17 +1,14 @@
 package com.alumni.Model;
 
 import java.math.BigInteger;
-
-import java.util.List;
-
 import com.andromeda.commons.model.BaseModel;
-import com.alumni.Model.AlumniRegisterModel;
-import com.alumni.Model.FileModel;
 
-@SuppressWarnings({ "unused", "serial" })
 public class AlumniRegisterModel extends BaseModel {
 
-	private static long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public String std_id;
 	public String username;
@@ -45,6 +42,15 @@ public class AlumniRegisterModel extends BaseModel {
 	public boolean mentorship;
 	public Integer technologies_id;
 	public String role_name;
+	public Integer otp;
+
+	public Integer getOtp() {
+		return otp;
+	}
+
+	public void setOtp(Integer otp) {
+		this.otp = otp;
+	}
 
 	public Integer getTechnologies_id() {
 		return technologies_id;
@@ -144,10 +150,6 @@ public class AlumniRegisterModel extends BaseModel {
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
-	}
-
-	public static void setSerialVersionUID(long serialVersionUID) {
-		AlumniRegisterModel.serialVersionUID = serialVersionUID;
 	}
 
 	public String getUsername() {

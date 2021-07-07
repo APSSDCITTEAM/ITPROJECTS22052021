@@ -50,7 +50,7 @@
                         </a>
                     </div>
 
-                    <button type="button" onclick="Alumni.showLogout();" class="btn btn-sm px-3 font-size-24 header-item waves-effect text-white" id="vertical-menu-btn">
+                    <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect text-white" id="vertical-menu-btn">
                         <i class="mdi mdi-menu"></i>
                     </button>
 
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="dropdown d-inline-block">
-                        <button type="button" class="btn header-item noti-icon waves-effect text-white">
+                        <button type="button" onclick="Alumni.showLogout();" class="btn header-item noti-icon waves-effect text-white">
                             <i class="mdi mdi-power"></i>
                         </button>
                     </div>
@@ -97,7 +97,7 @@
                                 <span>Jobs</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="javascript: void(0);" onclick="Alumni.showEmployeePostJob();">Post a Jobs</a></li>
+                                <li><a href="javascript: void(0);" onclick="Alumni.showEmployeePostJob();">Post a Job</a></li>
                                 <li><a href="javascript: void(0);" onclick="Alumni.showEmployeeMyJobs();">My Jobs</a></li>
                                 <li><a href="javascript: void(0);" onclick="Alumni.showEmployeeAllJobs();">All Jobs</a></li>
                             </ul>
@@ -109,8 +109,7 @@
                                 <span>Internships</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="javascript: void(0);" onclick="Alumni.showEmployeePostInternship();">Post an
-										Internship</a></li>
+                                <li><a href="javascript: void(0);" onclick="Alumni.showEmployeePostInternship();">Post an Internship</a></li>
                                 <li><a href="javascript: void(0);" onclick="Alumni.showEmployeeMyInternships();">My Internships</a></li>
                                 <li><a href="javascript: void(0);" onclick="Alumni.showEmployeeAllInternships();">All Internships</a></li>
                             </ul>
@@ -135,6 +134,8 @@
                                 <span>Events</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
+                            	<li><a href="javascript: void(0);" onclick="Alumni.showEmployeeCreateEvents();">Create Events</a></li>
+                                <li><a href="javascript: void(0);" onclick="Alumni.showEmployeeMyEvents();">My Events</a></li>
                                 <li><a href="javascript: void(0);" onclick="Alumni.showEmployeeAllEvents();">All Events</a></li>
                             </ul>
                         </li>
@@ -144,7 +145,7 @@
                             <a href="javascript:void(0);" onclick="Alumni.showEmployeeChangePassword();" class="waves-effect"> <i class="fa fa-key"></i> <span>Change Password</span>
                             </a>
                         </li>
-
+    
 
                         <li>
                             <a href="javascript:void(0);" class="waves-effect" onclick="Alumni.showLogout();">

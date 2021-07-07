@@ -81,10 +81,10 @@ Student.controller('VolunteershipViewController', ['$scope', '$http', function($
 		$http.post('/alumni/viewjob/VolunteershipApplicants', id).then(function(response) {
 			$scope.applieddata = response.data;
 			if ($scope.applieddata.successful) {
-				$scope.AppliedCandidates = $scope.applieddata.responseObject.appliedVolunteer;
+				$scope.AppliedCandidates = $scope.applieddata.responseObject.appliedInterns;
 				console.log($scope.AppliedCandidates);
-				/*$("#myVolunteershipsDiv").hide();
-				$("#myVolunteershipsApplicantsDiv").show();*/
+				$("#myInternshipsDiv").hide();
+				$("#myInternshipsApplicantsDiv").show();
 				
 			}
 			else {

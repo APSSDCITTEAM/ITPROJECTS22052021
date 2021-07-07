@@ -14,39 +14,6 @@ Student.controller('InternshipViewController', ['$scope', '$http', function($sco
 			console.log("Client error while getting data");
 		}
 	});
-	
-	$scope.ApplyInternship = function(ApplyInternship) {
-		console.log(ApplyInternship);
-		var std_id = Alumni.getSessionValue("user_id");
-
-		var Apply = {
-			std_id: std_id,
-			id: ApplyInternship
-		};
-
-		console.log(Apply);
-
-		$http.post('/alumni/viewjob/ApplyInternship', Apply).then(
-			function(response) {
-				$scope.data = response.data;
-				if ($scope.data.successful) {
-					alert("Internship already applied!!!");
-					
-				} else {
-					swal(
-							{
-								title: "Done",
-								text: "Internship Applied Successfully!",
-								type: "success"
-							}, function() {
-								Alumni.showStudentAllInternships();
-							});
-				}				
-				
-			}, function(errResponse) {
-				console.error('Error while fetching notes');
-			});
-	};
 
 
 }]);

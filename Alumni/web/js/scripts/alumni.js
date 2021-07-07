@@ -414,10 +414,10 @@ var Alumni = {
     
     showEmployeeCreateEvents: function() {
         var path = "/alumni/user/employee/createEvent.html";
-        Alumni.showPage(path, "employee-body-div");
+    Alumni.showPage(path, "employee-body-div");
     },
     
-    showEmployeeMyEvents: function() {
+    showEmployeeMyEvents: function() {    
         var path = "/alumni/user/employee/MyEvents.html";
         Alumni.showPage(path, "employee-body-div");   
     },
@@ -471,7 +471,7 @@ var Alumni = {
     },
 
     showStudentAllVolunteerships: function() {
-        var path = "/alumni/user/student/allVolunteerships.html";
+        var path = "/alumni/user/student/allVolunteerships.html";    
         Alumni.showPage(path, "student-body-div");
     },
 

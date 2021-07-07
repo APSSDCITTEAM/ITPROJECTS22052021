@@ -110,17 +110,20 @@
 	</select>
 	
 	<select id="getStudentsJobsData" resultType="ReportsModel">
-	select distinct a.id,a.user_id,b.date_added :: date as date_created,c.title,c.company_name,c.location from 
+	select distinct a.id,a.user_id,b.date_added :: date as date_created,c.title,c.company_name,c.location,c.min_exp,c.max_exp,
+	c.end_date from 
 	(select id,user_id,role_id from alumni.students where role_id = 6) a inner join 
 	(select id,std_id,job_id,date_added from alumni.applied_jobs) b on(b.std_id = a.user_id) inner join
-	(select id,title,company_name,location from alumni.jobs) c on (c.id = b.job_id) where a.user_id = #{user_id};
+	(select id,title,company_name,location,min_exp,max_exp,end_date from alumni.jobs) c on (c.id = b.job_id) where a.user_id = #{user_id};
 	</select>
 	
 	<select id="getStudentsInternshipsData" resultType="ReportsModel">
-	select distinct a.id,a.user_id,b.date_added :: date as date_created,c.title,c.company_name,c.location from    
+	select distinct a.id,a.user_id,b.date_added :: date as date_created,c.title,c.company_name,c.location,contact_email,
+	end_date,date_created from    
 	(select id,user_id,role_id from alumni.students where role_id = 6) a inner join 
 	(select id,std_id,internship_id,date_added from alumni.applied_internships) b on(b.std_id = a.user_id) inner join
-	(select id,title,company_name,location from alumni.interships) c on (c.id = b.internship_id) where a.user_id = #{user_id};
+	(select id,title,company_name,location,duration,contact_email,end_date,date_added :: date as date_created 
+	from alumni.interships) c on (c.id = b.internship_id) where a.user_id = #{user_id};
 	</select>
 	
 	<select id="getEmployeeappliedJobs" resultType="ReportsModel">
@@ -143,31 +146,33 @@
 	</select>
 	
 	<select id="getOpenEventsCount" resultType="ReportsModel">
-		select count(*) as open_event_count,case when status = 'TRUE' then 0 end as status from alumni.events 
-			where status = 'TRUE' group by status;
+		select count(*) as open_event_count,case when status = 0 then 0 end as status from alumni.events 
+			where status = 1 group by status;
 	</select>
 	
 	<select id="getClosedEventsCount" resultType="ReportsModel">
-		select count(*) as closed_event_count,case when status = 'FALSE' then 1 end as status from alumni.events 
-			where status = 'FALSE' group by status;
+		select count(*) as closed_event_count,case when status = 3 then 1 end as status from alumni.events 
+			where status = 3 group by status;
 	</select>
 	
 	<select id="getOpenEventsData" resultType="ReportsModel">
 	select event_title,location,start_date,end_date,organizer,created_date :: date date_created,eventtype,created_by,status_type from
 		(select distinct id,event_title,location,start_date,end_date,organizer,created_date,(case when event_type = 0 then 'Workshops' 
 		when event_type = 1 then 'Guest Lecture' when event_type = 2 then 'Hackathon' end) as eventtype,user_id,status,
-		(case when status = 'TRUE' then 'Open' when status = 'FALSE' then 'Closed' end) as status_type from alumni.events) a inner join
+		(case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' 
+		when status = 3 then 'Closed' end) as status_type from alumni.events) a inner join
 		(select concat(first_name,' ',last_name) as created_by,user_id from alumni.students) b on (b.user_id = a.user_id)
-		where a.status = 'TRUE'
+		where a.status = 1;
 	</select>
 	
 	<select id="getClosedEventsData" resultType="ReportsModel">
 	select event_title,location,start_date,end_date,organizer,created_date :: date date_created,eventtype,created_by,status_type from
 		(select distinct id,event_title,location,start_date,end_date,organizer,created_date,(case when event_type = 0 then 'Workshops' 
 		when event_type = 1 then 'Guest Lecture' when event_type = 2 then 'Hackathon' end) as eventtype,user_id,status,
-		(case when status = 'TRUE' then 'Open' when status = 'FALSE' then 'Closed' end) as status_type from alumni.events) a inner join
+		(case when status = 0 then 'Submitted' when status = 1 then 'Open' when status = 2 then 'Rejected' 
+		when status = 3 then 'Closed' end) as status_type from alumni.events) a inner join
 		(select concat(first_name,' ',last_name) as created_by,user_id from alumni.students) b on (b.user_id = a.user_id)
-		where a.status = 'FALSE'
+		where a.status = 3
 	</select>
 	
 	
@@ -219,8 +224,8 @@
 	</select>
 	
 	<select id="getInternsData" resultType="ReportsModel">
-	select a.id,name,email,mobile_no,a.job_id,a.date_created from
-(select id,std_id,job_id,date_added::date as date_created from alumni.applied_jobs where job_id = #{id}) a inner join
+	select a.id,name,email,mobile_no,a.internship_id,a.date_created from
+(select id,std_id,internship_id,date_added::date as date_created from alumni.applied_internships where internship_id = #{id}) a inner join
 (select id,concat(first_name,' ',last_name) as name,email,mobile_no,user_id from alumni.students) b on (b.user_id = a.std_id)
 	</select>
 	

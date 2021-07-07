@@ -31,6 +31,9 @@
 								<th>Name</th>
 								<th>Email</th>
 								<th>Mobile</th>
+								<th>College Name</th>
+								<th>Qualification</th>
+								<th>Branch</th>
 								<th>Registered Date</th>
 							</tr>
 						</thead>
@@ -40,11 +43,14 @@
 									data-ng-click="getStudentsJobsData(stdData.user_id);">{{stdData.name}}</a></td>
 								<td>{{stdData.email}}</td>
 								<td>{{stdData.mobile_no}}</td>
-								<td>{{stdData.date_created}}</td>
+								<td>{{stdData.college_code}}</td>
+								<td>{{stdData.qualification}}</td>
+								<td>{{stdData.branch}}</td>
+								<td>{{stdData.date_created | date : 'dd-MM-yyyy'}}</td>
 							</tr>
 							
 							<tr id="emptyrow" style="display: none">
-                            <td colspan="4" class="text-center">No Data Available</td>
+                            <td colspan="7" class="text-center">No Data Available</td>
                         </tr>
 							
 						</tbody>
@@ -65,6 +71,9 @@
 								<th>Job Title</th>
 								<th>Company Name</th>
 								<th>Location</th>
+								<th>Maximum Experience</th>
+								<th>Minimum Experience</th>
+								<th>End Date</th>
 								<th>Applied Date</th>
 							</tr>
 						</thead>
@@ -73,11 +82,14 @@
 								<td>{{JobData.title}}</td>
 								<td>{{JobData.company_name}}</td>
 								<td>{{JobData.location}}</td>
+								<td>{{JobData.max_exp}}</td>
+								<td>{{JobData.min_exp}}</td>
+								<td>{{JobData.end_date | date : 'dd-MM-yyyy'}}</td>
 								<td>{{JobData.date_created | date : 'dd-MM-yyyy'}}</td>
 							</tr>
 							
 							<tr id="emptyrow" style="display: none">
-                            <td colspan="4" class="text-center">No Data Available</td>
+                            <td colspan="7" class="text-center">No Data Available</td>
                         </tr>
 							
 						</tbody>
@@ -96,6 +108,10 @@
 								<th>Internship Title</th>
 								<th>Company Name</th>
 								<th>Location</th>
+								<th>Contact Email</th>
+								<th>Duration</th>
+								<th>Posted Date</th>
+								<th>End Date</th>
 								<th>Applied Date</th>
 							</tr>
 						</thead>
@@ -104,11 +120,15 @@
 								<td>{{InternData.title}}</td>
 								<td>{{InternData.company_name}}</td>
 								<td>{{InternData.location}}</td>
+								<td>{{InternData.contact_email}}</td>
+								<td>{{InternData.duartion}}</td>
+								<td>{{InternData.date_created | date :: 'dd-MM-yyyy'}}</td>
+								<td>{{InternData.end_date | date : 'dd-MM-yyyy'}}</td>
 								<td>{{InternData.date_created | date : 'dd-MM-yyyy'}}</td>
 							</tr>
 							
 							<tr id="emptyrow" style="display: none">
-                            <td colspan="4" class="text-center">No Data Available</td>
+                            <td colspan="8" class="text-center">No Data Available</td>
                         </tr>
 							
 						</tbody>
@@ -126,9 +146,7 @@
 <script>
 		$("#activestudents").show();
 		$("#individualStudentdata").hide();
-		jQuery(document).ready(
-				function() {
-					angular.bootstrap(jQuery("#JobpostDiv"),
-							[ 'activeStudentsReports' ]);
-				});
+		jQuery(document).ready(function() {
+			angular.bootstrap(jQuery("#JobpostDiv"),[ 'activeStudentsReports' ]);
+		});
 	</script>

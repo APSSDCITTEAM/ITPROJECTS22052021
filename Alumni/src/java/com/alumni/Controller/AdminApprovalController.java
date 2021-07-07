@@ -47,6 +47,13 @@ public class AdminApprovalController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "getinActiveInternships", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getinActiveInternships()
+	{
+		return adminApprovalService.getinActiveInternships();
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "getallApprovedUsers", method = { RequestMethod.POST, RequestMethod.GET })
 	public Response getallApprovedUsers()
 	{
@@ -145,8 +152,12 @@ public class AdminApprovalController {
 		return adminApprovalService.getSubmittedInternships();
 	}
 	
-	
-	
+	@ResponseBody
+	@RequestMapping(value = "getRejectedInternshipsData", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response getRejectedInternshipsData()
+	{
+		return adminApprovalService.getRejectedInternshipsData();
+	}	
 	
 	@ResponseBody
 	@RequestMapping(value = "getApprovedInternships", method = { RequestMethod.POST, RequestMethod.GET })

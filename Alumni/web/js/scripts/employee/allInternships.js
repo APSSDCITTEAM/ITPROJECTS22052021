@@ -14,7 +14,7 @@ Student.controller('InternshipViewController', ['$scope', '$http', function($sco
 			console.log("Client error while getting data");
 		}
 	});
-	
+	   
 	
 	$scope.ApplyInternship = function(ApplyInternship) {
 		console.log(ApplyInternship);
@@ -33,7 +33,7 @@ Student.controller('InternshipViewController', ['$scope', '$http', function($sco
 				if ($scope.data.successful) {
 					alert("Internship already applied!!!");
 					
-				} else {
+				} else {   
 					swal(
 							{
 								title: "Done",

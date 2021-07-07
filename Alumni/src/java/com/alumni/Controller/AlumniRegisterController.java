@@ -192,4 +192,26 @@ public class AlumniRegisterController {
 	public Response remove(@RequestBody Integer role_id) {
 		return alumniregisterService.remove(role_id);
 	}
+	
+	/* Forgot Password */
+	@ResponseBody
+	@RequestMapping(value = "sendotp", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response sendotp(@RequestBody AlumniRegisterModel job) {
+		return alumniregisterService.sendotp(job);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/verifyotp", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response verifyotp(@RequestBody AlumniRegisterModel job)
+			throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		return alumniregisterService.verifyotp(job);
+	}
+	
+	/* Update Password */
+	
+	@ResponseBody
+	@RequestMapping(value = "updatePassword", method = { RequestMethod.POST, RequestMethod.GET })
+	public Response updatePassword(@RequestBody AlumniRegisterModel job) {
+		return alumniregisterService.updatePassword(job);
+	}
 }

@@ -38,13 +38,13 @@ Student.controller('JobViewController', ['$scope', '$http', function($scope, $ht
 				} else {
 					/*swal("Job Applied Succesfully");*/
 					swal(
-							{
-								title: "Done",
-								text: "Job Applied Successfully!",
-								type: "success"
-							}, function() {
-								Alumni.showEmployeeAllJobs();
-							});
+						{
+							title: "Done",
+							text: "Job Applied Successfully!",
+							type: "success"
+						}, function() {
+							Alumni.showEmployeeAllJobs();
+						});
 				}
 			}, function(errResponse) {
 				console.error('Error while fetching notes');

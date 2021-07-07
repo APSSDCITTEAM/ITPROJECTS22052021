@@ -26,16 +26,13 @@
                 <table class="table table-bordered table-hover nowrap">
                     <thead>
                         <tr>
-                            <th>Sno</th>
+                            <th>S.no</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Mobile No</th>
-                            <!-- <th>College Name</th>
-							<th>Roll Number</th>
+                            <th>Organization Name</th>
 							<th>Qualification</th>
 							<th>Branch</th>
-							<th>Passed Out Year</th>
-							<th>District</th> -->
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -45,10 +42,13 @@
                             <td>{{Employees.name}}</td>
                             <td>{{Employees.email}}</td>
                             <td>{{Employees.mobile_no}}</td>
+                            <td>{{Employees.organization_name}}</td>
+							<td>{{Employees.qualification}}</td>
+							<td>{{Employees.branch}}</td>
                             <td>{{Employees.status_type}}</td>
                         </tr>
                         <tr id="emptyrow" style="display: none">
-                            <td colspan="5" class="text-center">No Data Available</td>
+                            <td colspan="8" class="text-center">No Data Available</td>
                         </tr>
                     </tbody>
                 </table>

@@ -148,7 +148,7 @@
 		token=#{token}
 		and mail_verify = true ;
 	</select>
-	
+
 	<select id="getEmailbyId" parameterType="java.lang.Integer"
 		resultType="java.lang.String">
 		select email from
@@ -220,5 +220,24 @@
 		alumni.roles where id = #{role_id};
 	</delete>
 
+	<!-- OTP Update -->
+	<update id="updateotp" parameterType="map">
+		UPDATE alumni.users
+		SET
+		otp=#{p.otp}
+		WHERE username =#{p.email};
+	</update>
+
+	<select resultType="java.lang.Integer" parameterType="map"
+		id="verifyOtp">
+		SELECT count(*) as count FROM alumni.users WHERE otp=#{p.otp} and
+		username = #{p.email};
+	</select>
+
+	<update id="updatePassword" parameterType="map">
+		update alumni.users
+		SET
+		password = md5(#{p.password}) where username =#{p.email};
+	</update>
 
 </mapper>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.andromeda.commons.model.Response;
 import com.alumni.DAO.EventsDAO;
+import com.alumni.Model.AdminApprovalModel;
 import com.alumni.Model.AlumniRegisterModel;
 //Local
 import com.alumni.Model.EventsModel;
@@ -129,6 +130,48 @@ public class EventsService {
 		} else if (eventStatus == 1) {
 			response.setSuccessful(true);
 		}
+		return response;
+	}
+	
+	/* getting my events */
+	public Response getmyEvents(String std_id) {
+		response.setSuccessful(false);
+		List<EventsModel> userdetails = eventsDAO.getmyEvents(std_id);
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+
+	/* getting events except mine */
+	public Response getNotmyEvents(String std_id) {
+		response.setSuccessful(false);
+		List<EventsModel> userdetails = eventsDAO.getNotmyEvents(std_id);
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	public Response getSubmittedevents() {
+		response.setSuccessful(false);
+		List<EventsModel> userdetails = eventsDAO.getSubmittedevents();
+		response.setSuccessful(true);
+		response.setResponseObject(userdetails);
+		return response;
+	}
+	
+	public Response ApproveEvent(Integer id) {
+		response.setSuccessful(false);
+		eventsDAO.ApproveEvent(id);
+		response.setSuccessful(true);
+		response.setResponseObject(id);
+		return response;
+	}
+	
+	public Response RejectEvent(Integer id) {
+		response.setSuccessful(false);
+		eventsDAO.RejectEvent(id);
+		response.setSuccessful(true);
+		response.setResponseObject(id);
 		return response;
 	}
 	

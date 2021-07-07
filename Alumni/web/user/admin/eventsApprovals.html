@@ -1,0 +1,74 @@
+<script src="/alumni/js/scripts/admin/EventApprovals.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+    <div class="col-sm-6">
+        <div class="page-title-box">
+            <h4 class="font-size-18">Event Approvals</h4>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="javascript: void(0);">Events</a></li>
+                <li class="breadcrumb-item active">Event Approvals</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row clearfix" id="EventApprovalsDiv" data-ng-controller="EventsApprovalsController">
+    <div class="col-md-12 col-sm-12 mx-auto">
+        <div class="card border border-primary">
+            <div class="card-header bg-primary text-center text-white">
+                <h4 class="card-title text-centernter">Event Approvals</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-hover nowrap table-responsive">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Event Title</th>
+                            <th>Event Type</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Location</th>
+                            <th>Organizer</th>
+                            <th>Created Date</th>
+                            <th>Status</th>
+                            <th>Approve</th>
+                            <th>Reject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="Submitted in SubmittedEvents">
+                            <td>{{$index+1}}</td>
+                            <td>{{Submitted.event_title}}</td>
+                            <td>{{Submitted.eventtype}}</td>
+                            <td>{{Submitted.start_date | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{Submitted.end_date | date : 'dd-MM-yyyy'}}</td>
+                            <td>{{Submitted.location}}</td>
+                            <td>{{Submitted.organizer}}</td>
+                            <td>{{Submitted.created_date | date: 'dd-MM-yyyy'}}</td>
+                            <td>{{Submitted.status_type}}</td>
+                            <td><button class="btn btn-primary btn-mini" data-ng-click="ApproveEvent(Submitted);">Approve</button></td>
+                            <td><button class="btn btn-danger btn-mini" data-ng-click="RejectEvent(Submitted);">Reject</button></td>
+                        </tr>
+                        
+                         <tr id="emptyrow" style="display: none">
+                            <td colspan="10" class="text-center">No Data Available</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    jQuery(document).ready(
+        function() {
+            angular.bootstrap(jQuery("#EventApprovalsDiv"), ['EventApprovals']);
+        });
+</script>

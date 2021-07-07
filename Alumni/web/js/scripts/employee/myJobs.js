@@ -13,7 +13,7 @@ Student.controller('JobViewController', ['$scope', '$http', function($scope, $ht
 		else {
 			console.log("Client error while getting data");
 		}
-	});  
+	});
 
 	/* get My Job Applicatnts */
 	$scope.JobApplicants = function(id) {

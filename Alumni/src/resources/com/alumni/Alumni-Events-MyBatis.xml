@@ -8,7 +8,7 @@
 		user_id,event_type,organizer_contact_number)
 		VALUES
 		(#{p.event_title},#{p.start_date},#{p.end_date},#{p.location},#{p.organizer},#{p.organizer_designation},#{p.description},
-		true,#{p.std_id},#{p.event_type},#{p.organizer_contact_number});
+		0,#{p.std_id},#{p.event_type},#{p.organizer_contact_number});
 	</insert>
 
 	<select id="getallEvents" resultType="map">
@@ -16,13 +16,14 @@
 		id,event_title,start_date,end_date,location,organizer,organizer_designation,description,status,organizer_contact_number,
 		created_date :: date as created_date,case when event_type = 0 then 'Workshop' when event_type = 1 then 'Guest Lecture' 
 		when event_type = 2 then 'Hackathon' end as eventtype from alumni.events 
-		where end_date >= current_timestamp::date and status = true order by id;
+		where end_date >= current_timestamp::date and status = 1 order by id;
 	</select>
 
 	<!-- Events View page data -->
 	<select id="vieweventData" resultType="EventsModel">
 	select id,event_title,start_date,end_date,location,organizer,organizer_designation,description,
-		created_date::date as created_date,case when status = true then 'Open' when status = false then 'Closed' end as status_type, 
+		created_date::date as created_date,(case when status = 0 then 'Submitted' when status = 1 then 'Open' 
+		when status = 2 then 'Rejected' when status = 3 then 'Closed' end) as status_type, 
 		case when event_type = 0 then 'Workshop' when event_type = 1 then 'Guest Lecture' 
 		when event_type = 2 then 'Hackathon' end as eventtype,organizer_contact_number from alumni.events where id = #{id};
 	</select>
@@ -47,27 +48,20 @@
 
 	<!-- .....................................delete event .............................. -->
 	<delete id="DeleteEvent" parameterType="java.lang.Integer">
-		delete from alumni.events
-		where id = #{id};
+		delete from alumni.events where id = #{id};
 	</delete>
 
 	<!-- ....................................... change event status ................................... -->
 
-	<select id="getallOpenEvents" resultType="map">
-		<!-- select distinct
-		id,event_title,start_date,end_date,location,organizer,organizer_designation,description,
-		case when status = true then 'Open' end status_type,created_date ::
-		date as created_date from alumni.events
-		where status = true order by id; -->
-		
+	<select id="getallOpenEvents" resultType="map">		
 	select a.id,event_title,location,start_date,end_date,organizer,organizer_designation,created_date :: date as created_date,eventtype,
 		created_by,status_type,a.organizer_contact_number from
 		(select distinct id,event_title,location,organizer_contact_number,start_date,end_date,organizer,organizer_designation,created_date,
 		(case when event_type = 0 then 'Workshops' when event_type = 1 then 'Guest Lecture' when 
-		event_type = 2 then 'Hackathon' end) as eventtype,user_id,status,(case when status = 'TRUE' then 'Open' 
-		when status = 'FALSE' then 'Closed' end) as status_type from alumni.events) a inner join
+		event_type = 2 then 'Hackathon' end) as eventtype,user_id,status,(case when status = 0 then 'Submitted' when status = 1 then 'Open' 
+		when status = 2 then 'Rejected' when status = 3 then 'Closed' end) as status_type from alumni.events) a inner join
 		(select concat(first_name,' ',last_name) as created_by,user_id from alumni.students) b on (b.user_id = a.user_id)
-		where a.status = 'TRUE' order by a.id;
+		where a.status = 1 order by a.id;
 		
 	</select>
 
@@ -76,21 +70,19 @@
 		created_by,status_type,a.organizer_contact_number from
 		(select distinct id,event_title,location,start_date,end_date,organizer,organizer_designation,created_date,
 		(case when event_type = 0 then 'Workshops' when event_type = 1 then 'Guest Lecture' when 
-		event_type = 2 then 'Hackathon' end) as eventtype,user_id,status,organizer_contact_number,(case when status = 'TRUE' then 'Open' 
-		when status = 'FALSE' then 'Closed' end) as status_type from alumni.events) a inner join
+		event_type = 2 then 'Hackathon' end) as eventtype,user_id,status,organizer_contact_number,(case when status = 0 then 'Submitted' when status = 1 then 'Open' 
+		when status = 2 then 'Rejected' when status = 3 then 'Closed' end) as status_type from alumni.events) a inner join
 		(select concat(first_name,' ',last_name) as created_by,user_id from alumni.students) b on (b.user_id = a.user_id)
-		where a.status = 'False' order by a.id;
+		where a.status = 3 order by a.id;
 	</select>
 
 	<update id="changeEventStatus" parameterType="java.lang.Integer">
-		update
-		alumni.events SET status = false,closed_date = CURRENT_TIMESTAMP where
-		id = #{p.id}
+		update alumni.events SET status = 3,closed_date = CURRENT_TIMESTAMP where id = #{p.id}
 	</update>
 	
 	<select resultType="java.lang.Integer" parameterType="map" id="checkEvent">
 		select count(*) as count from alumni.applied_events where std_id = #{p.std_id} and event_id = #{p.id}
-	</select>
+	</select>  
 	
 	<insert id="InsertApplyEvent" parameterType="map">    
 		INSERT INTO alumni.applied_events(std_id,date_added,event_id)
@@ -99,7 +91,46 @@
 	
 	<!-- update status by end date -->
 	<update id="UpdateEventStatusbyDate" parameterType="map">
-		update alumni.events set status = 'false' where current_timestamp :: date > end_date;
+		update alumni.events set status = 3 where current_timestamp :: date > end_date;
 	</update>
+	
+	<!-- getting my events -->
+	<select id="getmyEvents" parameterType="map" resultType="EventsModel">
+		select distinct
+		id,event_title,start_date,end_date,location,organizer,organizer_designation,description,status,organizer_contact_number,
+		created_date :: date as created_date,case when event_type = 0 then 'Workshop' when event_type = 1 then 'Guest Lecture' 
+		when event_type = 2 then 'Hackathon' end as eventtype from alumni.events 
+		where user_id = #{std_id} order by id;
+	</select>
+	    
+	<!-- getting events except mine -->
+	<select id="getNotmyEvents" parameterType="map" resultType="EventsModel">
+		select distinct
+		id,event_title,start_date,end_date,location,organizer,organizer_designation,description,status,organizer_contact_number,
+		created_date :: date as created_date,case when event_type = 0 then 'Workshop' when event_type = 1 then 'Guest Lecture' 
+		when event_type = 2 then 'Hackathon' end as eventtype from alumni.events 
+		where user_id != #{std_id} and status = 1 order by id;
+	</select>
+	
+	<select id="getSubmittedevents" resultType="map">
+	select a.id,event_title,location,start_date,end_date,organizer,organizer_designation,created_date :: date as created_date,eventtype,
+		created_by,status_type,a.organizer_contact_number from
+		(select distinct id,event_title,location,organizer_contact_number,start_date,end_date,organizer,organizer_designation,created_date,
+		(case when event_type = 0 then 'Workshops' when event_type = 1 then 'Guest Lecture' when 
+		event_type = 2 then 'Hackathon' end) as eventtype,user_id,status,(case when status = 0 then 'Submitted' when status = 1 then 'Open' 
+		when status = 2 then 'Rejected' when status = 3 then 'Closed' end) as status_type from alumni.events) a inner join
+		(select concat(first_name,' ',last_name) as created_by,user_id from alumni.students) b on (b.user_id = a.user_id)
+		where a.status = 0 order by a.id;
+	</select>
+	
+	<update id="ApproveEvent" parameterType="java.lang.Integer">
+		update alumni.events set status = 1 where id = #{p.id};
+	</update>
+
+	<update id="RejectEvent" parameterType="java.lang.Integer">
+		update alumni.events set status = 2 where id = #{p.id};
+	</update>
+	
+	
 
 </mapper>

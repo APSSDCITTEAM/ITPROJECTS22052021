@@ -24,7 +24,7 @@ Student.controller('InternshipViewController', ['$scope', '$http', function($sco
 				$scope.AppliedCandidates = $scope.applieddata.responseObject.appliedInterns;
 				console.log($scope.AppliedCandidates);
 				$("#myInternshipsDiv").hide();
-				$("#myInternshipsApplicantsDiv").show();
+				$("#myInternsApplicantsDiv").show(); 
 			}
 			else {
 				console.log("Client error while getting data");

@@ -31,6 +31,9 @@
 								<th>Name</th>
 								<th>Email</th>
 								<th>Mobile</th>
+								<th>Organization Name</th>
+								<th>Qualification</th>
+								<th>Branch</th>
 								<th>Registered Date</th>
 							</tr>
 						</thead>
@@ -41,10 +44,13 @@
 											getEmployeeDetails(empData.user_id);">{{empData.name}}</a></td>
 								<td>{{empData.email}}</td>
 								<td>{{empData.mobile_no}}</td>
-								<td>{{empData.date_created}}</td>
+								<td>{{empData.organization_name}}</td>
+								<td>{{empData.qualification || NA}}</td>
+								<td>{{empData.branch || NA}}</td>
+								<td>{{empData.date_created | date : 'dd-MM-yyyy'}}</td>
 							</tr>
 							<tr id="emptyrow" style="display: none">
-								<td colspan="4" class="text-center">No Data Available</td>
+								<td colspan="7" class="text-center">No Data Available</td>
 							</tr>
 						</tbody>
 					</table>
@@ -113,8 +119,8 @@
 										<td>{{JobData.location}}</td>
 										<td>{{JobData.min_exp}}</td>
 										<td>{{JobData.max_exp}}</td>
-										<td>{{JobData.date_created}}</td>
-										<td>{{JobData.closeddate}}</td>
+										<td>{{JobData.date_created | date : 'dd-MM-yyyy'}}</td>
+										<td>{{JobData.closeddate | date : 'dd-MM-yyyy'}}</td>
 										<td>{{JobData.status_type}}</td>
 									</tr>
 
@@ -150,8 +156,8 @@
 										<td>{{InternData.company_name}}</td>
 										<td>{{InternData.location}}</td>
 										<td>{{InternData.duration}}</td>
-										<td>{{InternData.date_created}}</td>
-										<td>{{InternData.closeddate}}</td>
+										<td>{{InternData.date_created | date : 'dd-MM-yyyy'}}</td>
+										<td>{{InternData.closeddate | date : 'dd-MM-yyyy'}}</td>
 										<td>{{InternData.status_type}}</td>
 									</tr>
 
@@ -187,7 +193,7 @@
 								<td>{{appliedJob.title}}</td>
 								<td>{{appliedJob.company_name}}</td>
 								<td>{{appliedJob.location}}</td>
-								<td>{{appliedJob.date_created}}</td>
+								<td>{{appliedJob.date_created | date : 'dd-MM-yyyy'}}</td>
 							</tr>
 
 							<tr id="emptyrow" style="display: none">
@@ -220,7 +226,7 @@
 								<td>{{JobData.company_name}}</td>
 								<td>{{JobData.location}}</td>
 								<td>{{JobData.duration}}</td>
-								<td>{{JobData.date_created}}</td>
+								<td>{{JobData.date_created | date : 'dd-MM-yyyy'}}</td>
 							</tr>
 
 							<tr id="emptyrow" style="display: none">

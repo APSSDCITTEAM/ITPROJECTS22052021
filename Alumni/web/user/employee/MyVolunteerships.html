@@ -18,7 +18,7 @@
 
 <div id="viewvolunteershipdiv"
 	data-ng-controller="VolunteershipViewController">
-	<div class="row clearfix" id="myVolunteershipsDiv">
+	<div class="row clearfix" id="myInternshipsDiv">
 
 		<div class="col-md-6 col-sm-12"
 			data-ng-repeat="volunteers in myvolunteers">
@@ -33,13 +33,13 @@
 								<li class="list-group-item"><i
 									class="fas fa-envelope-square mr-2"></i>{{volunteers.email}}</li>
 								<li class="list-group-item"><i class="ti-calendar mr-2"></i>{{volunteers.start_date
-									| date: 'dd MMM, yyyy'}} - {{volunteers.end_date | date: 'dd
-									MMM, yyyy'}}</li>
+									| date: 'dd-MM-yyyy'}} - {{volunteers.end_date | date:
+									'dd-MM-yyyy'}}</li>
 							</ul>
 							<p>{{volunteers.description}}</p>
 
 							<button type="button" class="btn btn-success"
-								data-ng-click="VolunteershipApplicants(volunteers.id)"
+								data-ng-click="VolunteerApplicants(volunteers.id)"
 								id="get-applicants">
 								<i class="fa fa-users mr-2"></i>Get Applicants
 							</button>
@@ -51,48 +51,48 @@
 		</div>
 
 	</div>
-</div>
-<div class="row clearfix" id="myVolunteershipsApplicantsDiv">
-	<div class="col-md-12 col-sm-12 mx-auto">
-		<div class="card">
-			<div class="card-header">
-				<h4 class="card-title">Applied Candidates</h4>
-			</div>
-			<div class="card-body table-responsive">
-				<table class="table table-bordered table-hover">
-					<thead>
-						<tr>
-							<th>S.No</th>
-							<th>Name</th>
-							<th>Contact Email</th>
-							<th>Mobile No</th>
-							<th>Technology</th>
-							<th>Applied Date</th>
-						</tr>
-					</thead>
-					<tbody>
 
-						<tr data-ng-repeat=" user in AppliedCandidates">
-							<td>{{$index+1}}</td>
-							<td>{{user.name}}</td>
-							<td>{{user.email}}</td>
-							<td>{{user.mobile_no}}</td>
-							<td>{{user.technologies}}</td>
-							<td>{{user.date_added | date : 'dd-MM-yyyy'}}
-						</tr>
-					</tbody>
-				</table>
+	<div class="row clearfix" id="myInternshipsApplicantsDiv">
+		<div class="col-md-12 col-sm-12 mx-auto">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title">Applied Candidates</h4>
+				</div>
+				<div class="card-body table-responsive">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>S.No</th>
+								<th>Name</th>
+								<th>Contact Email</th>
+								<th>Mobile No</th>
+								<th>Technology</th>
+								<th>Applied Date</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr data-ng-repeat="applieddata in AppliedCandidates">
+								<td>{{$index+1}}</td>
+								<td>{{applieddata.first_name}}</td>
+								<td>{{applieddata.email}}</td>
+								<td>{{applieddata.mobile_no}}</td>
+								<td>{{applieddata.technologies}}</td>
+								<td>{{applieddata.date_created | date : 'dd-MM-yyyy'}}
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
 <script>
 	jQuery(document).ready(
 			function() {
 
-				$("#myVolunteershipsDiv").show();
-				$("#myVolunteershipsApplicantsDiv").hide();
+				$("#myInternshipsDiv").show();
+				$("#myInternshipsApplicantsDiv").hide();
 				angular.bootstrap(jQuery("#viewvolunteershipdiv"),
 						[ 'volunteership' ]);
 			});

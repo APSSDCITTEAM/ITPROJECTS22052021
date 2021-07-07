@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.Random; 
 import com.andromeda.commons.model.Response;
 import com.alumni.DAO.AlumniRegisterDAO;
 import com.alumni.Model.AlumniRegisterModel;
@@ -206,6 +206,63 @@ public class AlumniRegisterService {
 		alumniregisterDAO.remove(role_id);
 		response.setSuccessful(true);
 		response.setResponseObject(role_id);
+		return response;
+	}
+	
+	public Response sendotp(AlumniRegisterModel job) {
+		response.setSuccessful(false);
+		/* login.setPassword(CryptoUtils.getMD5Hash(login.getPassword())); */
+		Integer mailStatus = alumniregisterDAO.checkMail(job);
+		System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+		System.out.println(mailStatus);
+		if (mailStatus == 1) {
+			alumniregisterDAO.sendOtp(job);
+//			Mail Service Starts
+			Email email = new Email();
+			email.setFrom("APSSDC Alumni Registration <siemensrecruitment@apssdc.in>");
+			email.setTo(job.getEmail().trim());
+			email.setSubject("Forgot Password OTP Verification");
+			String msg = "Dear Participant,<br><br>" + "<b>You have Sent you an OTP to reset your Password.</b><br><br>"
+					+ "<p>Your Otp is " + job.getOtp() + "</p><br><br>";
+			email.setText(msg);
+			this.emailService.sendHtmlMsg(email);
+			response.setSuccessful(true);
+			response.setResponseObject(job);
+		} else if (mailStatus == 0) {
+			response.setSuccessful(false);
+			response.setResponseObject(job);
+		}
+		
+		return response;
+	}
+	
+	public Response verifyotp(AlumniRegisterModel job) {
+//		Random random = new Random();   
+//		Integer OTP = random.nextInt(1000000);
+//		System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+//		System.out.println(OTP);
+//		job.setOtp(OTP);
+		response.setSuccessful(false);
+		
+		Integer mailStatus = alumniregisterDAO.verifyotp(job);
+		System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+		System.out.println(mailStatus);
+		if (mailStatus == 0) {
+			response.setSuccessful(false);
+			response.setResponseObject(job);
+		} else if (mailStatus == 1) {
+			response.setSuccessful(true);
+			response.setResponseObject(job);
+		}
+		return response;
+	}
+	
+	/* update role data */
+	public Response updatePassword(AlumniRegisterModel alumniregisterModel) {
+		response.setSuccessful(false);
+		alumniregisterDAO.updatePassword(alumniregisterModel);
+		response.setSuccessful(true);
+		response.setResponseObject(alumniregisterModel);
 		return response;
 	}
 

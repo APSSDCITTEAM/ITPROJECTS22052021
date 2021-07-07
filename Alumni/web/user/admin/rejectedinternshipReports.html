@@ -1,0 +1,66 @@
+<script src="/alumni/js/scripts/admin/rejectedInternReports.js"></script>
+
+<!-- start page title -->
+<div class="row align-items-center">
+	<div class="col-sm-6">
+		<div class="page-title-box">
+			<h4 class="font-size-18">Rejected Internship reports</h4>
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="javascript: void(0);"><i
+						class="fa fa-home"></i></a></li>
+				<li class="breadcrumb-item"><a href="javascript: void(0);">Reports</a></li>
+				<li class="breadcrumb-item active">Internship Reports</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- end page title -->
+
+<div class="row clearfix" id="JobpostDiv"
+	data-ng-controller="RejectedInternsController">
+	<div class="col-md-12 col-sm-12">
+		<div class="card">
+			<div class="card-header bg-primary text-white">
+				<h4 class="card-title">Rejected Internships</h4>
+			</div>
+			<div class="card-body table-responsive">
+				<table class="table table-bordered table-hover no-wrap">
+					<thead>
+						<tr>
+							<th>Internship Name</th>
+							<th>Company Name</th>
+							<th>Location</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+							<!-- <th>Created By</th> -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-ng-repeat="Data in RejectedInterns">
+							<td>{{Data.title}}</td>
+							<td>{{Data.company_name}}</td>
+							<td>{{Data.location}}</td>
+							<td>{{Data.created_date}}</td>
+							<td>{{Data.end_date}}</td>
+							<!-- <td>{{Data.name}}</td> -->
+						</tr>
+
+						<tr id="emptyrow" style="display: none">
+							<td colspan="5" class="text-center">No Data Available</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>
+
+<script>
+	jQuery(document).ready(function() {
+		angular.bootstrap(jQuery("#JobpostDiv"), [ 'rejectedInternReports' ]);
+	});
+</script>
